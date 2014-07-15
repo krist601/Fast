@@ -1,11 +1,12 @@
 package fastchacaito
 
+import org.springframework.security.access.annotation.Secured
 import org.springframework.dao.DataIntegrityViolationException
 
 class PatientController {
-
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
+    @Secured(['ROLE_ADMIN'])
     def index() {
         redirect(action: "list", params: params)
     }

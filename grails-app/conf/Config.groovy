@@ -68,7 +68,10 @@ environments {
         // TODO: grails.serverURL = "http://www.changeme.com"
     }
 }
-
+// Added by the Spring Security Core plugin:
+grails.plugins.springsecurity.userLookup.userDomainClassName = 'com.bahmanm.secureapp.SecAppUser'
+grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.bahmanm.secureapp.SecAppUserSecAppRole'
+grails.plugins.springsecurity.authority.className = 'com.bahmanm.secureapp.SecAppRole'
 // log4j configuration
 log4j = {
     // Example of changing the log pattern for the default console appender:
@@ -89,3 +92,5 @@ log4j = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+
