@@ -4,7 +4,7 @@ class Treatment {
     Date date
     Date beginDate
     Date EndDate
-    Date totalPrice
+    int totalPrice
 
     static belongsTo = [packages: Package,paymentMethod: PaymentMethod]
     static constraints = {

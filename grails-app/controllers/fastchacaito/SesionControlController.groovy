@@ -11,7 +11,7 @@ class SesionControlController {
     }
 
     def list(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
+        params.max = Math.min(max ?: 10000, 100000)
         [sesionControlInstanceList: SesionControl.list(params), sesionControlInstanceTotal: SesionControl.count()]
     }
 

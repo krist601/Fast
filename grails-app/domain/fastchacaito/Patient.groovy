@@ -6,7 +6,7 @@ class Patient {
     String lastName
     String ocupation
     String address
-    String bornDate
+    Date bornDate
     String height
     boolean sufferFever
     boolean sufferHernias

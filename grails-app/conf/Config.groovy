@@ -69,9 +69,9 @@ environments {
     }
 }
 // Added by the Spring Security Core plugin:
-grails.plugins.springsecurity.userLookup.userDomainClassName = 'com.bahmanm.secureapp.SecAppUser'
-grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.bahmanm.secureapp.SecAppUserSecAppRole'
-grails.plugins.springsecurity.authority.className = 'com.bahmanm.secureapp.SecAppRole'
+grails.plugins.springsecurity.userLookup.userDomainClassName = 'user.SecAppUser'
+grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'user.SecAppUserSecAppRole'
+grails.plugins.springsecurity.authority.className = 'user.SecAppRole'
 // log4j configuration
 log4j = {
     // Example of changing the log pattern for the default console appender:

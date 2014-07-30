@@ -7,7 +7,7 @@
 		<g:message code="closure.closureDate.label" default="Closure Date" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="closureDate" name="closureDate.id" from="${fastchacaito.Date.list()}" optionKey="id" required="" value="${closureInstance?.closureDate?.id}" class="many-to-one"/>
+	<g:datePicker name="closureDate" precision="day"  value="${closureInstance?.closureDate}"  />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: closureInstance, field: 'reportX', 'error')} required">
@@ -24,5 +24,13 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<g:field name="reportZ" type="number" value="${closureInstance.reportZ}" required=""/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: closureInstance, field: 'secAppUser', 'error')} required">
+	<label for="secAppUser">
+		<g:message code="closure.secAppUser.label" default="Sec App User" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select id="secAppUser" name="secAppUser.id" from="${user.SecAppUser.list()}" optionKey="id" required="" value="${closureInstance?.secAppUser?.id}" class="many-to-one"/>
 </div>
 

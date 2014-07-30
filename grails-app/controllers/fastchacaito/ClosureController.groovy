@@ -11,7 +11,7 @@ class ClosureController {
     }
 
     def list(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
+        params.max = Math.min(max ?: 10000, 100000)
         [closureInstanceList: Closure.list(params), closureInstanceTotal: Closure.count()]
     }
 

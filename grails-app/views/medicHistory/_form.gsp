@@ -7,7 +7,7 @@
 		<g:message code="medicHistory.date.label" default="Date" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="date" name="date.id" from="${fastchacaito.Date.list()}" optionKey="id" required="" value="${medicHistoryInstance?.date?.id}" class="many-to-one"/>
+	<g:select id="date" name="date.id" from="${fastchacaito.Date.list()}" optionKey="id" required="" value="${medicHistoryInstance?.date}" class="many-to-one"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: medicHistoryInstance, field: 'familyHistory', 'error')} ">

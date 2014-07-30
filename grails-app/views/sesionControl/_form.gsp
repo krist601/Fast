@@ -74,6 +74,14 @@
 	<g:checkBox name="rightThigh" value="${sesionControlInstance?.rightThigh}" />
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: sesionControlInstance, field: 'secAppUser', 'error')} required">
+	<label for="secAppUser">
+		<g:message code="sesionControl.secAppUser.label" default="Sec App User" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select id="secAppUser" name="secAppUser.id" from="${user.SecAppUser.list()}" optionKey="id" required="" value="${sesionControlInstance?.secAppUser?.id}" class="many-to-one"/>
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: sesionControlInstance, field: 'sesionNumber', 'error')} required">
 	<label for="sesionNumber">
 		<g:message code="sesionControl.sesionNumber.label" default="Sesion Number" />

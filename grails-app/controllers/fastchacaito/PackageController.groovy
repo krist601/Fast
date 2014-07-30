@@ -11,7 +11,7 @@ class PackageController {
     }
 
     def list(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
+        params.max = Math.min(max ?: 10000, 100000)
         [packageInstanceList: Package.list(params), packageInstanceTotal: Package.count()]
     }
 

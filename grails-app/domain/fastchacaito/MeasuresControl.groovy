@@ -20,7 +20,7 @@ class MeasuresControl {
     int rightCrotchAfter
     
     //deberia tener relacionado el usuario
-    static belongsTo = [machine: Machine]
+    static belongsTo = [machine: Machine,secAppUser: user.SecAppUser]
     static constraints = {
     }
 }

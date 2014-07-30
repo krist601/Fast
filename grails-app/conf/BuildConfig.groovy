@@ -40,7 +40,7 @@ grails.project.dependency.resolution = {
     }
 
     dependencies {
-        runtime "postgresql:postgresql:9.1-901.jdbc4"
+        runtime "postgresql:postgresql:9.2-1003.jdbc4"
     }
 
     plugins {

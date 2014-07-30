@@ -11,7 +11,7 @@ class PhoneController {
     }
 
     def list(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
+        params.max = Math.min(max ?: 10000, 100000)
         [phoneInstanceList: Phone.list(params), phoneInstanceTotal: Phone.count()]
     }
 

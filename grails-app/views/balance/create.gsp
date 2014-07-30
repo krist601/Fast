@@ -1,39 +1,61 @@
 <%@ page import="fastchacaito.Balance" %>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'balance.label', default: 'Balance')}" />
-		<title><g:message code="default.create.label" args="[entityName]" /></title>
-	</head>
-	<body>
-		<a href="#create-balance" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
-		<div id="create-balance" class="content scaffold-create" role="main">
-			<h1><g:message code="default.create.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
-			</g:if>
-			<g:hasErrors bean="${balanceInstance}">
-			<ul class="errors" role="alert">
-				<g:eachError bean="${balanceInstance}" var="error">
-				<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-				</g:eachError>
-			</ul>
-			</g:hasErrors>
-			<g:form action="save" >
-				<fieldset class="form">
-					<g:render template="form"/>
-				</fieldset>
-				<fieldset class="buttons">
-					<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-				</fieldset>
-			</g:form>
-		</div>
-	</body>
+    <head>
+        <meta name="layout" content="main">
+        <g:set var="entityName" value="${message(code: 'balance.label', default: 'Balance')}" />
+        <title><g:message code="default.create.label" args="[entityName]" /></title>
+    </head>
+    <body>
+        <ul class="breadcrumbs">
+            <li><a class="home" href="${createLink(uri: '/')}"><i class="iconfa-home"></i></a> <span class="separator"></span></li>
+            <li><a class="home" href="${createLink(uri: '/Balance/List')}">Balance</a> <span class="separator"></span></li>
+            <li>Crear Nuevo Balance</li>
+        </ul>
+
+        <div class="maincontent">
+            <div class="maincontentinner">
+
+                <div class="widget">
+                    <h4 class="widgettitle" style="font-size: 30px;">Crear Balance</h4>
+                    <div class="widgetcontent">
+                        <form class="stdform" action="save" method="post">
+
+                            <div id="create-balance" class="content scaffold-create" role="main">
+
+                                <g:if test="${flash.message}">
+                                    <div class="message" role="status">${flash.message}</div>
+                                </g:if>
+                                <g:hasErrors bean="${balanceInstance}">
+                                    <ul class="errors" role="alert">
+                                        <g:eachError bean="${balanceInstance}" var="error">
+                                            <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+                                            </g:eachError>
+                                    </ul>
+                                </g:hasErrors>
+                                <g:form action="save" >
+                                    <fieldset class="form">
+                                        <g:render template="form"/>
+                                    </fieldset>
+                                    <fieldset class="buttons">
+                                        <g:submitButton name="create" class="btn btn-primary" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+                                    </fieldset>
+                                </g:form>
+                            </div>
+                        </form>
+                    </div><!--widgetcontent-->
+                </div><!--widget-->
+
+                <div class="footer">
+                    <div class="footer-left">
+                        <span>&copy; 2014. Fast CA. Todos los derechos reservados.</span>
+                    </div>
+                    <div class="footer-right">
+                        <span>Diseñado por: <a href="http://themepixels.com/">Kristian Cortés</a></span>
+                    </div>
+                </div><!--footer-->
+
+            </div><!--maincontentinner-->
+        </div><!--maincontent-->
+    </body>
 </html>

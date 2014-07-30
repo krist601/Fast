@@ -15,7 +15,7 @@
 		<g:message code="patient.admisionDate.label" default="Admision Date" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="admisionDate" name="admisionDate.id" from="${fastchacaito.Date.list()}" optionKey="id" required="" value="${patientInstance?.admisionDate?.id}" class="many-to-one"/>
+        <g:datePicker name="admisionDate" precision="day"  value="${patientInstance?.admisionDate}"  />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: patientInstance, field: 'allergy', 'error')} ">
@@ -31,7 +31,7 @@
 		<g:message code="patient.bornDate.label" default="Born Date" />
 		
 	</label>
-	<g:textField name="bornDate" value="${patientInstance?.bornDate}"/>
+        <g:datePicker name="bornDate" precision="day"  value="${patientInstance?.bornDate}"  />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: patientInstance, field: 'cedula', 'error')} required">

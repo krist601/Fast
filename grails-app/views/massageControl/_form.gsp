@@ -15,7 +15,7 @@
 		<g:message code="massageControl.massageDate.label" default="Massage Date" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="massageDate" name="massageDate.id" from="${fastchacaito.Date.list()}" optionKey="id" required="" value="${massageControlInstance?.massageDate?.id}" class="many-to-one"/>
+	<g:datePicker name="massageDate" precision="day"  value="${massageControlInstance?.massageDate}"  />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: massageControlInstance, field: 'massageNumber', 'error')} required">
@@ -24,5 +24,13 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<g:field name="massageNumber" type="number" value="${massageControlInstance.massageNumber}" required=""/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: massageControlInstance, field: 'secAppUser', 'error')} required">
+	<label for="secAppUser">
+		<g:message code="massageControl.secAppUser.label" default="Sec App User" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select id="secAppUser" name="secAppUser.id" from="${user.SecAppUser.list()}" optionKey="id" required="" value="${massageControlInstance?.secAppUser?.id}" class="many-to-one"/>
 </div>
 

@@ -79,7 +79,7 @@
 		<g:message code="measuresControl.measureDate.label" default="Measure Date" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="measureDate" name="measureDate.id" from="${fastchacaito.Date.list()}" optionKey="id" required="" value="${measuresControlInstance?.measureDate?.id}" class="many-to-one"/>
+	<g:datePicker name="measureDate" precision="day"  value="${measuresControlInstance?.measureDate}"  />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'rightCrotchAfter', 'error')} required">
@@ -112,6 +112,14 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<g:field name="rightThighBefore" type="number" value="${measuresControlInstance.rightThighBefore}" required=""/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'secAppUser', 'error')} required">
+	<label for="secAppUser">
+		<g:message code="measuresControl.secAppUser.label" default="Sec App User" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select id="secAppUser" name="secAppUser.id" from="${user.SecAppUser.list()}" optionKey="id" required="" value="${measuresControlInstance?.secAppUser?.id}" class="many-to-one"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'waistAfter', 'error')} required">

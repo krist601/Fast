@@ -14,7 +14,7 @@ class SesionControl {
     boolean achieved
     
     //deberia tener relacionado el usuario
-    static belongsTo = [vacutainer: Vacutainer]
+    static belongsTo = [vacutainer: Vacutainer,secAppUser: user.SecAppUser]
     static constraints = {
     }
 }

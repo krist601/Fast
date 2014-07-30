@@ -4,7 +4,7 @@
 
 <div class="fieldcontain ${hasErrors(bean: bodyTherapyInstance, field: 'massageType', 'error')} ">
 	<label for="massageType">
-		<g:message code="bodyTherapy.massageType.label" default="Massage Type" />
+		<g:message code="bodyTherapy.massageType.label" default="Tipo de Masaje" />
 		
 	</label>
 	<g:textField name="massageType" value="${bodyTherapyInstance?.massageType}"/>
@@ -12,7 +12,7 @@
 
 <div class="fieldcontain ${hasErrors(bean: bodyTherapyInstance, field: 'treatment', 'error')} required">
 	<label for="treatment">
-		<g:message code="bodyTherapy.treatment.label" default="Treatment" />
+		<g:message code="bodyTherapy.treatment.label" default="Tratamiento" />
 		<span class="required-indicator">*</span>
 	</label>
 	<g:select id="treatment" name="treatment.id" from="${fastchacaito.Treatment.list()}" optionKey="id" required="" value="${bodyTherapyInstance?.treatment?.id}" class="many-to-one"/>

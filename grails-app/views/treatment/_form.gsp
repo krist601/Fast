@@ -7,7 +7,7 @@
 		<g:message code="treatment.beginDate.label" default="Begin Date" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="beginDate" name="beginDate.id" from="${fastchacaito.Date.list()}" optionKey="id" required="" value="${treatmentInstance?.beginDate?.id}" class="many-to-one"/>
+	<g:datePicker name="beginDate" precision="day"  value="${treatmentInstance?.beginDate}"  />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: treatmentInstance, field: 'date', 'error')} required">
@@ -15,7 +15,7 @@
 		<g:message code="treatment.date.label" default="Date" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="date" name="date.id" from="${fastchacaito.Date.list()}" optionKey="id" required="" value="${treatmentInstance?.date?.id}" class="many-to-one"/>
+	<g:datePicker name="date" precision="day"  value="${treatmentInstance?.date}"  />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: treatmentInstance, field: 'endDate', 'error')} required">
@@ -23,7 +23,7 @@
 		<g:message code="treatment.endDate.label" default="End Date" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="endDate" name="endDate.id" from="${fastchacaito.Date.list()}" optionKey="id" required="" value="${treatmentInstance?.endDate?.id}" class="many-to-one"/>
+	<g:datePicker name="endDate" precision="day"  value="${treatmentInstance?.endDate}"  />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: treatmentInstance, field: 'packages', 'error')} required">
@@ -47,6 +47,6 @@
 		<g:message code="treatment.totalPrice.label" default="Total Price" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="totalPrice" name="totalPrice.id" from="${fastchacaito.Date.list()}" optionKey="id" required="" value="${treatmentInstance?.totalPrice?.id}" class="many-to-one"/>
+	<g:field name="totalPrice" type="number" value="${treatmentInstance.totalPrice}" required=""/>
 </div>
 

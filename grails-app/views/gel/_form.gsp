@@ -23,6 +23,14 @@
 		<g:message code="gel.receivedDate.label" default="Received Date" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="receivedDate" name="receivedDate.id" from="${fastchacaito.Date.list()}" optionKey="id" required="" value="${gelInstance?.receivedDate?.id}" class="many-to-one"/>
+	<g:datePicker name="receivedDate" precision="day"  value="${gelInstance?.receivedDate}"  />
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: gelInstance, field: 'secAppUser', 'error')} required">
+	<label for="secAppUser">
+		<g:message code="gel.secAppUser.label" default="Sec App User" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select id="secAppUser" name="secAppUser.id" from="${user.SecAppUser.list()}" optionKey="id" required="" value="${gelInstance?.secAppUser?.id}" class="many-to-one"/>
 </div>
 

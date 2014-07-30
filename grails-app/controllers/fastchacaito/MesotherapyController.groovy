@@ -11,7 +11,7 @@ class MesotherapyController {
     }
 
     def list(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
+        params.max = Math.min(max ?: 10000, 100000)
         [mesotherapyInstanceList: Mesotherapy.list(params), mesotherapyInstanceTotal: Mesotherapy.count()]
     }
 

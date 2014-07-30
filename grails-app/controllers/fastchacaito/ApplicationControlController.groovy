@@ -11,7 +11,7 @@ class ApplicationControlController {
     }
 
     def list(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
+        params.max = Math.min(max ?: 10000, 100000)
         [applicationControlInstanceList: ApplicationControl.list(params), applicationControlInstanceTotal: ApplicationControl.count()]
     }
 

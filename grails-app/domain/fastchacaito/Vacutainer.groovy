@@ -5,7 +5,10 @@ class Vacutainer {
     Date arrivalDate
     Date lostDate
     String vacutainerType
-
+    
+    static mapping = { 
+        version false 
+    } 
     static constraints = {
     }
 }
