@@ -30,7 +30,7 @@
                                     <li class="fieldcontain">
                                         <span id="beginDate-label" class="property-label"><g:message code="treatment.beginDate.label" default="Begin Date" /></span>
 
-                                        <span class="property-value" aria-labelledby="beginDate-label"><g:link controller="date" action="show" id="${treatmentInstance?.beginDate?.id}">${treatmentInstance?.beginDate?.encodeAsHTML()}</g:link></span>
+                                        <span class="property-value" aria-labelledby="beginDate-label"><g:fieldValue bean="${treatmentInstance}" field="beginDate"/></span>
 
                                     </li>
                                 </g:if>
@@ -39,7 +39,7 @@
                                     <li class="fieldcontain">
                                         <span id="date-label" class="property-label"><g:message code="treatment.date.label" default="Date" /></span>
 
-                                        <span class="property-value" aria-labelledby="date-label"><g:link controller="date" action="show" id="${treatmentInstance?.date?.id}">${treatmentInstance?.date?.encodeAsHTML()}</g:link></span>
+                                        <span class="property-value" aria-labelledby="date-label"><g:fieldValue bean="${treatmentInstance}" field="date"/></span>
 
                                     </li>
                                 </g:if>
@@ -48,7 +48,7 @@
                                     <li class="fieldcontain">
                                         <span id="endDate-label" class="property-label"><g:message code="treatment.endDate.label" default="End Date" /></span>
 
-                                        <span class="property-value" aria-labelledby="endDate-label"><g:link controller="date" action="show" id="${treatmentInstance?.endDate?.id}">${treatmentInstance?.endDate?.encodeAsHTML()}</g:link></span>
+                                        <span class="property-value" aria-labelledby="endDate-label"><g:fieldValue bean="${treatmentInstance}" field="endDate"/></span>
 
                                     </li>
                                 </g:if>
@@ -75,7 +75,7 @@
                                     <li class="fieldcontain">
                                         <span id="totalPrice-label" class="property-label"><g:message code="treatment.totalPrice.label" default="Total Price" /></span>
 
-                                        <span class="property-value" aria-labelledby="totalPrice-label"><g:link controller="date" action="show" id="${treatmentInstance?.totalPrice?.id}">${treatmentInstance?.totalPrice?.encodeAsHTML()}</g:link></span>
+                                        <span class="property-value" aria-labelledby="totalPrice-label"><g:fieldValue bean="${treatmentInstance}" field="totalPrice"/></span>
 
                                     </li>
                                 </g:if>

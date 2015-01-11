@@ -1,32 +1,56 @@
 <%@ page import="fastchacaito.Vacutainer" %>
 
-
-
-<div class="fieldcontain ${hasErrors(bean: vacutainerInstance, field: 'arrivalDate', 'error')} required">
-	<label for="arrivalDate">
-		<g:message code="vacutainer.arrivalDate.label" default="Fecha de Llegada" />
-	</label>
-        <g:datePicker name="arrivalDate" precision="day"  value="${vacutainerInstance?.arrivalDate}"  />
+<div class="fieldcontain ${hasErrors(bean: patientInstance, field: 'bornDate', 'error')} ">
+    <label>Fecha de Llegada</label>
+    <span class="field"><input id="datepicker" type="text" name="arrivalDate" class="input-small" /></span>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: vacutainerInstance, field: 'identifier', 'error')} ">
-	<label for="identifier">
-		<g:message code="vacutainer.identifier.label" default="Identificador" />
-	</label>
-	<g:textField name="identifier" value="${vacutainerInstance?.identifier}"/>
+    <label for="identifier">
+        <g:message code="vacutainer.identifier.label" default="Identifier" />
+
+    </label>
+    <g:textField name="identifier" value="${vacutainerInstance?.identifier}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: vacutainerInstance, field: 'lostDate', 'error')} required">
-	<label for="lostDate">
-		<g:message code="vacutainer.lostDate.label" default="Fecha de Perdida" />
-	</label>
-        <g:datePicker name="lostDate" precision="day"  value="${vacutainerInstance?.lostDate}"  />
-</div>
+
 
 <div class="fieldcontain ${hasErrors(bean: vacutainerInstance, field: 'vacutainerType', 'error')} ">
-	<label for="vacutainerType">
-		<g:message code="vacutainer.vacutainerType.label" default="Tipo de Vacutainer" />	
-	</label>
-	<g:textField name="vacutainerType" value="${vacutainerInstance?.vacutainerType}"/>
+    <label for="vacutainerType">
+        <g:message code="vacutainer.vacutainerType.label" default="Vacutainer Type" />
+    </label>
+    <select class="default form-control" name="vacutainerType" id="vacutainerType" value="">
+        <option value="Mesoterapia">Mesoterapia</option>
+        <option value="Balance Clásico">Balance Clásico</option>
+        <option value="Balance Plus">Balance Plus</option>
+    </select>
+</div>
+<div id="showMe">
+    <div class="fieldcontain ${hasErrors(bean: vacutainerInstance, field: 'vacutainerType', 'error')} ">
+        <label for="vacutainerType">
+            <g:message code="vacutainer.vacutainerType.label" default="Cantidad de Aplicaciones" />
+
+        </label>
+        <g:textField name="vacutainerAmount" value=""/>
+    </div>
+    <br>
 </div>
 
+
+<script>
+    var elem = document.getElementById("vacutainerType");
+    elem.onchange = function(){
+    var hiddenDiv = document.getElementById("showMe");
+    if (this.value!="Mesoterapia") {
+    hiddenDiv.style.display = (this.value == "") ? "none":"block";
+    }
+    if (this.value=="Mesoterapia") {
+    hiddenDiv.style.display = "none";
+    }
+    };
+</script>
+<style>
+    #showMe{
+    display:none;
+    }
+</style>

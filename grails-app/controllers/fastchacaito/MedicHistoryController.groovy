@@ -16,10 +16,12 @@ class MedicHistoryController {
     }
 
     def create() {
+        params.patient=Patient.get(params.foo)
         [medicHistoryInstance: new MedicHistory(params)]
     }
 
     def save() {
+        params.date=new Date()
         def medicHistoryInstance = new MedicHistory(params)
         if (!medicHistoryInstance.save(flush: true)) {
             render(view: "create", model: [medicHistoryInstance: medicHistoryInstance])
@@ -27,7 +29,7 @@ class MedicHistoryController {
         }
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'medicHistory.label', default: 'MedicHistory'), medicHistoryInstance.id])
-        redirect(action: "show", id: medicHistoryInstance.id)
+        redirect(controller: "patient", action: "show", id: medicHistoryInstance.patient.id)
     }
 
     def show(Long id) {

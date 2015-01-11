@@ -18,60 +18,83 @@
             <div class="maincontentinner">
 
                 <div class="widget">
-                    <h4 class="widgettitle" style="font-size: 30px;">Vacutainer: ${vacutainerInstance?.id}</h4>
+                    <h4 class="widgettitle" style="font-size: 30px;">Vacutainer ${vacutainerInstance?.identifier} <g:if test="${vacutainerInstance?.lostDate}"><t style="font-size: 30px; color: yellow;">(Perdido)</t></g:if></h4>
                     <div class="widgetcontent">
-                            
-                                <div id="show-vacutainer" class="content scaffold-show" role="main">
-                                <g:if test="${flash.message}">
-                                    <div class="message" role="status">${flash.message}</div>
-                                </g:if>
-                                <ol class="property-list vacutainer">
+                        <table class="table table-bordered table-invoice">
+                            <tr>
+                                <td class="width30">Identificador</td>
+                                <td class="width70">${vacutainerInstance?.identifier}</td>
+                            </tr>
+                            <tr>
+                                <td>Fecha de llegada</td>
+                                <td><g:formatDate format="dd MMMM yyyy" date="${vacutainerInstance?.arrivalDate}"/></td>
+                            </tr>
+                            <g:if test="${vacutainerInstance?.lostDate}">
+                                <tr>
+                                    <td>Fecha de Perdida</td>
+                                    <td><g:formatDate format="dd MMMM yyyy" date="${vacutainerInstance?.lostDate}"/></td>
+                                </tr>
+                            </g:if>
+                            <tr>
+                                <td>Tipo de Vacutainer</td>
+                                <td>${vacutainerInstance?.vacutainerType}</td>
+                            </tr>
 
-                                    <g:if test="${vacutainerInstance?.arrivalDate}">
-                                        <li class="fieldcontain">
-                                            <span id="arrivalDate-label" class="property-label"><g:message code="vacutainer.arrivalDate.label" default="Arrival Date" /></span>
+                        </table>
 
-                                            <span class="property-value" aria-labelledby="arrivalDate-label"><g:fieldValue bean="${vacutainerInstance}" field="arrivalDate"/></span>
+                        <div id="show-vacutainer" class="content scaffold-show" role="main">
 
-                                        </li>
+                            <g:form>
+                                <fieldset class="buttons">
+                                    <g:hiddenField name="id" value="${vacutainerInstance?.id}" />
+                                    <g:link class="btn btn-primary" action="edit" id="${vacutainerInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+                                    <g:if test="${!vacutainerInstance?.lostDate}">
+                                    <g:link class="btn btn-primary" action="editLostDate" id="${vacutainerInstance?.id}"><g:message code="Perdida" default="Perdida" /></g:link>
                                     </g:if>
+                                    <g:actionSubmit class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                                </fieldset>
+                            </g:form>
+                        </div>
+                        <br>
+                        <g:if test="${!vacutainerInstance?.vacutainerType.equals("Mesoterapia")}">
+                        <h2 class="widgettitle" style="font-size: 20px;">Aplicaciones del Vacutainer ${vacutainerInstance?.identifier}</h2>
+                        <table class="table table-bordered table-infinite" id="dyntable2">
+                            <colgroup>
+                                <col class="con0" />
+                                <col class="con1" />
+                                <col class="con0" />
+                                <col class="con1" />
+                            </colgroup>
+                            <thead>
+                                <tr>
 
-                                    <g:if test="${vacutainerInstance?.identifier}">
-                                        <li class="fieldcontain">
-                                            <span id="identifier-label" class="property-label"><g:message code="vacutainer.identifier.label" default="Identifier" /></span>
+                                    <th><g:message code="application.vacutainer.label" default="Vacutainer" /></th>
+                                    <th><g:message code="application.identifier.label" default="Identificador" /></th>
+                                    <th><g:message code="application.arrivalDate.label" default="Fecha de Llegada" /></th>
 
-                                            <span class="property-value" aria-labelledby="identifier-label"><g:fieldValue bean="${vacutainerInstance}" field="identifier"/></span>
+                                    <th><g:message code="application.applicationType.label" default="Tipo de Aplicación" /></th>
 
-                                        </li>
-                                    </g:if>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <g:each in="${vacutainerInstance?.application}" status="i" var="applicationInstance">
+                                    <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
-                                    <g:if test="${vacutainerInstance?.lostDate}">
-                                        <li class="fieldcontain">
-                                            <span id="lostDate-label" class="property-label"><g:message code="vacutainer.lostDate.label" default="Lost Date" /></span>
+                                        <td>${fieldValue(bean: applicationInstance, field: "vacutainer")}</td>
 
-                                            <span class="property-value" aria-labelledby="lostDate-label"><g:fieldValue bean="${vacutainerInstance}" field="lostDate"/></span>
+                                        <td><g:link action="show" controller="application" id="${applicationInstance.id}">${fieldValue(bean: applicationInstance, field: "identifier")}</g:link></td>
 
-                                        </li>
-                                    </g:if>
+                                        <td><g:formatDate format="dd MMMM yyyy" date="${applicationInstance?.arrivalDate}"/></td>
 
-                                    <g:if test="${vacutainerInstance?.vacutainerType}">
-                                        <li class="fieldcontain">
-                                            <span id="vacutainerType-label" class="property-label"><g:message code="vacutainer.vacutainerType.label" default="Vacutainer Type" /></span>
+                                        <td>${fieldValue(bean: applicationInstance, field: "applicationType")}</td>
 
-                                            <span class="property-value" aria-labelledby="vacutainerType-label"><g:fieldValue bean="${vacutainerInstance}" field="vacutainerType"/></span>
-
-                                        </li>
-                                    </g:if>
-
-                                </ol>
-                                <g:form>
-                                    <fieldset class="buttons">
-                                        <g:hiddenField name="id" value="${vacutainerInstance?.id}" />
-                                        <g:link class="btn btn-primary" action="edit" id="${vacutainerInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-                                        <g:actionSubmit class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-                                    </fieldset>
-                                </g:form>
-                            </div>
+                                    </tr>
+                                </g:each>
+                            </tbody>
+                        </table>
+                        <br>
+                        <a class="btn btn-primary" href="${createLink(controller:'application', action:'create', params:[foo:vacutainerInstance?.id])}" style="color: white; text-align: center;">Agregar nueva Applicación</a>
+</g:if>
                     </div><!--widgetcontent-->
                 </div><!--widget-->
 

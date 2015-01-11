@@ -18,76 +18,36 @@
             <div class="maincontentinner">
 
                 <div class="widget">
-                    <h4 class="widgettitle" style="font-size: 30px;">Usuario: ${secAppUserInstance?.id}</h4>
-                    <div id="show-secAppUser" class="content scaffold-show" role="main">
-                        <h1><g:message code="default.show.label" args="[entityName]" /></h1>
-                        <g:if test="${flash.message}">
-                            <div class="message" role="status">${flash.message}</div>
-                        </g:if>
-                        <ol class="property-list secAppUser">
+                    <h4 class="widgettitle" style="font-size: 30px;">Usuario: ${secAppUserInstance?.username}</h4>
+                    <div class="widgetcontent">
+                        <table class="table table-bordered table-invoice">
+                            <tr>
+                                <td class="width30">Username</td>
+                                <td class="width70">${secAppUserInstance?.username}</td>
+                            </tr>
+                            <tr>
+                                <td>Nombre</td>
+                                <td>${secAppUserInstance?.name}</td>
+                            </tr>
+                            <tr>
+                                <td>Correo</td>
+                                <td>${secAppUserInstance?.email}</td>
+                            </tr>
 
-                            <g:if test="${secAppUserInstance?.username}">
-                                <li class="fieldcontain">
-                                    <span id="username-label" class="property-label"><g:message code="secAppUser.username.label" default="Username" /></span>
+                        </table>
+                        <div id="show-secAppUser" class="content scaffold-show" role="main">
 
-                                    <span class="property-value" aria-labelledby="username-label"><g:fieldValue bean="${secAppUserInstance}" field="username"/></span>
-
-                                </li>
+                            <g:if test="${flash.message}">
+                                <div class="message" role="status">${flash.message}</div>
                             </g:if>
-
-                            <g:if test="${secAppUserInstance?.password}">
-                                <li class="fieldcontain">
-                                    <span id="password-label" class="property-label"><g:message code="secAppUser.password.label" default="Password" /></span>
-
-                                    <span class="property-value" aria-labelledby="password-label"><g:fieldValue bean="${secAppUserInstance}" field="password"/></span>
-
-                                </li>
-                            </g:if>
-
-                            <g:if test="${secAppUserInstance?.accountExpired}">
-                                <li class="fieldcontain">
-                                    <span id="accountExpired-label" class="property-label"><g:message code="secAppUser.accountExpired.label" default="Account Expired" /></span>
-
-                                    <span class="property-value" aria-labelledby="accountExpired-label"><g:formatBoolean boolean="${secAppUserInstance?.accountExpired}" /></span>
-
-                                </li>
-                            </g:if>
-
-                            <g:if test="${secAppUserInstance?.accountLocked}">
-                                <li class="fieldcontain">
-                                    <span id="accountLocked-label" class="property-label"><g:message code="secAppUser.accountLocked.label" default="Account Locked" /></span>
-
-                                    <span class="property-value" aria-labelledby="accountLocked-label"><g:formatBoolean boolean="${secAppUserInstance?.accountLocked}" /></span>
-
-                                </li>
-                            </g:if>
-
-                            <g:if test="${secAppUserInstance?.enabled}">
-                                <li class="fieldcontain">
-                                    <span id="enabled-label" class="property-label"><g:message code="secAppUser.enabled.label" default="Enabled" /></span>
-
-                                    <span class="property-value" aria-labelledby="enabled-label"><g:formatBoolean boolean="${secAppUserInstance?.enabled}" /></span>
-
-                                </li>
-                            </g:if>
-
-                            <g:if test="${secAppUserInstance?.passwordExpired}">
-                                <li class="fieldcontain">
-                                    <span id="passwordExpired-label" class="property-label"><g:message code="secAppUser.passwordExpired.label" default="Password Expired" /></span>
-
-                                    <span class="property-value" aria-labelledby="passwordExpired-label"><g:formatBoolean boolean="${secAppUserInstance?.passwordExpired}" /></span>
-
-                                </li>
-                            </g:if>
-
-                        </ol>
-                        <g:form>
-                            <fieldset class="buttons">
-                                <g:hiddenField name="id" value="${secAppUserInstance?.id}" />
-                                <g:link class="btn btn-primary" action="edit" id="${secAppUserInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-                                <g:actionSubmit class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-                            </fieldset>
-                        </g:form>
+                            <g:form>
+                                <fieldset class="buttons">
+                                    <g:hiddenField name="id" value="${secAppUserInstance?.id}" />
+                                    <g:link class="btn btn-primary" action="edit" id="${secAppUserInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+                                    <g:actionSubmit class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                                </fieldset>
+                            </g:form>
+                        </div>
                     </div>
                 </div><!--widget-->
 

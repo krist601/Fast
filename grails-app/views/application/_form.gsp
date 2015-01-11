@@ -1,10 +1,8 @@
 <%@ page import="fastchacaito.Application" %>
 
-<div class="fieldcontain ${hasErrors(bean: applicationInstance, field: 'arrivalDate', 'error')} required">
-	<label for="arrivalDate">
-		<g:message code="application.arrivalDate.label" default="Fecha de Llegada" />
-	</label>
-        <g:datePicker name="arrivalDate" precision="day"  value="${applicationInstance?.arrivalDate}"  />
+<div class="fieldcontain ${hasErrors(bean: applicationInstance, field: 'arrivalDate', 'error')} ">
+    <label>Fecha de Llegada</label>
+    <span class="field"><input id="datepicker" type="text" name="arrivalDate" class="input-small" /></span>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: applicationInstance, field: 'identifier', 'error')} ">
@@ -15,17 +13,14 @@
 	<g:textField name="identifier" value="${applicationInstance?.identifier}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: applicationInstance, field: 'lostDate', 'error')} required">
-	<label for="lostDate">
-		<g:message code="application.lostDate.label" default="Fecha de Perdida" />
+<div class="fieldcontain ${hasErrors(bean: applicationInstance, field: 'applicationType', 'error')} ">
+	<label for="applicationType">
+		<g:message code="application.identifier.label" default="Tipo de Aplicación" />
+		
 	</label>
-        <g:datePicker name="lostDate" precision="day"  value="${applicationInstance?.lostDate}"  />
+	<g:select name="applicationType" from="${['Balance Clásico', 'Balance Plus']}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: applicationInstance, field: 'vacutainer', 'error')} required">
-	<label for="vacutainer">
-		<g:message code="application.vacutainer.label" default="Vacutainer" />
-	</label>
-	<g:select id="vacutainer" name="vacutainer.id" from="${fastchacaito.Vacutainer.list()}" optionKey="id" required="" value="${applicationInstance?.vacutainer?.id}" class="many-to-one"/>
-</div>
+<g:hiddenField name="vacutainer.id" value="${applicationInstance?.vacutainer?.id}"/>
+
 

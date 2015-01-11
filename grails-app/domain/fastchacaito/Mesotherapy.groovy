@@ -5,8 +5,10 @@ class Mesotherapy {
     String previousAttempts
     String ploblemCauses
     String method
+    List sesionControl
 
-    static belongsTo = [sesionControl: SesionControl,treatment: Treatment]
+    static hasMany = [sesionControl: SesionControl]
+    static belongsTo = [treatment: Treatment]
     static constraints = {
     }
 }

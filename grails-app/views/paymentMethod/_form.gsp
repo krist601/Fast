@@ -26,3 +26,11 @@
 	<g:textField name="paymentMethodType" value="${paymentMethodInstance?.paymentMethodType}"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: paymentMethodInstance, field: 'treatment', 'error')} required">
+	<label for="treatment">
+		<g:message code="paymentMethod.treatment.label" default="Treatment" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select id="treatment" name="treatment.id" from="${fastchacaito.Treatment.list()}" optionKey="id" required="" value="${paymentMethodInstance?.treatment?.id}" class="many-to-one"/>
+</div>
+

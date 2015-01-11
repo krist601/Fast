@@ -18,42 +18,27 @@
             <div class="maincontentinner">
 
                 <div class="widget">
-                    <h4 class="widgettitle" style="font-size: 30px;">Paquete: ${packageInstance?.id}</h4>
+                    <h4 class="widgettitle" style="font-size: 30px;">Paquete ${packageInstance?.packageType}: ${packageInstance?.id}</h4>
                     <div class="widgetcontent">
                         <div id="show-package" class="content scaffold-show" role="main">
                             <g:if test="${flash.message}">
                                 <div class="message" role="status">${flash.message}</div>
                             </g:if>
-                            <ol class="property-list package">
-
-                                <g:if test="${packageInstance?.packageType}">
-                                    <li class="fieldcontain">
-                                        <span id="packageType-label" class="property-label"><g:message code="package.packageType.label" default="Package Type" /></span>
-
-                                        <span class="property-value" aria-labelledby="packageType-label"><g:fieldValue bean="${packageInstance}" field="packageType"/></span>
-
-                                    </li>
-                                </g:if>
-
-                                <g:if test="${packageInstance?.price}">
-                                    <li class="fieldcontain">
-                                        <span id="price-label" class="property-label"><g:message code="package.price.label" default="Price" /></span>
-
-                                        <span class="property-value" aria-labelledby="price-label"><g:fieldValue bean="${packageInstance}" field="price"/></span>
-
-                                    </li>
-                                </g:if>
-
-                                <g:if test="${packageInstance?.sesionAmount}">
-                                    <li class="fieldcontain">
-                                        <span id="sesionAmount-label" class="property-label"><g:message code="package.sesionAmount.label" default="Sesion Amount" /></span>
-
-                                        <span class="property-value" aria-labelledby="sesionAmount-label"><g:fieldValue bean="${packageInstance}" field="sesionAmount"/></span>
-
-                                    </li>
-                                </g:if>
-
-                            </ol>
+                            <table class="table table-bordered table-invoice">
+                            <tr>
+                                <td class="width30">Tipo de Paquete</td>
+                                <td class="width70">${packageInstance?.packageType}</td>
+                            </tr>
+                            <tr>
+                                <td class="width30">Precio</td>
+                                <td class="width70">${packageInstance?.price} BsF</td>
+                            </tr>
+                            <tr>
+                                <td class="width30">Cantidad de Sesiones</td>
+                                <td class="width70">${packageInstance?.sesionAmount} Sesiones</td>
+                            </tr>
+                            
+                            </table>
                             <g:form>
                                 <fieldset class="buttons">
                                     <g:hiddenField name="id" value="${packageInstance?.id}" />

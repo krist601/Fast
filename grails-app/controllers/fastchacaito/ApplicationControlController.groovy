@@ -16,10 +16,61 @@ class ApplicationControlController {
     }
 
     def create() {
+        params.balance=Balance.get(params.foo)
         [applicationControlInstance: new ApplicationControl(params)]
     }
 
     def save() {
+        params.date=new Date()
+        def row =ApplicationControl.executeQuery("SELECT MAX(ap.identifierNumber)+1 FROM ApplicationControl as ap WHERE ap.balance="+params.balance.id)
+        if (row[0])
+            params.identifierNumber=row[0]
+        else
+            params.identifierNumber="1"
+            
+        println "identifier number: "+ row[0]
+        if (!params.identifierNumber.equals("1")){
+            def row2;
+            def aux=0;
+            row = ApplicationControl.executeQuery("SELECT MAX(ap.id) FROM ApplicationControl as ap, Balance as b WHERE ap.balance=b.id AND b.id="+params.balance.id)
+            if(row[0]){
+                row2 = ApplicationControl.executeQuery("SELECT currentWeight FROM ApplicationControl as ap WHERE ap.id="+row[0])
+                if(row2[0])
+                    aux=row2[0]
+            }
+            String lastWeight=aux
+            println "last weight: "+lastWeight
+            lastWeight=lastWeight.replaceAll(",", ".")
+            def lastWeightFloat=Float.parseFloat(lastWeight)
+
+            String currentWeight=params.currentWeight
+            currentWeight=currentWeight.replaceAll(",", ".")
+            def currentWeightFloat=Float.parseFloat(currentWeight)
+
+            params.differenceWeight=lastWeightFloat - currentWeightFloat
+
+            aux=0;
+            row = ApplicationControl.executeQuery("SELECT MAX(ap.id) FROM ApplicationControl as ap, Balance as b WHERE ap.balance=b.id AND b.id="+params.balance.id)
+            if(row[0]){
+                row2 = ApplicationControl.executeQuery("SELECT reachedWeight FROM ApplicationControl as ap WHERE ap.id="+row[0])
+                if(row2[0])
+                    aux=row2[0]
+            }
+            String lastReachedWeight=aux
+            println "last reached weight: "+lastWeight
+            lastReachedWeight=lastReachedWeight.replaceAll(",", ".")
+            def lastReachedWeightFloat=Float.parseFloat(lastReachedWeight)
+
+            String differenceWeight=params.differenceWeight
+            differenceWeight=differenceWeight.replaceAll(",", ".")
+            def differenceWeightFloat=Float.parseFloat(differenceWeight)
+
+            params.reachedWeight=lastReachedWeightFloat + differenceWeightFloat
+        }
+        else{
+            params.differenceWeight=0
+            params.reachedWeight=0
+        }
         def applicationControlInstance = new ApplicationControl(params)
         if (!applicationControlInstance.save(flush: true)) {
             render(view: "create", model: [applicationControlInstance: applicationControlInstance])
@@ -27,7 +78,9 @@ class ApplicationControlController {
         }
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'applicationControl.label', default: 'ApplicationControl'), applicationControlInstance.id])
-        redirect(action: "show", id: applicationControlInstance.id)
+        def balance= Balance.get(params.balance.id)
+        println "el tratamiento es numero: "+balance.treatment.patient.id
+        redirect(controller: "patient", action: "show", id: balance.treatment.patient.id)
     }
 
     def show(Long id) {

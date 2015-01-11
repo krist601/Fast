@@ -35,7 +35,18 @@
                                 <g:hiddenField name="id" value="${applicationInstance?.id}" />
                                 <g:hiddenField name="version" value="${applicationInstance?.version}" />
                                 <fieldset class="form">
-                                    <g:render template="form"/>
+                                    <div class="fieldcontain ${hasErrors(bean: applicationInstance, field: 'arrivalDate', 'error')} ">
+                                        <label>Fecha de Llegada</label>
+                                        <span class="field"><input id="datepicker" type="text" name="arrivalDate" class="input-small" value="${applicationInstance?.arrivalDate.format("MM/dd/yyyy")}" /></span>
+                                    </div>
+
+                                    <div class="fieldcontain ${hasErrors(bean: applicationInstance, field: 'identifier', 'error')} ">
+                                        <label for="identifier">
+                                            <g:message code="application.identifier.label" default="Identificador" />
+
+                                        </label>
+                                        <g:textField name="identifier" value="${applicationInstance?.identifier}"/>
+                                    </div>
                                 </fieldset>
                                 <fieldset class="buttons">
                                     <g:actionSubmit class="btn btn-primary" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />

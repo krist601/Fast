@@ -129,7 +129,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Shamcey - Metro Style Admin Template - shared on themelock.com</title>
+        <title>Fast Chacaito</title>
         <link rel="stylesheet" href="${resource(dir: 'css', file: 'style.default.css')}" type="text/css">
 
         <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>

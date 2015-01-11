@@ -17,7 +17,7 @@
             <div class="maincontentinner">
 
                 <div class="widget">
-                    <h4 class="widgettitle" style="font-size: 30px;">Editar Paciente</h4>
+                    <h4 class="widgettitle" style="font-size: 30px;">Editar Paciente: ${patientInstance?.firstName} ${patientInstance?.lastName}</h4>
                     <div class="widgetcontent">
                         <div id="edit-patient" class="content scaffold-edit" role="main">
                             <g:if test="${flash.message}">

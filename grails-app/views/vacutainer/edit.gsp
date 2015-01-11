@@ -34,7 +34,18 @@
                             <g:form method="post" >
                                 <g:hiddenField name="id" value="${vacutainerInstance?.id}" />
                                 <fieldset class="form">
-                                    <g:render template="form"/>
+                                    <div class="fieldcontain ${hasErrors(bean: vacutainerInstance, field: 'bornDate', 'error')} ">
+                                        <label>Fecha de Llegada</label>
+                                        <span class="field"><input id="datepicker" type="text" name="arrivalDate" class="input-small" value="${vacutainerInstance?.arrivalDate.format("MM/dd/yyyy")}"  /></span>
+                                    </div>
+
+                                    <div class="fieldcontain ${hasErrors(bean: vacutainerInstance, field: 'identifier', 'error')} ">
+                                        <label for="identifier">
+                                            <g:message code="vacutainer.identifier.label" default="Identifier" />
+
+                                        </label>
+                                        <g:textField name="identifier" value="${vacutainerInstance?.identifier}"/>
+                                    </div>
                                 </fieldset>
                                 <fieldset class="buttons">
                                     <g:actionSubmit class="btn btn-primary" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />

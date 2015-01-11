@@ -26,12 +26,21 @@
 	<g:textField name="previousAttempts" value="${mesotherapyInstance?.previousAttempts}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: mesotherapyInstance, field: 'sesionControl', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: mesotherapyInstance, field: 'sesionControl', 'error')} ">
 	<label for="sesionControl">
 		<g:message code="mesotherapy.sesionControl.label" default="Sesion Control" />
-		<span class="required-indicator">*</span>
+		
 	</label>
-	<g:select id="sesionControl" name="sesionControl.id" from="${fastchacaito.SesionControl.list()}" optionKey="id" required="" value="${mesotherapyInstance?.sesionControl?.id}" class="many-to-one"/>
+	
+<ul class="one-to-many">
+<g:each in="${mesotherapyInstance?.sesionControl?}" var="s">
+    <li><g:link controller="sesionControl" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></li>
+</g:each>
+<li class="add">
+<g:link controller="sesionControl" action="create" params="['mesotherapy.id': mesotherapyInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'sesionControl.label', default: 'SesionControl')])}</g:link>
+</li>
+</ul>
+
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: mesotherapyInstance, field: 'treatAreas', 'error')} ">

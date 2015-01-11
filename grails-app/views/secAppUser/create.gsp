@@ -33,7 +33,46 @@
                                 </g:hasErrors>
                                 <g:form action="save" >
                                     <fieldset class="form">
-                                        <g:render template="form"/>
+                                        <div class="fieldcontain ${hasErrors(bean: secAppUserInstance, field: 'username', 'error')} required">
+                                            <label for="username">
+                                                <g:message code="secAppUser.username.label" default="Username" />
+                                                <span class="required-indicator">*</span>
+                                            </label>
+                                            <g:textField name="username" required="" value="${secAppUserInstance?.username}"/>
+                                        </div>
+
+                                        <div class="fieldcontain ${hasErrors(bean: secAppUserInstance, field: 'password', 'error')} required">
+                                            <label for="password">
+                                                <g:message code="secAppUser.password.label" default="Contraseña" />
+                                                <span class="required-indicator">*</span>
+                                            </label>
+                                            <g:passwordField name="password" required="" value="${secAppUserInstance?.password}"/>
+                                        </div>
+
+                                        <div class="fieldcontain ${hasErrors(bean: secAppUserInstance, field: 'photo', 'error')} ">
+                                            <label for="photo">
+                                                <g:message code="secAppUser.photo.label" default="Foto de Perfil" />
+
+                                            </label>
+                                            <input type="file" id="photo" name="photo" />
+                                        </div>
+                                        <br>
+
+                                        <div class="fieldcontain ${hasErrors(bean: secAppUserInstance, field: 'name', 'error')} ">
+                                            <label for="name">
+                                                <g:message code="secAppUser.name.label" default="Nombre" />
+
+                                            </label>
+                                            <g:textField name="name" value="${secAppUserInstance?.name}"/>
+                                        </div>
+
+                                        <div class="fieldcontain ${hasErrors(bean: secAppUserInstance, field: 'email', 'error')} ">
+                                            <label for="email">
+                                                <g:message code="secAppUser.email.label" default="Correo" />
+
+                                            </label>
+                                            <g:textField name="email" value="${secAppUserInstance?.email}"/>
+                                        </div>
                                     </fieldset>
                                     <fieldset class="buttons">
                                         <g:submitButton name="create" class="btn btn-primary" value="${message(code: 'default.button.create.label', default: 'Create')}" />

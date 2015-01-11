@@ -16,7 +16,6 @@ jQuery(document).ready(function(){
 	
 	// Date Picker
 	jQuery("#datepicker").datepicker();
-	
 	// Dual Box Select
 	var db = jQuery('#dualselect').find('.ds_arrow button');	//get arrows of dual select
 	var sel1 = jQuery('#dualselect select:first-child');		//get first select element

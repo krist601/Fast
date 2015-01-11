@@ -1,10 +1,12 @@
 package fastchacaito
 
 import org.springframework.dao.DataIntegrityViolationException
+import java.text.SimpleDateFormat
 
 class VacutainerController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    static SimpleDateFormat theDate = new SimpleDateFormat( 'MM/dd/yyyy' )
 
     def index() {
         redirect(action: "list", params: params)
@@ -20,12 +22,20 @@ class VacutainerController {
     }
 
     def save() {
+        params.arrivalDate = theDate.parse(params.arrivalDate)
+        def amount= params.vacutainerAmount
+        params.remove('vacutainerAmount')
         def vacutainerInstance = new Vacutainer(params)
         if (!vacutainerInstance.save(flush: true)) {
-            render(view: "create", model: [vacutainerInstance: vacutainerInstance])
+            render(view: "create", model: [vacutainerInstance: vacutainerInstance])  
             return
         }
-
+        if(!amount.equals(""))
+        for(def i=0;i<Integer.parseInt(amount);i++){
+            def ident=params.identifier+"-"+(i+1)
+            vacutainerInstance.addToApplication([identifier:ident, applicationType:params.vacutainerType, arrivalDate:params.arrivalDate]);
+            
+        }
         flash.message = message(code: 'default.created.message', args: [message(code: 'vacutainer.label', default: 'Vacutainer'), vacutainerInstance.id])
         redirect(action: "show", id: vacutainerInstance.id)
     }
@@ -53,6 +63,7 @@ class VacutainerController {
     }
 
     def update(Long id, Long version) {
+        params.arrivalDate = theDate.parse(params.arrivalDate)
         def vacutainerInstance = Vacutainer.get(id)
         if (!vacutainerInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'vacutainer.label', default: 'Vacutainer'), id])
@@ -99,4 +110,46 @@ class VacutainerController {
             redirect(action: "show", id: id)
         }
     }
+    
+    def editLostDate(Long id) {
+        def vacutainerInstance = Vacutainer.get(id)
+        if (!vacutainerInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'vacutainer.label', default: 'Vacutainer'), id])
+            redirect(action: "list")
+            return
+        }
+
+        [vacutainerInstance: vacutainerInstance]
+    }
+
+    def updateLostDate(Long id, Long version) {
+        params.lostDate = theDate.parse(params.lostDate)
+        def vacutainerInstance = Vacutainer.get(id)
+        if (!vacutainerInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'vacutainer.label', default: 'Vacutainer'), id])
+            redirect(action: "list")
+            return
+        }
+
+        if (version != null) {
+            if (vacutainerInstance.version > version) {
+                vacutainerInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
+                          [message(code: 'vacutainer.label', default: 'Vacutainer')] as Object[],
+                          "Another user has updated this Vacutainer while you were editing")
+                render(view: "editLostDate", model: [vacutainerInstance: vacutainerInstance])
+                return
+            }
+        }
+
+        vacutainerInstance.properties = params
+
+        if (!vacutainerInstance.save(flush: true)) {
+            render(view: "editLostDate", model: [vacutainerInstance: vacutainerInstance])
+            return
+        }
+
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'vacutainer.label', default: 'Vacutainer'), vacutainerInstance.id])
+        redirect(action: "show", id: vacutainerInstance.id)
+    }
+    
 }

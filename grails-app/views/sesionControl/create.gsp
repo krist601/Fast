@@ -17,7 +17,7 @@
             <div class="maincontentinner">
 
                 <div class="widget">
-                    <h4 class="widgettitle" style="font-size: 30px;">Crear Control de Sesiones</h4>
+                    <h4 class="widgettitle" style="font-size: 30px;">Control de Sesiones</h4>
                     <div class="widgetcontent">
                         <form class="stdform" action="save" method="post">
                             

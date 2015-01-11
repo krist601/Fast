@@ -7,7 +7,7 @@
 		<g:message code="package.packageType.label" default="Package Type" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field name="packageType" type="number" value="${packageInstance.packageType}" required=""/>
+	<g:select name="packageType" from="${['Balance Clásico', 'Balance Plus','Mesoterapia']}" value="${packageInstance.packageType}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: packageInstance, field: 'price', 'error')} required">

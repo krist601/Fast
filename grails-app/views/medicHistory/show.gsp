@@ -30,7 +30,7 @@
                                     <li class="fieldcontain">
                                         <span id="date-label" class="property-label"><g:message code="medicHistory.date.label" default="Date" /></span>
 
-                                        <span class="property-value" aria-labelledby="date-label"><g:link controller="date" action="show" id="${medicHistoryInstance?.date?.id}">${medicHistoryInstance?.date?.encodeAsHTML()}</g:link></span>
+                                        <span class="property-value" aria-labelledby="date-label"><g:fieldValue bean="${medicHistoryInstance}" field="date"/></span>
 
                                     </li>
                                 </g:if>

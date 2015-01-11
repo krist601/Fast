@@ -29,13 +29,11 @@
                         <thead>
                             <tr>
 
-                                <th><g:message code="vacutainer.arrivalDate.label" default="Arrival Date" /></th>
+                                <th><g:message code="vacutainer.identifier.label" default="Identificador" /></th>
 
-                                <th><g:message code="vacutainer.identifier.label" default="identifier" /></th>
+                                <th><g:message code="vacutainer.arrivalDate.label" default="Fecha de Llegada" /></th>
 
-                                <th><g:message code="vacutainer.lostDate.label" default="Lost Date" /></th>
-
-                                <th><g:message code="vacutainer.vacutainerType.label" default="vacutainerType" /></th>
+                                <th><g:message code="vacutainer.vacutainerType.label" default="Tipo de Vacutainer" /></th>
 
                             </tr>
                         </thead>
@@ -43,11 +41,9 @@
                             <g:each in="${vacutainerInstanceList}" status="i" var="vacutainerInstance">
                                 <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
-                                    <td><g:link action="show" id="${vacutainerInstance.id}">${fieldValue(bean: vacutainerInstance, field: "arrivalDate")}</g:link></td>
+                                    <td><g:link action="show" id="${vacutainerInstance.id}">${fieldValue(bean: vacutainerInstance, field: "identifier")}</g:link></td>
 
-                                    <td>${fieldValue(bean: vacutainerInstance, field: "identifier")}</td>
-
-                                    <td>${fieldValue(bean: vacutainerInstance, field: "lostDate")}</td>
+                                    <td><g:formatDate format="dd MMMM yyyy" date="${vacutainerInstance?.arrivalDate}"/></td>
 
                                     <td>${fieldValue(bean: vacutainerInstance, field: "vacutainerType")}</td>
 

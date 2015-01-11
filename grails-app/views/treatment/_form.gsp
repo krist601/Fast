@@ -1,7 +1,5 @@
 <%@ page import="fastchacaito.Treatment" %>
 
-
-
 <div class="fieldcontain ${hasErrors(bean: treatmentInstance, field: 'beginDate', 'error')} required">
 	<label for="beginDate">
 		<g:message code="treatment.beginDate.label" default="Begin Date" />
@@ -34,12 +32,12 @@
 	<g:select id="packages" name="packages.id" from="${fastchacaito.Package.list()}" optionKey="id" required="" value="${treatmentInstance?.packages?.id}" class="many-to-one"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: treatmentInstance, field: 'paymentMethod', 'error')} required">
-	<label for="paymentMethod">
-		<g:message code="treatment.paymentMethod.label" default="Payment Method" />
+<div class="fieldcontain ${hasErrors(bean: treatmentInstance, field: 'patient', 'error')} required">
+	<label for="patient">
+		<g:message code="treatment.patient.label" default="Patient" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="paymentMethod" name="paymentMethod.id" from="${fastchacaito.PaymentMethod.list()}" optionKey="id" required="" value="${treatmentInstance?.paymentMethod?.id}" class="many-to-one"/>
+	<g:select id="patient" name="patient.id" from="${fastchacaito.Patient.list()}" optionKey="id" required="" value="${treatmentInstance?.patient?.id}" class="many-to-one"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: treatmentInstance, field: 'totalPrice', 'error')} required">

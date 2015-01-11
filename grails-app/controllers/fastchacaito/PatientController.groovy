@@ -1,18 +1,19 @@
 package fastchacaito
 
-import org.springframework.security.access.annotation.Secured
 import org.springframework.dao.DataIntegrityViolationException
+import java.text.SimpleDateFormat
 
 class PatientController {
-    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
-    @Secured(['ROLE_ADMIN'])
+    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    static SimpleDateFormat theDate = new SimpleDateFormat( 'MM/dd/yyyy' ) //H:m:s
+    
     def index() {
         redirect(action: "list", params: params)
     }
 
     def list(Integer max) {
-        params.max = Math.min(max ?: 10000, 100000)
+        params.max = Math.min(max ?: 10, 100)
         [patientInstanceList: Patient.list(params), patientInstanceTotal: Patient.count()]
     }
 
@@ -21,6 +22,9 @@ class PatientController {
     }
 
     def save() {
+        //println "adminisiondate:"+params.bornDate
+        params.bornDate = theDate.parse(params.bornDate)
+        params.admisionDate = new Date()
         def patientInstance = new Patient(params)
         if (!patientInstance.save(flush: true)) {
             render(view: "create", model: [patientInstance: patientInstance])

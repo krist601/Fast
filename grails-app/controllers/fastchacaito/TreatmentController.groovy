@@ -15,11 +15,97 @@ class TreatmentController {
         [treatmentInstanceList: Treatment.list(params), treatmentInstanceTotal: Treatment.count()]
     }
 
+    def createBalance() {
+        params.patient=Patient.get(params.foo)
+        [treatmentInstance: new Treatment(params)]
+    }
+
+    def saveBalance() {
+        params.date=new Date()
+        println "los parametros son: "+params
+        def pack=Package.get(params.packages.id)
+        params.type=pack.packageType
+        def params2=params.clone()
+        params.remove('idealWeight')
+        params.remove('type')
+        params.totalPrice=pack.price
+        def treatmentInstance = new Treatment(params)
+        if (!treatmentInstance.save(flush: true)) {
+            render(view: "createBalance", model: [treatmentInstance: treatmentInstance])
+            return
+        }
+        treatmentInstance.addToBalance([idealWeight:params2.idealWeight,type:params2.type,applicationAmount:pack.sesionAmount]);
+        flash.message = message(code: 'default.created.message', args: [message(code: 'treatment.label', default: 'Treatment'), treatmentInstance.id])
+        redirect(controller: "patient", action: "show", id: treatmentInstance.patient.id)
+    }
+
+    def createBodyTherapy() {
+        params.patient=Patient.get(params.foo)
+        [treatmentInstance: new Treatment(params)]
+    }
+
+    def saveBodyTherapy() {
+        params.date=new Date()
+        def treatmentInstance = new Treatment(params)
+        if (!treatmentInstance.save(flush: true)) {
+            render(view: "createBodyTherapy", model: [treatmentInstance: treatmentInstance])
+            return
+        }
+
+        flash.message = message(code: 'default.created.message', args: [message(code: 'treatment.label', default: 'Treatment'), treatmentInstance.id])
+        redirect(controller: "patient", action: "show", id: treatmentInstance.patient.id)
+    }
+
+    def createMachine() {
+        params.patient=Patient.get(params.foo)
+        [treatmentInstance: new Treatment(params)]
+    }
+
+    def saveMachine() {
+        params.date=new Date()
+        def treatmentInstance = new Treatment(params)
+        if (!treatmentInstance.save(flush: true)) {
+            render(view: "createMachine", model: [treatmentInstance: treatmentInstance])
+            return
+        }
+
+        flash.message = message(code: 'default.created.message', args: [message(code: 'treatment.label', default: 'Treatment'), treatmentInstance.id])
+        redirect(controller: "patient", action: "show", id: treatmentInstance.patient.id)
+    }
+
+    def createMesotherapy() {
+        params.patient=Patient.get(params.foo)
+        [treatmentInstance: new Treatment(params)]
+    }
+
+    def saveMesotherapy() {
+        params.date=new Date()
+        println "los parametros son: "+params
+        def pack=Package.get(params.packages.id)
+        params.type=pack.packageType
+        def params2=params.clone()
+        params.remove('method')
+        params.remove('ploblemCauses')
+        params.remove('previousAttempts')
+        params.remove('treatAreas')
+        params.totalPrice=pack.price
+        def treatmentInstance = new Treatment(params)
+        if (!treatmentInstance.save(flush: true)) {
+            render(view: "createMesotherapy", model: [treatmentInstance: treatmentInstance])
+            return
+        }
+        treatmentInstance.addToMesotherapy([ploblemCauses:params2.ploblemCauses,method:params2.method,previousAttempts:params2.previousAttempts,treatAreas:params2.treatAreas]);
+        flash.message = message(code: 'default.created.message', args: [message(code: 'treatment.label', default: 'Treatment'), treatmentInstance.id])
+        redirect(controller: "patient", action: "show", id: treatmentInstance.patient.id)
+    }
+
     def create() {
+        params.patient=Patient.get(params.foo)
         [treatmentInstance: new Treatment(params)]
     }
 
     def save() {
+        params.date=new Date()
         def treatmentInstance = new Treatment(params)
         if (!treatmentInstance.save(flush: true)) {
             render(view: "create", model: [treatmentInstance: treatmentInstance])
@@ -27,7 +113,7 @@ class TreatmentController {
         }
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'treatment.label', default: 'Treatment'), treatmentInstance.id])
-        redirect(action: "show", id: treatmentInstance.id)
+        redirect(controller: "patient", action: "show", id: treatmentInstance.patient.id)
     }
 
     def show(Long id) {

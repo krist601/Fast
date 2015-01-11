@@ -26,13 +26,11 @@
                         <thead>
                             <tr>
 
+                                <th><g:message code="application.vacutainer.label" default="Vacutainer" /></th>
+                                <th><g:message code="application.identifier.label" default="Identificador" /></th>
                                 <th><g:message code="application.arrivalDate.label" default="Fecha de Llegada" /></th>
 
-                                <th><g:message code="application.identifier.label" default="Identificador" /></th>
-
-                                <th><g:message code="application.lostDate.label" default="Fecha de Perdida" /></th>
-
-                                <th><g:message code="application.vacutainer.label" default="Vacutainer" /></th>
+                                <th><g:message code="application.applicationType.label" default="Tipo de Aplicación" /></th>
 
                             </tr>
                         </thead>
@@ -40,13 +38,13 @@
                             <g:each in="${applicationInstanceList}" status="i" var="applicationInstance">
                                 <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
-                                    <td><g:link action="show" id="${applicationInstance.id}">${fieldValue(bean: applicationInstance, field: "arrivalDate")}</g:link></td>
-
-                                    <td>${fieldValue(bean: applicationInstance, field: "identifier")}</td>
-
-                                    <td>${fieldValue(bean: applicationInstance, field: "lostDate")}</td>
-
                                     <td>${fieldValue(bean: applicationInstance, field: "vacutainer")}</td>
+
+                                    <td><g:link action="show" id="${applicationInstance.id}">${fieldValue(bean: applicationInstance, field: "identifier")}</g:link></td>
+
+                                    <td><g:formatDate format="dd MMMM yyyy" date="${applicationInstance?.arrivalDate}"/></td>
+
+                                    <td>${fieldValue(bean: applicationInstance, field: "applicationType")}</td>
 
                                 </tr>
                             </g:each>

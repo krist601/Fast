@@ -8,15 +8,16 @@ class MedicHistory {
     String surgicalPathologicalHistory
     String obstetricalGynecologicalHistory
     String habits
-    String FuntionalTestCardiovascular
-    String FuntionalTestRespiratory
-    String FuntionalTestDigestive
-    String FuntionalTestUnitary
-    String FuntionalTestNeurologicalPsychic 
-    String FuntionalTestMetabolicEndocrine 
-    String FuntionalTestGynecological
+    String funtionalTestCardiovascular
+    String funtionalTestRespiratory
+    String funtionalTestDigestive
+    String funtionalTestUnitary
+    String funtionalTestNeurologicalPsychic 
+    String funtionalTestMetabolicEndocrine 
+    String funtionalTestGynecological
     
     static belongsTo = [patient: Patient]
     static constraints = {
     }
+    
 }

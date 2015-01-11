@@ -28,17 +28,15 @@
                         <thead>
                             <tr>
 
-                                <th><g:message code="patient.address.label" default="Dirección" /></th>
+                                <th><g:message code="patient.address.label" default="Cédula" /></th>
 
-                                <th><g:message code="patient.admisionDate.label" default="Fecha de Admision" /></th>
+                                <th><g:message code="patient.admisionDate.label" default="Nombre" /></th>
 
-                                <th><g:message code="patient.allergy.label" default="Alegia" /></th>
+                                <th><g:message code="patient.allergy.label" default="Apellido" /></th>
 
                                 <th><g:message code="patient.bornDate.label" default="Fecha de Nacimiento" /></th>
 
-                                <th><g:message code="patient.cedula.label" default="Cedula" /></th>
-
-                                <th><g:message code="patient.firstName.label" default="Primer Nombre" /></th>
+                                <th><g:message code="patient.cedula.label" default="Fecha de Ingreso" /></th>
 
                             </tr>
                         </thead>
@@ -46,17 +44,15 @@
                             <g:each in="${patientInstanceList}" status="i" var="patientInstance">
                                 <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
-                                    <td><g:link action="show" id="${patientInstance.id}">${fieldValue(bean: patientInstance, field: "address")}</g:link></td>
-
-                                    <td>${fieldValue(bean: patientInstance, field: "admisionDate")}</td>
-
-                                    <td>${fieldValue(bean: patientInstance, field: "allergy")}</td>
-
-                                    <td>${fieldValue(bean: patientInstance, field: "bornDate")}</td>
-
-                                    <td>${fieldValue(bean: patientInstance, field: "cedula")}</td>
+                                    <td><g:link action="show" id="${patientInstance.id}">${fieldValue(bean: patientInstance, field: "cedula")}</g:link></td>
 
                                     <td>${fieldValue(bean: patientInstance, field: "firstName")}</td>
+
+                                    <td>${fieldValue(bean: patientInstance, field: "lastName")}</td>
+
+                                    <td><g:formatDate value="${fieldValue(bean: patientInstance, field: "bornDate")}" format="yyyy-MM-dd"/></td>
+
+                                    <td><g:formatDate value="${fieldValue(bean: patientInstance, field: "admisionDate")}" format="yyyy-MM-dd"/></td>
 
                                 </tr>
                             </g:each>
