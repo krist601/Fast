@@ -23,7 +23,7 @@
             <g:message code="applicationControl.application.label" default="Applicación" />
             <span class="required-indicator">*</span>
         </label>
-        <g:select id="application" name="application.id" noSelection="${['null':'Selecione una Aplicación']}" from="${fastchacaito.Application.list()}" optionKey="id" required="" value="${applicationControlInstance?.application?.id}" class="many-to-one"/>
+        <g:select id="application" name="application.id" noSelection="${['null':'Selecione una Aplicación']}" from="${fastchacaito.Application.avaliableApplications(Balance.get(params.foo).type)}" optionKey="id" required="" value="${applicationControlInstance?.application?.id}" class="many-to-one"/>
     </div>
 
 </g:if>

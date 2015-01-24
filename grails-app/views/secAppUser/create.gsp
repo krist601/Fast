@@ -19,7 +19,7 @@
                 <div class="widget">
                     <h4 class="widgettitle" style="font-size: 30px;">Crear Usuario</h4>
                     <div class="widgetcontent">
-                        <form class="stdform" action="save" method="post">
+                        <form class="stdform" action="save" enctype="multipart/form-data" method="post">
                             <div id="create-secAppUser" class="content scaffold-create" role="main">
                                 <g:if test="${flash.message}">
                                     <div class="message" role="status">${flash.message}</div>

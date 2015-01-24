@@ -47,6 +47,10 @@
                                 <td>${patientInstance?.address}</td>
                             </tr>
                             <tr>
+                                <td>Teléfono</td>
+                                <td>${patientInstance?.phone}</td>
+                            </tr>
+                            <tr>
                                 <td>Correo Electrónico</td>
                                 <td>${patientInstance?.email}</td>
                             </tr>
@@ -88,33 +92,17 @@
                                 <g:if test="${patientInstance.medicHistory}">
                                 <li><a href="#a-4">Historia Médica</a></li> 
                                 </g:if>
-                                <g:if test="${patientInstance.treatments}">
-                                    <g:each in="${patientInstance.treatments.reverse()}" var="item">
-                                        <g:if test="${patientInstance.getBalance(item.id)}">
-                                        <li><a href="#a-5">Balance</a></li>
-                                        </g:if>
-                                    </g:each>
+                                <g:if test="${patientInstance.haveBalance(patientInstance.id)}">
+                                    <li><a href="#a-5">Balance</a></li>
                                 </g:if>
-                                <g:if test="${patientInstance.treatments}">
-                                    <g:each in="${patientInstance.treatments.reverse()}" var="item">
-                                        <g:if test="${patientInstance.getMesotherapy(item.id)}">
-                                        <li><a href="#a-6">Mesoterapia</a></li>
-                                        </g:if>
-                                    </g:each>
+                                <g:if test="${patientInstance.haveMesotherapy(patientInstance.id)}">
+                                    <li><a href="#a-6">Mesoterapia</a></li>
                                 </g:if>
-                                <g:if test="${patientInstance.treatments}">
-                                    <g:each in="${patientInstance.treatments.reverse()}" var="item">
-                                        <g:if test="${patientInstance.getBodyTherapy(item.id)}">
-                                        <li><a href="#a-7">Terapia Corporal</a></li>
-                                        </g:if>
-                                    </g:each>
+                                <g:if test="${patientInstance.haveBodyTherapy(patientInstance.id)}">
+                                    <li><a href="#a-7">Terapia Corporal</a></li>
                                 </g:if>
-                                <g:if test="${patientInstance.treatments}">
-                                    <g:each in="${patientInstance.treatments.reverse()}" var="item">
-                                        <g:if test="${patientInstance.getMachine(item.id)}">
-                                        <li><a href="#a-8">Máquina</a></li>
-                                        </g:if>
-                                    </g:each>
+                                <g:if test="${patientInstance.haveMachine(patientInstance.id)}">
+                                    <li><a href="#a-8">Máquina</a></li>
                                 </g:if>
 
 

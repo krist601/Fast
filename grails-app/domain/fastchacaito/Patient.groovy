@@ -19,6 +19,7 @@ class Patient {
     String lastName
     String ocupation
     String address
+    String phone
     Date bornDate
     float height
     boolean sufferFever
@@ -33,13 +34,12 @@ class Patient {
     String heartMedicine
     String medicine
     String allergy
-    List phone
     List medicHistory
     List bloodSample
     List appointment
     List treatments
     
-    static hasMany = [phone: Phone,medicHistory: MedicHistory, bloodSample: BloodSample, appointment: Appointment, treatments: Treatment]
+    static hasMany = [medicHistory: MedicHistory, bloodSample: BloodSample, appointment: Appointment, treatments: Treatment]
     
     static constraints = {
         otherSuffer nullable:true
@@ -47,6 +47,7 @@ class Patient {
         problemCauses nullable:true
         usedMethod nullable:true
         anotherTreatments nullable:true
+        phone nullable:true
     }
     def getPatientAge(){
         Date secondDate = new Date().toTimestamp()
@@ -120,5 +121,31 @@ class Patient {
     String toString(){
         return "${firstName+" "+lastName}"
     }
+    static haveBalance(patientId){
+        def query=Patient.executeQuery("SELECT p.id FROM Patient as p, Treatment as t,Balance as b WHERE p.id = t.patient AND b.treatment=t.id AND p.id="+patientId)
+        if (query)
+            return true
+        return false
+    }
+    static haveMachine(patientId){
+        def query=Patient.executeQuery("SELECT p.id FROM Patient as p, Treatment as t,Machine as m WHERE p.id = t.patient AND m.treatment=t.id AND p.id="+patientId)
+        if (query)
+            return true
+        return false
+    }
+    static haveMesotherapy(patientId){
+        def query=Patient.executeQuery("SELECT p.id FROM Patient as p, Treatment as t,Mesotherapy as m WHERE p.id = t.patient AND m.treatment=t.id AND p.id="+patientId)
+        if (query)
+            return true
+        return false
+    }
+    static haveBodyTherapy(patientId){
+        def query=Patient.executeQuery("SELECT p.id FROM Patient as p, Treatment as t,BodyTherapy as b WHERE p.id = t.patient AND b.treatment=t.id AND p.id="+patientId)
+        if (query)
+            return true
+        return false
+    }
+    
+    
     
 }

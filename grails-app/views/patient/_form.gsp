@@ -24,6 +24,13 @@
     </label>
     <g:textField name="lastName" value="${patientInstance?.lastName}"/>
 </div>
+<div class="fieldcontain ${hasErrors(bean: patientInstance, field: 'phone', 'error')} ">
+    <label for="phone">
+        <g:message code="patient.phone.label" default="Teléfono" />
+
+    </label>
+    <g:textField name="phone" value="${patientInstance?.phone}"/>
+</div>
 <div class="fieldcontain ${hasErrors(bean: patientInstance, field: 'email', 'error')} ">
     <label for="email">
         <g:message code="patient.email.label" default="Correo Electrónico" />

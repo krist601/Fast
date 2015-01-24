@@ -7,7 +7,7 @@
 
 <div class="fieldcontain ${hasErrors(bean: vacutainerInstance, field: 'identifier', 'error')} ">
     <label for="identifier">
-        <g:message code="vacutainer.identifier.label" default="Identifier" />
+        <g:message code="vacutainer.identifier.label" default="Identificador" />
 
     </label>
     <g:textField name="identifier" value="${vacutainerInstance?.identifier}"/>
@@ -17,7 +17,7 @@
 
 <div class="fieldcontain ${hasErrors(bean: vacutainerInstance, field: 'vacutainerType', 'error')} ">
     <label for="vacutainerType">
-        <g:message code="vacutainer.vacutainerType.label" default="Vacutainer Type" />
+        <g:message code="vacutainer.vacutainerType.label" default="Tipo de Vacutainer" />
     </label>
     <select class="default form-control" name="vacutainerType" id="vacutainerType" value="">
         <option value="Mesoterapia">Mesoterapia</option>

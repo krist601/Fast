@@ -164,6 +164,7 @@ class SecAppUserController {
         def user = SecAppUser.get( params.id )
         if (user!=null){
             if (user.photo) {//tiene foto
+                print user.photo
                 response.outputStream << user.photo
             }
             else // no tiene foto

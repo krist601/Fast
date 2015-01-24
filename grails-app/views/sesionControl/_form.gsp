@@ -105,13 +105,13 @@
         <g:message code="sesionControl.vacutainer.label" default="Vacutainer" />
         
     </label>
-    <g:select id="vacutainer" name="vacutainer.id" from="${fastchacaito.Vacutainer.findBySesionControl(null)}" optionKey="id" required="" value="${sesionControlInstance?.vacutainer?.id}" class="many-to-one"/>
+    <g:select id="vacutainer" name="vacutainer.id" from="${fastchacaito.Vacutainer.avaliableVacutainers()}" optionKey="id" required="" value="${sesionControlInstance?.vacutainer?.id}" class="many-to-one"/>
 </div>
 <div class="fieldcontain ${hasErrors(bean: sesionControlInstance, field: 'vacutainer', 'error')} required">
     <label for="vacutainer">
         <g:message code="sesionControl.vacutainer.label" default="Vacutainer" />
         
     </label>
-    <g:select id="vacutainer2" name="vacutainer2.id" noSelection="${['null':'Selecione un Vacutainer']}" from="${fastchacaito.Vacutainer.list()}" optionKey="id" required="" value="${sesionControlInstance?.vacutainer?.id}" class="many-to-one"/>
+    <g:select id="vacutainer2" name="vacutainer2.id" noSelection="${['null':'Selecione un Vacutainer']}" from="${fastchacaito.Vacutainer.avaliableVacutainers()}" optionKey="id" required="" value="${sesionControlInstance?.vacutainer?.id}" class="many-to-one"/>
 </div>
 

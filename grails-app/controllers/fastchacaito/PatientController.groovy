@@ -23,6 +23,10 @@ class PatientController {
 
     def save() {
         //println "adminisiondate:"+params.bornDate
+        params.height=params.height.replaceAll(".", ",")
+        params.initialWeight=params.initialWeight.replaceAll(".", ",")
+        params.height=Float.parseFloat(params.height)
+        params.initialWeight=Float.parseFloat(params.initialWeight)
         params.bornDate = theDate.parse(params.bornDate)
         params.admisionDate = new Date()
         def patientInstance = new Patient(params)
@@ -58,6 +62,11 @@ class PatientController {
     }
 
     def update(Long id, Long version) {
+        params.height=params.height.replaceAll(",", ".")
+        params.initialWeight=params.initialWeight.replaceAll(",", ".")
+        params.height=Float.parseFloat(params.height)
+        params.initialWeight=Float.parseFloat(params.initialWeight)
+        params.bornDate = theDate.parse(params.bornDate)
         def patientInstance = Patient.get(id)
         if (!patientInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'patient.label', default: 'Patient'), id])
