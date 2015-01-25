@@ -9,7 +9,7 @@ class ApplicationControl {
     boolean wasApplied
     String observation
     
-    static belongsTo = [application: Application, balance: Balance]
+    static belongsTo = [application: Application, balance: Balance, user: user.SecAppUser]
     static constraints = {
         observation nullable:true
         application nullable:true

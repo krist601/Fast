@@ -5,7 +5,7 @@ import org.springframework.dao.DataIntegrityViolationException
 class ApplicationControlController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
-
+def springSecurityService
     def index() {
         redirect(action: "list", params: params)
     }
@@ -71,6 +71,9 @@ class ApplicationControlController {
             params.differenceWeight=0
             params.reachedWeight=0
         }
+         def user = springSecurityService.currentUser
+        params.user=user
+        println "User: "+params.user
         def applicationControlInstance = new ApplicationControl(params)
         if (!applicationControlInstance.save(flush: true)) {
             render(view: "create", model: [applicationControlInstance: applicationControlInstance])

@@ -387,8 +387,9 @@
                                                                     <th class="center">P Diferencia</th>
                                                                     <th class="center">P Alcanzado</th>
                                                                     <th class="center">Media</th>
-                                                                    <th class="center">Aplicado?</th>
+                                                                    <th class="center">¿Aplicado?</th>
                                                                     <th class="center">IMC</th>
+                                                                    <th class="center">Asistente</th>
                                                                     <th class="center">Observación</th>
                                                                 </tr>
 
@@ -409,6 +410,7 @@
                                                                     <td class="center">${item3.reachedWeight/item3.identifierNumber} Kg</td>
                                                                     <td class="center"><g:if test="${item3.wasApplied}">SI</g:if><g:else>NO</g:else></td>
                                                                     <td class="center"><g:formatNumber number="${item3.currentWeight/(patientInstance.height*patientInstance.height)}"maxFractionDigits="2" /></td>
+                                                                    <td class="center" style=" width:23%;">${item3.user}</td>
                                                                     <td class="center" style=" width:23%;">${item3.observation}</td>
                                                                 </tr>
                                                             </g:each>

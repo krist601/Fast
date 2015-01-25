@@ -37,7 +37,10 @@
                                 <td class="width30">Cantidad de Sesiones</td>
                                 <td class="width70">${packageInstance?.sesionAmount} Sesiones</td>
                             </tr>
-                            
+                            <tr>
+                                <td class="width30">Descripción</td>
+                                <td class="width70">${packageInstance?.description}</td>
+                            </tr>
                             </table>
                             <g:form>
                                 <fieldset class="buttons">

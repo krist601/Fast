@@ -7,7 +7,8 @@ class ApplicationController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
     static SimpleDateFormat theDate = new SimpleDateFormat( 'MM/dd/yyyy' )
-
+    
+    
     def index() {
         redirect(action: "list", params: params)
     }
@@ -23,13 +24,14 @@ class ApplicationController {
     }
 
     def save() {
+       
         params.arrivalDate = theDate.parse(params.arrivalDate)
         def applicationInstance = new Application(params)
         if (!applicationInstance.save(flush: true)) {
             render(view: "create", model: [applicationInstance: applicationInstance])
             return
         }
-
+        
         flash.message = message(code: 'default.created.message', args: [message(code: 'application.label', default: 'Application'), applicationInstance.id])
         redirect(action: "show", id: applicationInstance.id)
     }
@@ -68,7 +70,7 @@ class ApplicationController {
         if (version != null) {
             if (applicationInstance.version > version) {
                 applicationInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'application.label', default: 'Application')] as Object[],
+                    [message(code: 'application.label', default: 'Application')] as Object[],
                           "Another user has updated this Application while you were editing")
                 render(view: "edit", model: [applicationInstance: applicationInstance])
                 return
@@ -128,7 +130,7 @@ class ApplicationController {
         if (version != null) {
             if (applicationInstance.version > version) {
                 applicationInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'application.label', default: 'Application')] as Object[],
+                    [message(code: 'application.label', default: 'Application')] as Object[],
                           "Another user has updated this Application while you were editing")
                 render(view: "editLostDate", model: [applicationInstance: applicationInstance])
                 return
