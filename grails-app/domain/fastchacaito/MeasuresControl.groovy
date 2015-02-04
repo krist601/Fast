@@ -1,26 +1,22 @@
 package fastchacaito
 
 class MeasuresControl {
-    Date measureDate
-    int weightBefore
-    int waistBefore
-    int bellyBefore
-    int hipBefore
-    int leftThighBefore
-    int rightThighBefore
-    int leftCrotchBefore
-    int rightCrotchBefore
-    int weightAfter
-    int waistAfter
-    int bellyAfter
-    int hipAfter
-    int leftThighAfter
-    int rightThighAfter
-    int leftCrotchAfter
-    int rightCrotchAfter
+    int identifierNumber
+    float leftArm
+    float rightArm
+    float waist
+    float abdomen
+    float hips
+    float leftThigh
+    float rightThigh
+    float leftCrotch
+    float rightCrotch
+    float achieved
+    Date date
     
     //deberia tener relacionado el usuario
-    static belongsTo = [machine: Machine,secAppUser: user.SecAppUser]
+    static belongsTo = [machine: Machine,secAppUser: user.SecAppUser, mesotherapy: Mesotherapy, balance: Balance]
     static constraints = {
+        machine nullable:true
     }
 }
