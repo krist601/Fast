@@ -10,14 +10,14 @@
         <ul class="breadcrumbs">
             <li><a class="home" href="${createLink(uri: '/')}"><i class="iconfa-home"></i></a> <span class="separator"></span></li>
             <li><a class="home" href="${createLink(uri: '/PaymentMethod/List')}">Metodo de Pago</a> <span class="separator"></span></li>
-            <li>Crear Nuevo Metodo de Pago</li>
+            <li>Crear Método de Pago</li>
         </ul>
 
         <div class="maincontent">
             <div class="maincontentinner">
 
                 <div class="widget">
-                    <h4 class="widgettitle" style="font-size: 30px;">Crear Metodo de Pago</h4>
+                    <h4 class="widgettitle" style="font-size: 30px;">Crear Método de Pago</h4>
                     <div class="widgetcontent">
                         <form class="stdform" action="save" method="post">
                             
@@ -37,7 +37,7 @@
                                         <g:render template="form"/>
                                     </fieldset>
                                     <fieldset class="buttons">
-                                        <g:submitButton name="create" class="btn btn-primary" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+                                        <g:submitButton name="create" class="btn btn-primary" value="${message(code: 'default.button.create.label', default: 'Continuar')}" />
                                     </fieldset>
                                 </g:form>
                             </div>

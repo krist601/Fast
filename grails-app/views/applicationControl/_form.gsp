@@ -16,11 +16,12 @@
             <g:message code="applicationControl.wasApplied.label" default="Fue Aplicada?" />
 
         </label>
-        <g:checkBox name="wasApplied" value="${applicationControlInstance?.wasApplied}" /> <a style="color: red;">No debe aplicarse si el paciente tiene <g:if test="${Balance.get(params.foo).type.equals("Balance Plus")}">${ApplicationControl.getLastWeight(params.foo)-0.5}</g:if><g:else>${ApplicationControl.getLastWeight(params.foo)-0.3}</g:else> Kg o más</a>
-        </div><br>
-    <div class="fieldcontain ${hasErrors(bean: applicationControlInstance, field: 'application', 'error')} required">
+        <g:checkBox name="wasApplied" value="${applicationControlInstance?.wasApplied}" onClick="showHideForm(this,'applicationall')"/> <a style="color: red;">No debe aplicarse si el paciente tiene <g:if test="${Balance.get(params.foo).type.equals("Balance Plus")}">${ApplicationControl.getLastWeight(params.foo)-0.5}</g:if><g:else>${ApplicationControl.getLastWeight(params.foo)-0.3}</g:else> Kg o más</a>
+  
+    </div><br>
+    <div id="applicationall" style="display:none" class="fieldcontain ${hasErrors(bean: applicationControlInstance, field: 'application', 'error')} required">
         <label for="application">
-            <g:message code="applicationControl.application.label" default="Applicación" />
+            <g:message code="applicationControl.application.label" default="Aplicación" />
             <span class="required-indicator">*</span>
         </label>
         <g:select id="application" name="application.id" noSelection="${['null':'Selecione una Aplicación']}" from="${fastchacaito.Application.avaliableApplications(Balance.get(params.foo).type)}" optionKey="id" required="" value="${applicationControlInstance?.application?.id}" class="many-to-one"/>

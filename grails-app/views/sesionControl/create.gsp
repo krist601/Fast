@@ -50,7 +50,7 @@
                         <span>&copy; 2014. Fast CA. Todos los derechos reservados.</span>
                     </div>
                     <div class="footer-right">
-                        <span>Diseñado por: <a href="http://themepixels.com/">Kristian Cortés</a></span>
+                        <span>DiseÃ±ado por: <a href="http://themepixels.com/">Kristian CortÃ©s</a></span>
                     </div>
                 </div><!--footer-->
 

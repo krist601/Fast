@@ -57,5 +57,15 @@
 
             </div><!--maincontentinner-->
         </div><!--maincontent-->
+    <script>
+   function showHideForm(box, id) {
+    var elm = document.getElementById(id);
+    if(box.checked){
+        elm.style.display = "";
+    } else {
+        elm.style.display = "none";
+    }
+}
+</script>
     </body>
 </html>

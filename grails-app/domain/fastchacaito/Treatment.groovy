@@ -16,4 +16,11 @@ class Treatment {
     static belongsTo = [packages: Package, patient: Patient]
     static constraints = {
     }
+    
+      static getExpired(treatmentId){
+        def item = Treatment.get(treatmentId)
+        if (item.endDate < new Date())
+            return true
+        return false
+    }
 }

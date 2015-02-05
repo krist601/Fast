@@ -1,117 +1,45 @@
 <%@ page import="fastchacaito.SesionControl" %>
 
-<table>
-    
-    <tr>
-        <td style="margin-bottom: 10px; padding-bottom: 10px;">
-            <div class="fieldcontain ${hasErrors(bean: sesionControlInstance, field: 'leftArm', 'error')} required">
-                <label for="leftArm">
-                    <g:message code="sesionControl.leftArm.label" default="Brazo Izquierdo" />
-                    
-                </label>
-                <g:field name="leftArm" value="${fieldValue(bean: sesionControlInstance, field: 'leftArm')}" required=""/>
-            </div>
-        </td>
-        <td style="margin-bottom: 10px; padding-bottom: 10px;">
-            <div class="fieldcontain ${hasErrors(bean: sesionControlInstance, field: 'rightArm', 'error')} required">
-                <label for="rightArm">
-                    <g:message code="sesionControl.rightArm.label" default="Brazo Derecho" />
-                    
-                </label>
-                <g:field name="rightArm" value="${fieldValue(bean: sesionControlInstance, field: 'rightArm')}" required=""/>
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td style="margin-bottom: 10px; padding-bottom: 10px;">
-            <div class="fieldcontain ${hasErrors(bean: sesionControlInstance, field: 'leftThigh', 'error')} required">
-                <label for="leftThigh">
-                    <g:message code="sesionControl.leftThigh.label" default="Muslo Izquierdo" />
-                    
-                </label>
-                <g:field name="leftThigh" value="${fieldValue(bean: sesionControlInstance, field: 'leftThigh')}" required=""/>
-            </div>
-        </td>
-        <td style="margin-bottom: 10px; padding-bottom: 10px;">
-            <div class="fieldcontain ${hasErrors(bean: sesionControlInstance, field: 'rightThigh', 'error')} required">
-                <label for="rightThigh">
-                    <g:message code="sesionControl.rightThigh.label" default="Muslo Derecho" />
-                    
-                </label>
-                <g:field name="rightThigh" value="${fieldValue(bean: sesionControlInstance, field: 'rightThigh')}" required=""/>
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td style="margin-bottom: 10px; padding-bottom: 10px;">
-            <div class="fieldcontain ${hasErrors(bean: sesionControlInstance, field: 'leftCrotch', 'error')} required">
-                <label for="leftCrotch">
-                    <g:message code="sesionControl.leftCrotch.label" default="Entrepierna Izquierda" />
-                    
-                </label>
-                <g:field name="leftCrotch" value="${fieldValue(bean: sesionControlInstance, field: 'leftCrotch')}" required=""/>
-            </div>
-        </td>
-        <td style="margin-bottom: 10px; padding-bottom: 10px;">
-            <div class="fieldcontain ${hasErrors(bean: sesionControlInstance, field: 'rightCrotch', 'error')} required">
-                <label for="rightCrotch">
-                    <g:message code="sesionControl.rightCrotch.label" default="Entrepierna Derecha" />
-                    
-                </label>
-                <g:field name="rightCrotch" value="${fieldValue(bean: sesionControlInstance, field: 'rightCrotch')}" required=""/>
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td style="margin-bottom: 10px; padding-bottom: 10px;">
-            <div class="fieldcontain ${hasErrors(bean: sesionControlInstance, field: 'hips', 'error')} required">
-                <label for="hips">
-                    <g:message code="sesionControl.hips.label" default="Caderas" />
-                    
-                </label>
-                <g:field name="hips" value="${fieldValue(bean: sesionControlInstance, field: 'hips')}" required=""/>
-            </div>
-        </td>
-        <td style="margin-bottom: 10px; padding-bottom: 10px;">
-            <div class="fieldcontain ${hasErrors(bean: sesionControlInstance, field: 'waist', 'error')} required">
-                <label for="waist">
-                    <g:message code="sesionControl.waist.label" default="Cintura" />
-                    
-                </label>
-                <g:field name="waist" value="${fieldValue(bean: sesionControlInstance, field: 'waist')}" required=""/>
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td style="margin-bottom: 10px; padding-bottom: 10px;">
-            <div class="fieldcontain ${hasErrors(bean: sesionControlInstance, field: 'abdomen', 'error')} required">
-                <label for="abdomen">
-                    <g:message code="sesionControl.abdomen.label" default="Abdomen" />
-                    
-                </label>
-                <g:field name="abdomen" value="${fieldValue(bean: sesionControlInstance, field: 'abdomen')}" required=""/>
-
-            </div>
-        </td>
-        <td style="margin-bottom: 10px; padding-bottom: 10px;">
-        </td>
-    </tr>
-    
-</table>
- <g:hiddenField name="mesotherapy.id" value="${sesionControlInstance?.mesotherapy?.id}"/>
-
-<div class="fieldcontain ${hasErrors(bean: sesionControlInstance, field: 'vacutainer', 'error')} required">
-    <label for="vacutainer">
-        <g:message code="sesionControl.vacutainer.label" default="Vacutainer" />
-        
-    </label>
-    <g:select id="vacutainer" name="vacutainer.id" from="${fastchacaito.Vacutainer.avaliableVacutainers()}" optionKey="id" required="" value="${sesionControlInstance?.vacutainer?.id}" class="many-to-one"/>
-</div>
-<div class="fieldcontain ${hasErrors(bean: sesionControlInstance, field: 'vacutainer', 'error')} required">
-    <label for="vacutainer">
-        <g:message code="sesionControl.vacutainer.label" default="Vacutainer" />
-        
-    </label>
-    <g:select id="vacutainer2" name="vacutainer2.id" noSelection="${['null':'Selecione un Vacutainer']}" from="${fastchacaito.Vacutainer.avaliableVacutainers()}" optionKey="id" required="" value="${sesionControlInstance?.vacutainer?.id}" class="many-to-one"/>
+<div class="fieldcontain ${hasErrors(bean: sesionControlInstance, field: 'date', 'error')} required">
+	<label for="date">
+		<g:message code="sesionControl.date.label" default="Fecha" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:datePicker name="date" precision="day"  value="${sesionControlInstance?.date}"  />
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: sesionControlInstance, field: 'kit', 'error')} ">
+	<label for="kit">
+		<g:message code="sesionControl.kit.label" default="Kit" />
+		
+	</label>
+	<g:textField name="kit" value="${sesionControlInstance?.kit}"/>
+</div>
+
+<g:hiddenField name="mesotherapy.id" value="${sesionControlInstance?.mesotherapy?.id}"/>
+<g:hiddenField name="secAppUser.id" value="${sesionControlInstance?.secAppUser?.id}"/>
+
+
+<div class="fieldcontain ${hasErrors(bean: sesionControlInstance, field: 'sesionNumber', 'error')} required">
+	<label for="sesionNumber">
+		<g:message code="sesionControl.sesionNumber.label" default="Número de Sesión" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:field name="sesionNumber" type="number" value="${sesionControlInstance.sesionNumber}" required=""/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: sesionControlInstance, field: 'vacutainer', 'error')} required">
+	<label for="vacutainer">
+		<g:message code="sesionControl.vacutainer.label" default="Vacutainer" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select id="vacutainer" name="vacutainer.id" from="${fastchacaito.Vacutainer.avaliableVacutainers()}" optionKey="id" required="" value="${sesionControlInstance?.vacutainer?.id}" class="many-to-one"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: sesionControlInstance, field: 'vacutainer2', 'error')} ">
+	<label for="vacutainer2">
+		<g:message code="sesionControl.vacutainer2.label" default="Vacutainer" />
+		
+	</label>
+	<g:select id="vacutainer2" name="vacutainer2.id" from="${fastchacaito.Vacutainer.avaliableVacutainers()}" optionKey="id" value="${sesionControlInstance?.vacutainer2?.id}" class="many-to-one" noSelection="['null': '']"/>
+</div>

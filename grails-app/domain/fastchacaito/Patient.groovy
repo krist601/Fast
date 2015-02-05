@@ -56,8 +56,9 @@ class Patient {
     def toDate(date){
         return Date.format(date)
     }
-    static getMontoAbonado(patientId){
-        def item = Patient.executeQuery("SELECT SUM(pm.amount) FROM Treatment as t, PaymentMethod as pm WHERE t.patient = "+patientId+" AND t.id = pm.treatment")
+    static getMontoAbonado(patientId,treatmentId){
+        def item = Patient.executeQuery("SELECT SUM(pm.amount) FROM Treatment as t, PaymentMethod as pm WHERE t.patient = "+patientId
+                                +" AND t.id = pm.treatment AND t.id="+treatmentId)
         if (item[0])
             return item[0]
         return 0

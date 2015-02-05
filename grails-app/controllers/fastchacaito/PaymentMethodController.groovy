@@ -16,6 +16,7 @@ class PaymentMethodController {
     }
 
     def create() {
+         params.treatment=Treatment.get(params.foo)
         [paymentMethodInstance: new PaymentMethod(params)]
     }
 
@@ -27,7 +28,7 @@ class PaymentMethodController {
         }
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'paymentMethod.label', default: 'PaymentMethod'), paymentMethodInstance.id])
-        redirect(action: "show", id: paymentMethodInstance.id)
+        redirect(controller:"patient", action: "show", id: paymentMethodInstance.treatment.patient.id)
     }
 
     def show(Long id) {

@@ -23,7 +23,7 @@ class SesionControlController {
 
     def save() {
         params.date=new Date()
-        params.achieved=Integer.parseInt(params.leftArm)+Integer.parseInt(params.rightArm)+Integer.parseInt(params.waist)+Integer.parseInt(params.abdomen)+Integer.parseInt(params.hips)+Integer.parseInt(params.leftThigh)+Integer.parseInt(params.rightThigh)+Integer.parseInt(params.leftCrotch)+Integer.parseInt(params.rightCrotch)
+       // params.achieved=Integer.parseInt(params.leftArm)+Integer.parseInt(params.rightArm)+Integer.parseInt(params.waist)+Integer.parseInt(params.abdomen)+Integer.parseInt(params.hips)+Integer.parseInt(params.leftThigh)+Integer.parseInt(params.rightThigh)+Integer.parseInt(params.leftCrotch)+Integer.parseInt(params.rightCrotch)
         def row =SesionControl.executeQuery("SELECT MAX(ap.sesionNumber)+1 FROM SesionControl as ap WHERE ap.mesotherapy="+params.mesotherapy.id)
         if (row[0])
             params.sesionNumber=row[0]
