@@ -15,7 +15,7 @@ class MeasuresControl {
     Date date
     
     //deberia tener relacionado el usuario
-    static belongsTo = [machine: Machine,secAppUser: user.SecAppUser, mesotherapy: Mesotherapy, balance: Balance]
+    static belongsTo = [machine: Machine,secAppUser: user.SecAppUser] //, mesotherapy: Mesotherapy, balance: Balance
     static constraints = {
         machine nullable:true
     }

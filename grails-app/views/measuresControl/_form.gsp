@@ -2,116 +2,100 @@
 
 
 
-<div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'bellyAfter', 'error')} required">
-	<label for="bellyAfter">
-		<g:message code="measuresControl.bellyAfter.label" default="Belly After" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:field name="bellyAfter" type="number" value="${measuresControlInstance.bellyAfter}" required=""/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'bellyBefore', 'error')} required">
-	<label for="bellyBefore">
-		<g:message code="measuresControl.bellyBefore.label" default="Belly Before" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:field name="bellyBefore" type="number" value="${measuresControlInstance.bellyBefore}" required=""/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'hipAfter', 'error')} required">
-	<label for="hipAfter">
-		<g:message code="measuresControl.hipAfter.label" default="Hip After" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:field name="hipAfter" type="number" value="${measuresControlInstance.hipAfter}" required=""/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'hipBefore', 'error')} required">
-	<label for="hipBefore">
-		<g:message code="measuresControl.hipBefore.label" default="Hip Before" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:field name="hipBefore" type="number" value="${measuresControlInstance.hipBefore}" required=""/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'leftCrotchAfter', 'error')} required">
-	<label for="leftCrotchAfter">
-		<g:message code="measuresControl.leftCrotchAfter.label" default="Left Crotch After" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:field name="leftCrotchAfter" type="number" value="${measuresControlInstance.leftCrotchAfter}" required=""/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'leftCrotchBefore', 'error')} required">
-	<label for="leftCrotchBefore">
-		<g:message code="measuresControl.leftCrotchBefore.label" default="Left Crotch Before" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:field name="leftCrotchBefore" type="number" value="${measuresControlInstance.leftCrotchBefore}" required=""/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'leftThighAfter', 'error')} required">
-	<label for="leftThighAfter">
-		<g:message code="measuresControl.leftThighAfter.label" default="Left Thigh After" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:field name="leftThighAfter" type="number" value="${measuresControlInstance.leftThighAfter}" required=""/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'leftThighBefore', 'error')} required">
-	<label for="leftThighBefore">
-		<g:message code="measuresControl.leftThighBefore.label" default="Left Thigh Before" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:field name="leftThighBefore" type="number" value="${measuresControlInstance.leftThighBefore}" required=""/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'machine', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'machine', 'error')} ">
 	<label for="machine">
 		<g:message code="measuresControl.machine.label" default="Machine" />
-		<span class="required-indicator">*</span>
+		
 	</label>
-	<g:select id="machine" name="machine.id" from="${fastchacaito.Machine.list()}" optionKey="id" required="" value="${measuresControlInstance?.machine?.id}" class="many-to-one"/>
+	<g:select id="machine" name="machine.id" from="${fastchacaito.Machine.list()}" optionKey="id" value="${measuresControlInstance?.machine?.id}" class="many-to-one" noSelection="['null': '']"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'measureDate', 'error')} required">
-	<label for="measureDate">
-		<g:message code="measuresControl.measureDate.label" default="Measure Date" />
+<div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'abdomen', 'error')} required">
+	<label for="abdomen">
+		<g:message code="measuresControl.abdomen.label" default="Abdomen" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:datePicker name="measureDate" precision="day"  value="${measuresControlInstance?.measureDate}"  />
+	<g:field name="abdomen" value="${fieldValue(bean: measuresControlInstance, field: 'abdomen')}" required=""/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'rightCrotchAfter', 'error')} required">
-	<label for="rightCrotchAfter">
-		<g:message code="measuresControl.rightCrotchAfter.label" default="Right Crotch After" />
+<div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'achieved', 'error')} required">
+	<label for="achieved">
+		<g:message code="measuresControl.achieved.label" default="Achieved" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field name="rightCrotchAfter" type="number" value="${measuresControlInstance.rightCrotchAfter}" required=""/>
+	<g:field name="achieved" value="${fieldValue(bean: measuresControlInstance, field: 'achieved')}" required=""/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'rightCrotchBefore', 'error')} required">
-	<label for="rightCrotchBefore">
-		<g:message code="measuresControl.rightCrotchBefore.label" default="Right Crotch Before" />
+<div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'date', 'error')} required">
+	<label for="date">
+		<g:message code="measuresControl.date.label" default="Date" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field name="rightCrotchBefore" type="number" value="${measuresControlInstance.rightCrotchBefore}" required=""/>
+	<g:datePicker name="date" precision="day"  value="${measuresControlInstance?.date}"  />
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'rightThighAfter', 'error')} required">
-	<label for="rightThighAfter">
-		<g:message code="measuresControl.rightThighAfter.label" default="Right Thigh After" />
+<div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'hips', 'error')} required">
+	<label for="hips">
+		<g:message code="measuresControl.hips.label" default="Hips" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field name="rightThighAfter" type="number" value="${measuresControlInstance.rightThighAfter}" required=""/>
+	<g:field name="hips" value="${fieldValue(bean: measuresControlInstance, field: 'hips')}" required=""/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'rightThighBefore', 'error')} required">
-	<label for="rightThighBefore">
-		<g:message code="measuresControl.rightThighBefore.label" default="Right Thigh Before" />
+<div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'identifierNumber', 'error')} required">
+	<label for="identifierNumber">
+		<g:message code="measuresControl.identifierNumber.label" default="Identifier Number" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field name="rightThighBefore" type="number" value="${measuresControlInstance.rightThighBefore}" required=""/>
+	<g:field name="identifierNumber" type="number" value="${measuresControlInstance.identifierNumber}" required=""/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'leftArm', 'error')} required">
+	<label for="leftArm">
+		<g:message code="measuresControl.leftArm.label" default="Left Arm" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:field name="leftArm" value="${fieldValue(bean: measuresControlInstance, field: 'leftArm')}" required=""/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'leftCrotch', 'error')} required">
+	<label for="leftCrotch">
+		<g:message code="measuresControl.leftCrotch.label" default="Left Crotch" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:field name="leftCrotch" value="${fieldValue(bean: measuresControlInstance, field: 'leftCrotch')}" required=""/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'leftThigh', 'error')} required">
+	<label for="leftThigh">
+		<g:message code="measuresControl.leftThigh.label" default="Left Thigh" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:field name="leftThigh" value="${fieldValue(bean: measuresControlInstance, field: 'leftThigh')}" required=""/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'rightArm', 'error')} required">
+	<label for="rightArm">
+		<g:message code="measuresControl.rightArm.label" default="Right Arm" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:field name="rightArm" value="${fieldValue(bean: measuresControlInstance, field: 'rightArm')}" required=""/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'rightCrotch', 'error')} required">
+	<label for="rightCrotch">
+		<g:message code="measuresControl.rightCrotch.label" default="Right Crotch" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:field name="rightCrotch" value="${fieldValue(bean: measuresControlInstance, field: 'rightCrotch')}" required=""/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'rightThigh', 'error')} required">
+	<label for="rightThigh">
+		<g:message code="measuresControl.rightThigh.label" default="Right Thigh" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:field name="rightThigh" value="${fieldValue(bean: measuresControlInstance, field: 'rightThigh')}" required=""/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'secAppUser', 'error')} required">
@@ -122,35 +106,11 @@
 	<g:select id="secAppUser" name="secAppUser.id" from="${user.SecAppUser.list()}" optionKey="id" required="" value="${measuresControlInstance?.secAppUser?.id}" class="many-to-one"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'waistAfter', 'error')} required">
-	<label for="waistAfter">
-		<g:message code="measuresControl.waistAfter.label" default="Waist After" />
+<div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'waist', 'error')} required">
+	<label for="waist">
+		<g:message code="measuresControl.waist.label" default="Waist" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field name="waistAfter" type="number" value="${measuresControlInstance.waistAfter}" required=""/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'waistBefore', 'error')} required">
-	<label for="waistBefore">
-		<g:message code="measuresControl.waistBefore.label" default="Waist Before" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:field name="waistBefore" type="number" value="${measuresControlInstance.waistBefore}" required=""/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'weightAfter', 'error')} required">
-	<label for="weightAfter">
-		<g:message code="measuresControl.weightAfter.label" default="Weight After" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:field name="weightAfter" type="number" value="${measuresControlInstance.weightAfter}" required=""/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'weightBefore', 'error')} required">
-	<label for="weightBefore">
-		<g:message code="measuresControl.weightBefore.label" default="Weight Before" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:field name="weightBefore" type="number" value="${measuresControlInstance.weightBefore}" required=""/>
+	<g:field name="waist" value="${fieldValue(bean: measuresControlInstance, field: 'waist')}" required=""/>
 </div>
 

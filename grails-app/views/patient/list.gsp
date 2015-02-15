@@ -50,9 +50,9 @@
 
                                     <td>${fieldValue(bean: patientInstance, field: "lastName")}</td>
 
-                                    <td><g:formatDate value="${fieldValue(bean: patientInstance, field: "bornDate")}" format="yyyy-MM-dd"/></td>
+                                    <td><g:formatDate date="${patientInstance.bornDate}" format="dd-MM-yyyy"/></td>
 
-                                    <td><g:formatDate value="${fieldValue(bean: patientInstance, field: "admisionDate")}" format="yyyy-MM-dd"/></td>
+                                    <td><g:formatDate date="${patientInstance.admisionDate}" format="dd-MM-yyyy"/></td>
 
                                 </tr>
                             </g:each>

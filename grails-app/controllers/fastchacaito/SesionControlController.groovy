@@ -1,5 +1,5 @@
 package fastchacaito
-
+import fastchacaito.Mesotherapy
 import org.springframework.dao.DataIntegrityViolationException
 
 class SesionControlController {
