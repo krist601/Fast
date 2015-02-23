@@ -431,7 +431,7 @@
                                                         <g:if test="${item2.applicationControl.size()<item2.applicationAmount}">                                                        
                                                             <g:if test="${item2.treatment.endDate.compareTo(new Date().toTimestamp()) >= 0}"> 
                                                             <g:if test="${fastchacaito.Balance.applyControl(item2.id) == true}"> 
-                                                                    <a class="btn btn-info dropdown-toggle" style="color: white;" href="${createLink(controller:'measureControl', action:'create', params:[foo:item2?.id])}">
+                                                                    <a class="btn btn-info dropdown-toggle" style="color: white;" href="${createLink(controller:'measuresControl', action:'create', params:[foo:item2?.id])}">
                                                                         Control de Medidas
                                                                     </a>
                                                                 </g:if>
@@ -446,7 +446,7 @@
                                                     <g:else>    
                                                         <g:if test="${item2.treatment.endDate.compareTo(new Date().toTimestamp()) >= 0}"> 
                                                         <g:if test="${fastchacaito.Balance.applyControl(item2.id) == true}">
-                                                                <a class="btn btn-info dropdown-toggle" style="color: black;" href="${createLink(controller:'measureControl', action:'create', params:[foo:item2?.id])}">
+                                                                <a class="btn btn-info dropdown-toggle" style="color: black;" href="${createLink(controller:'measuresControl', action:'create', params:[foo:item2?.id])}">
                                                                     Control de Medidas
                                                                 </a>
                                                             </g:if>

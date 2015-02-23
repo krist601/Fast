@@ -8,7 +8,6 @@ class ApplicationControl {
     float reachedWeight
     boolean wasApplied
     String observation
-    static hasMany = [measuresControl: MeasuresControl]
     static belongsTo = [application: Application, balance: Balance, user: user.SecAppUser]
     static constraints = {
         observation nullable:true

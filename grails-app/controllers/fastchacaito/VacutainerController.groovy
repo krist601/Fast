@@ -22,6 +22,7 @@ class VacutainerController {
     }
 
     def save() {
+        params.identifier=params.identifier+params.unidad+"-"+params.mes
         params.arrivalDate = theDate.parse(params.arrivalDate)
         def amount= params.vacutainerAmount
         params.remove('vacutainerAmount')

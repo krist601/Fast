@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat
 class PatientController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
-    static SimpleDateFormat theDate = new SimpleDateFormat( 'MM-dd-yyyy' ) //H:m:s
+    static SimpleDateFormat theDate = new SimpleDateFormat( 'MM/dd/yyyy' ) //H:m:s
     
     def index() {
         redirect(action: "list", params: params)
@@ -23,11 +23,11 @@ class PatientController {
 
     def save() {
         //println "adminisiondate:"+params.bornDate
-        //print params.height
-        //params.height=params.height.replaceAll(".", ",")
-        //print params.height
-        //params.initialWeight=params.initialWeight.replaceAll(".", ",")
-        params.height=Float.parseFloat(params.height)
+//        print params.height
+//        params.height=params.height.replaceAll(".", ",")
+//        print params.height
+//        params.initialWeight=params.initialWeight.replaceAll(".", ",")
+//        params.height=Float.parseFloat(params.height)
         params.initialWeight=Float.parseFloat(params.initialWeight)
         params.bornDate = theDate.parse(params.bornDate)
         params.admisionDate = new Date()

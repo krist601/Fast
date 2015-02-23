@@ -6,7 +6,7 @@ class Balance {
     float idealWeight
     List applicationControl
     
-    static hasMany = [applicationControl: ApplicationControl]
+    static hasMany = [applicationControl: ApplicationControl] //,measuresControl: MeasuresControl
     
     static belongsTo = [treatment: Treatment]
     static constraints = {
@@ -25,13 +25,13 @@ class Balance {
         def applicationsSize= balance.applicationControl.size()
         
         //  def measures = 
-      
-        def applications = balance.applicationControl
-        def measures = 0
-        applications.each(){ application -> measures += application.measuresControl.size()
-            
-        }
-        println "medidas balance"+measures
+//      
+//        def applications = balance.applicationControl
+//        def measures = 0
+//        applications.each(){ application -> measures += application.measuresControl.size()
+//            
+//        }
+//        println "medidas balance"+measures
         if (applicationsSize.mod(9)==0)
         return true
         else 

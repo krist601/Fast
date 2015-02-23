@@ -1,3 +1,4 @@
+
 <%@ page import="fastchacaito.PaymentMethod" %>
 
 
@@ -10,21 +11,47 @@
 	<g:field name="amount" type="number" value="${paymentMethodInstance.amount}" required=""/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: paymentMethodInstance, field: 'bank', 'error')} ">
+<div class="fieldcontain ${hasErrors(bean: paymentMethodInstance, field: 'paymentMethodType', 'error')} ">
+	<label for="paymentMethodType">
+		<g:message code="paymentMethod.paymentMethodType.label" default="Método de Pago" />
+		
+	</label>
+    <select class="default form-control" name="paymentMethodType" id="paymentMethodType" value="">
+        <option value="Efectivo">Efectivo</option>
+        <option value="Tajeta de Débito">Tajeta de Débito</option>
+        <option value="Tajeta de Crédito">Tajeta de Crédito</option>
+        <option value="Cheque">Cheque</option>
+    </select>
+</div>
+<div id="showMe">
+   <div class="fieldcontain ${hasErrors(bean: paymentMethodInstance, field: 'bank', 'error')} ">
 	<label for="bank">
 		<g:message code="paymentMethod.bank.label" default="Banco" />
 		
 	</label>
 	<g:textField name="bank" value="${paymentMethodInstance?.bank}"/>
 </div>
-
-<div class="fieldcontain ${hasErrors(bean: paymentMethodInstance, field: 'paymentMethodType', 'error')} ">
-	<label for="paymentMethodType">
-		<g:message code="paymentMethod.paymentMethodType.label" default="Método de Pago" />
-		
-	</label>
-	<g:textField name="paymentMethodType" value="${paymentMethodInstance?.paymentMethodType}"/>
 </div>
+
 <g:hiddenField name="treatment.id" value="${paymentMethodInstance?.treatment?.id}"/>
+
+<script>
+    var elem = document.getElementById("paymentMethodType");
+    elem.onchange = function(){
+    var hiddenDiv = document.getElementById("showMe");
+    if (this.value!="Efectivo") {
+    hiddenDiv.style.display = (this.value == "") ? "none":"block";
+    }
+    if (this.value=="Efectivo") {
+    hiddenDiv.style.display = "none";
+    }
+    };
+</script>
+<style>
+    #showMe{
+    display:none;
+    }
+</style>
+
 
 

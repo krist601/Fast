@@ -20,6 +20,18 @@ class MeasuresControlController {
     }
 
     def save() {
+         def user = springSecurityService.currentUser
+        params.secAppUser=user
+        params.date=new Date()
+//        def row =ApplicationControl.executeQuery("SELECT MAX(mc.identifierNumber)+1 "+
+//                                                  "FROM MeasuresControl as mc ,Mesotherapy as m,Balance as b,Treatment as t "+
+//                                                  "WHERE (mc.balance="+params.balance.id+
+//                                                  ")")
+//        if (row[0])
+//            params.identifierNumber=row[0]
+//        else
+//            params.identifierNumber="1"
+          
         def measuresControlInstance = new MeasuresControl(params)
         if (!measuresControlInstance.save(flush: true)) {
             render(view: "create", model: [measuresControlInstance: measuresControlInstance])

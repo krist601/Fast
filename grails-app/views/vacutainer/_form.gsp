@@ -7,10 +7,26 @@
 
 <div class="fieldcontain ${hasErrors(bean: vacutainerInstance, field: 'identifier', 'error')} ">
     <label for="identifier">
-        <g:message code="vacutainer.identifier.label" default="Identificador" />
+        <g:message code="vacutainer.identifier.label" default="Lote" />
 
     </label>
     <g:textField name="identifier" value="${vacutainerInstance?.identifier}"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: vacutainerInstance, field: 'identifier', 'error')} ">
+    <label for="identifier">
+        <g:message code="vacutainer.identifier.label" default="Unidad" />
+
+    </label>
+    <g:textField name="unidad" value=""/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: vacutainerInstance, field: 'identifier', 'error')} ">
+    <label for="identifier">
+        <g:message code="vacutainer.identifier.label" default="Mes" />
+
+    </label>
+    <g:select name="mes" from="${['01', '02', '03','04', '05', '06','07', '08', '09','10', '11', '12']}" value=""/>
 </div>
 
 
