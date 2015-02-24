@@ -5,11 +5,11 @@ class Treatment {
     Date beginDate
     Date endDate
     int totalPrice
-    List balance
-    List mesotherapy
-    List bodyTherapy
-    List machine
-    List paymentMethod
+//    List balance
+//    List mesotherapy
+//    List bodyTherapy
+//    List machine
+//    List paymentMethod
     
     static hasMany = [balance: Balance, mesotherapy: Mesotherapy, bodyTherapy: BodyTherapy, machine: Machine, paymentMethod: PaymentMethod]
 

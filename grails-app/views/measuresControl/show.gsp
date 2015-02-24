@@ -50,6 +50,15 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${measuresControlInstance?.balance}">
+				<li class="fieldcontain">
+					<span id="balance-label" class="property-label"><g:message code="measuresControl.balance.label" default="Balance" /></span>
+					
+						<span class="property-value" aria-labelledby="balance-label"><g:link controller="applicationControl" action="show" id="${measuresControlInstance?.balance?.id}">${measuresControlInstance?.balance?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${measuresControlInstance?.date}">
 				<li class="fieldcontain">
 					<span id="date-label" class="property-label"><g:message code="measuresControl.date.label" default="Date" /></span>
@@ -100,6 +109,15 @@
 					<span id="leftThigh-label" class="property-label"><g:message code="measuresControl.leftThigh.label" default="Left Thigh" /></span>
 					
 						<span class="property-value" aria-labelledby="leftThigh-label"><g:fieldValue bean="${measuresControlInstance}" field="leftThigh"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${measuresControlInstance?.mesotherapy}">
+				<li class="fieldcontain">
+					<span id="mesotherapy-label" class="property-label"><g:message code="measuresControl.mesotherapy.label" default="Mesotherapy" /></span>
+					
+						<span class="property-value" aria-labelledby="mesotherapy-label"><g:link controller="sesionControl" action="show" id="${measuresControlInstance?.mesotherapy?.id}">${measuresControlInstance?.mesotherapy?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>

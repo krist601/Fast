@@ -148,5 +148,15 @@ class Patient {
     }
     
     
-    
+    static getMeasuresControl(patientId)
+    {
+        def patient = Patient.get(patientId)
+        def treatments = Treatment.findAllByPatient(patient)
+        def balances = treatments.balance.measuresControl
+        def mesos = treatments.mesotherapy.measuresControl
+        def measures = balances + mesos
+        println "medidas "+ measures
+
+return measures
+    }
 }

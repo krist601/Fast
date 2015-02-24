@@ -6,7 +6,7 @@ class Balance {
     float idealWeight
     List applicationControl
     
-    static hasMany = [applicationControl: ApplicationControl] //,measuresControl: MeasuresControl
+    static hasMany = [applicationControl: ApplicationControl,measuresControl: MeasuresControl] //
     
     static belongsTo = [treatment: Treatment]
     static constraints = {

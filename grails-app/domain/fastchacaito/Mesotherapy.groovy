@@ -7,7 +7,7 @@ class Mesotherapy {
     String method
     List sesionControl
 
-    static hasMany = [sesionControl: SesionControl] //,measuresControl: MeasuresControl
+    static hasMany = [sesionControl: SesionControl,measuresControl: MeasuresControl] //,measuresControl: MeasuresControl
     static belongsTo = [treatment: Treatment]
     static constraints = {
     }

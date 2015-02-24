@@ -114,6 +114,9 @@
                                 </g:if>
 
                             <li><a href="#a-10">Opciones</a></li>
+                             <g:if test="${1 == 1}">
+                             <li><a href="#a-11">Control de Medidas</a></li>
+                              </g:if>
                         </ul>
                         <g:if test="${patientInstance.treatments}">
                             <div id="a-1">
@@ -431,7 +434,7 @@
                                                         <g:if test="${item2.applicationControl.size()<item2.applicationAmount}">                                                        
                                                             <g:if test="${item2.treatment.endDate.compareTo(new Date().toTimestamp()) >= 0}"> 
                                                             <g:if test="${fastchacaito.Balance.applyControl(item2.id) == true}"> 
-                                                                    <a class="btn btn-info dropdown-toggle" style="color: white;" href="${createLink(controller:'measuresControl', action:'create', params:[foo:item2?.id])}">
+                                                                    <a class="btn btn-info dropdown-toggle" style="color: white;" href="${createLink(controller:'measuresControl', action:'create', params:[foo:item2?.id,type:1])}">
                                                                         Control de Medidas
                                                                     </a>
                                                                 </g:if>
@@ -446,7 +449,7 @@
                                                     <g:else>    
                                                         <g:if test="${item2.treatment.endDate.compareTo(new Date().toTimestamp()) >= 0}"> 
                                                         <g:if test="${fastchacaito.Balance.applyControl(item2.id) == true}">
-                                                                <a class="btn btn-info dropdown-toggle" style="color: black;" href="${createLink(controller:'measuresControl', action:'create', params:[foo:item2?.id])}">
+                                                                <a class="btn btn-info dropdown-toggle" style="color: black;" href="${createLink(controller:'measuresControl', action:'create', params:[foo:item2?.id,type:1])}">
                                                                     Control de Medidas
                                                                 </a>
                                                             </g:if>
@@ -494,16 +497,10 @@
                                                                     <th></th>
                                                                     <th class="center">Nº</th>
                                                                     <th class="center">Fecha</th>
-                                                                    <th class="center">Bra I</th>
-                                                                    <th class="center">Bra D</th>
-                                                                    <th class="center">Cintu</th>
-                                                                    <th class="center">Abdom</th>
-                                                                    <th class="center">Cader</th>
-                                                                    <th class="center">Mus D</th>
-                                                                    <th class="center">Mus I</th>
-                                                                    <th class="center">Ent D</th>
-                                                                    <th class="center">Ent I</th>
-                                                                    <th class="center">Total</th>
+                                                                    <th class="center">Kit</th>
+                                                                    <th class="center">Vacutainer</th>
+                                                                    <th class="center">Vacutainer 2</th>
+                                                                 
                                                                 </tr>
 
                                                             </thead>
@@ -512,10 +509,10 @@
                                                                     <td></td>
                                                                     <td class="center">${item3.sesionNumber}</td>
                                                                     <td class="center"><g:formatDate format="dd MMM yyyy" date="${item3.date}"/></td>
-                                                               <%--     <td class="center">${item3.leftArm} cm</td>
-                                                                    <td class="center">${item3.rightArm} cm</td>
-                                                                    <td class="center">${item3.waist} cm</td>
-                                                                    <td class="center">${item3.abdomen} cm</td>
+                                                                    <td class="center">${item3.kit} cm</td>
+                                                                    <td class="center">${item3.vacutainer} </td>
+                                                                    <td class="center">${item3.vacutainer2}</td>
+                                                                <%--    <td class="center">${item3.abdomen} cm</td>
                                                                     <td class="center">${item3.hips} cm</td>
                                                                     <td class="center">${item3.leftThigh} cm</td>
                                                                     <td class="center">${item3.rightThigh} cm</td>
@@ -528,7 +525,7 @@
                                                         <g:if test="${item2.sesionControl.size()<item2.treatment.packages.sesionAmount}">                                                        
 
                                                             <g:if test="${fastchacaito.Mesotherapy.applyControl(item2.id) == true}"> 
-                                                                <a class="btn btn-info dropdown-toggle" style="color: black;" href="${createLink(controller:'measuresControl', action:'create', params:[foo:item2?.id])}">
+                                                                <a class="btn btn-info dropdown-toggle" style="color: black;" href="${createLink(controller:'measuresControl', action:'create', params:[foo:item2?.id,type:2])}">
                                                                     Control de Medidas
                                                                 </a>
                                                             </g:if>
@@ -540,7 +537,7 @@
                                                 <g:else>
                                                     <g:if test="${item2.treatment.endDate.compareTo(new Date().toTimestamp()) >= 0}">
                                                     <g:if test="${fastchacaito.Mesotherapy.applyControl(item2.id) == true}"> 
-                                                            <a class="btn btn-info dropdown-toggle" style="color: black;" href="${createLink(controller:'measuresControl', action:'create', params:[foo:item2?.id])}">
+                                                            <a class="btn btn-info dropdown-toggle" style="color: black;" href="${createLink(controller:'measuresControl', action:'create', params:[foo:item2?.id,type:2])}">
                                                                 Control de Medidas
                                                             </a>
                                                         </g:if>
@@ -649,7 +646,37 @@
                             <h4 class="widgettitle title-info">Contratar Nuevo Paquete de Mesoterapia</h4>
                         </div>
                     </div>
-
+  <g:if test="${1 == 1}">
+                        <div id="a-11">
+                            <div class="accordion accordion-info" style="width: 100%;">
+                                
+                                        <table class="table responsive">
+                                    <thead>
+                                        <tr>
+                                            <th class="center"></th>
+                                            <th class="center">Fecha</th>
+                                            <th class="center">Identificador</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <g:each in="${patientInstance.getMeasuresControl(patientInstance.id)}" var="item">
+                                            <tr>
+                                                <td class="center"></td>
+                                                <td class="center"><g:formatDate date="${item.date}" format="dd MMMM yyyy"/></td>
+                                                <td class="center">${item.identifierNumber}</td>
+                                               
+                                                
+                                            </tr>
+                                        </g:each>
+                                    </tbody>
+                                </table>
+                                    
+                             
+                             
+                            </div><!--#accordion-->
+                        </div>
+                    </g:if>
                 </div><!--tabbedwidget-->
                 <br>
                 <g:form>
