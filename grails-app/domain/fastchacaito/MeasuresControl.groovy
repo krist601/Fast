@@ -18,5 +18,6 @@ class MeasuresControl {
     static belongsTo = [machine: Machine,secAppUser: user.SecAppUser, mesotherapy: Mesotherapy, balance: Balance]
     static constraints = {
         machine nullable:true
+        balance nullable:true
     }
 }

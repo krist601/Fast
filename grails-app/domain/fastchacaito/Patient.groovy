@@ -58,9 +58,9 @@ class Patient {
     }
     static getMontoAbonado(patientId,treatmentId){
         def item = Patient.executeQuery("SELECT SUM(pm.amount) FROM Treatment as t, PaymentMethod as pm WHERE t.patient = "+patientId
-                                +" AND t.id = pm.treatment AND t.id="+treatmentId)
+            +" AND t.id = pm.treatment AND t.id="+treatmentId)
         if (item[0])
-            return item[0]
+        return item[0]
         return 0
     }
     static getTreatments(treatmentId){
@@ -71,24 +71,24 @@ class Patient {
         }
         if (item.bodyTherapy){
             if (response=="")
-                response="Terapia Corporal"
+            response="Terapia Corporal"
             else
-                response=response+", Terapia Corporal"
+            response=response+", Terapia Corporal"
         }
         if (item.mesotherapy){
             if (response=="")
-                response="Mesoterapia"
+            response="Mesoterapia"
             else
-                response=response+", Mesoterapia"
+            response=response+", Mesoterapia"
         }
         if (item.machine){
             if (response=="")
-                response="Maquina"
+            response="Maquina"
             else
-                response=response+", Maquina"
+            response=response+", Maquina"
         }
         if (response=="")
-                response="Otra cosa"
+        response="Otra cosa"
         return response
     }
     static getBalance(treatmentId){
@@ -125,25 +125,25 @@ class Patient {
     static haveBalance(patientId){
         def query=Patient.executeQuery("SELECT p.id FROM Patient as p, Treatment as t,Balance as b WHERE p.id = t.patient AND b.treatment=t.id AND p.id="+patientId)
         if (query)
-            return true
+        return true
         return false
     }
     static haveMachine(patientId){
         def query=Patient.executeQuery("SELECT p.id FROM Patient as p, Treatment as t,Machine as m WHERE p.id = t.patient AND m.treatment=t.id AND p.id="+patientId)
         if (query)
-            return true
+        return true
         return false
     }
     static haveMesotherapy(patientId){
         def query=Patient.executeQuery("SELECT p.id FROM Patient as p, Treatment as t,Mesotherapy as m WHERE p.id = t.patient AND m.treatment=t.id AND p.id="+patientId)
         if (query)
-            return true
+        return true
         return false
     }
     static haveBodyTherapy(patientId){
         def query=Patient.executeQuery("SELECT p.id FROM Patient as p, Treatment as t,BodyTherapy as b WHERE p.id = t.patient AND b.treatment=t.id AND p.id="+patientId)
         if (query)
-            return true
+        return true
         return false
     }
     
@@ -152,11 +152,43 @@ class Patient {
     {
         def patient = Patient.get(patientId)
         def treatments = Treatment.findAllByPatient(patient)
-        def balances = treatments.balance.measuresControl
-        def mesos = treatments.mesotherapy.measuresControl
-        def measures = balances + mesos
-        println "medidas "+ measures
-
-return measures
+        def measures = new ArrayList()
+      
+        for (int i=0;i<treatments.size();i++)
+        {
+            if (treatments[i])
+            {
+                def bal = treatments[i].balance
+                def meso = treatments[i].mesotherapy
+                if (bal)
+                {
+                     bal.eachWithIndex{
+                            b,ind -> 
+                            if (b.measuresControl)
+                            {
+                                b.measuresControl.each(){
+                                   mc-> measures.add(mc)
+                                }
+                                
+                            }
+                        }
+                }
+                if (meso)
+                {
+                     meso.eachWithIndex{
+                            m,ind -> 
+                            if (m.measuresControl)
+                            {
+                                m.measuresControl.each(){
+                                   mc-> measures.add(mc)
+                                }
+                                
+                            }
+                        }
+                }
+            }
+        }
+     //   println measures.sort { it.identifierNumber }
+        return measures.sort { it.identifierNumber }
     }
 }

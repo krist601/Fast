@@ -58,6 +58,9 @@
                             </g:each>
                         </tbody>
                     </table>
+                     <fieldset class="buttons">
+                                        <g:submitButton name="create" class="btn btn-primary" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+                                    </fieldset>
                     <div class="footer">
                         <div class="footer-left">
                             <span>&copy; 2014. Fast CA. Todos los derechos reservados.</span>

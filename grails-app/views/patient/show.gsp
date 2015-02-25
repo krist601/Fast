@@ -106,17 +106,14 @@
                                 <g:if test="${patientInstance.haveMachine(patientInstance.id)}">
                                 <li><a href="#a-8">Máquina</a></li>
                                 </g:if>
-
-
-
                                 <g:if test="${patientInstance.bloodSample}">
                                 <li><a href="#a-9">Muestras de sangre</a></li> 
                                 </g:if>
 
                             <li><a href="#a-10">Opciones</a></li>
-                             <g:if test="${1 == 1}">
-                             <li><a href="#a-11">Control de Medidas</a></li>
-                              </g:if>
+                                <g:if test="${patientInstance.getMeasuresControl(patientInstance.id)}">
+                                <li><a href="#a-11">Control de Medidas</a></li>
+                                </g:if>
                         </ul>
                         <g:if test="${patientInstance.treatments}">
                             <div id="a-1">
@@ -500,7 +497,7 @@
                                                                     <th class="center">Kit</th>
                                                                     <th class="center">Vacutainer</th>
                                                                     <th class="center">Vacutainer 2</th>
-                                                                 
+
                                                                 </tr>
 
                                                             </thead>
@@ -646,35 +643,36 @@
                             <h4 class="widgettitle title-info">Contratar Nuevo Paquete de Mesoterapia</h4>
                         </div>
                     </div>
-  <g:if test="${1 == 1}">
+                    <g:if test="${patientInstance.getMeasuresControl(patientInstance.id)}">
                         <div id="a-11">
-                            <div class="accordion accordion-info" style="width: 100%;">
-                                
-                                        <table class="table responsive">
-                                    <thead>
+                            <table class="table responsive">
+                                <thead>
+                                    <tr>
+                                        <th class="center"></th>
+                                        <th class="center">Identificador</th>
+                                        <th class="center">Fecha</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <g:each in="${patientInstance.getMeasuresControl(patientInstance.id)}" var="item">
                                         <tr>
-                                            <th class="center"></th>
-                                            <th class="center">Fecha</th>
-                                            <th class="center">Identificador</th>
-                                            
+                                            <td class="center"></td>
+                                            <td class="center">
+                                                <a href="${createLink(controller:'measuresControl', action:'show', params:[id:item.id])}">
+                                                    ${item.identifierNumber}
+                                                </a> 
+                                            </td>
+                                            <td class="center"><g:formatDate date="${item.date}" format="dd MMMM yyyy"/></td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        <g:each in="${patientInstance.getMeasuresControl(patientInstance.id)}" var="item">
-                                            <tr>
-                                                <td class="center"></td>
-                                                <td class="center"><g:formatDate date="${item.date}" format="dd MMMM yyyy"/></td>
-                                                <td class="center">${item.identifierNumber}</td>
-                                               
-                                                
-                                            </tr>
-                                        </g:each>
-                                    </tbody>
-                                </table>
-                                    
-                             
-                             
-                            </div><!--#accordion-->
+                                    </g:each>
+                                </tbody>
+                            </table>
+
+
+
+
                         </div>
                     </g:if>
                 </div><!--tabbedwidget-->

@@ -10,6 +10,7 @@ class Balance {
     
     static belongsTo = [treatment: Treatment]
     static constraints = {
+        measuresControl nullable:true
     }
     static getType(balanceID){
         println "el value es: "+balanceID

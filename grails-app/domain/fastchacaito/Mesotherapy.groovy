@@ -10,6 +10,7 @@ class Mesotherapy {
     static hasMany = [sesionControl: SesionControl,measuresControl: MeasuresControl] //,measuresControl: MeasuresControl
     static belongsTo = [treatment: Treatment]
     static constraints = {
+        measuresControl nullable:true
     }
     static applyControl(mesotherapyId)
     {

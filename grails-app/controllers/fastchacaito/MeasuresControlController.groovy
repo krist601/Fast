@@ -35,14 +35,14 @@ class MeasuresControlController {
         def user = springSecurityService.currentUser
         params.secAppUser=user
         params.date=new Date()
-         def pacient 
+        def pacient 
         println params
         println "balance"+params.balance.id 
-          println "mesotherapy"+params.mesotherapy.id 
+        println "mesotherapy"+params.mesotherapy.id 
         if (params.balance.id != '')
         {
             def balanc =Balance.get(params.balance.id)
-           pacient =  balanc.treatment.patient
+            pacient =  balanc.treatment.patient
         }  
         else if   (params.mesotherapy.id != '')
         {
@@ -50,26 +50,21 @@ class MeasuresControlController {
             pacient =  meso.treatment.patient
         }
         println " paciente"+pacient
-        //        def identifier = MeasuresControl.executeQuery("Select max(id) + 1 from "+
-        //        "(Select max(mc.identifierNumber) as id From treatment t, balance b, measuresControl mc "+
-        //        "where t.patient_id = "+ pacient.id + "and b.treatment_id = t.id "+
-        //        "and mc.balance_id = b.id UNION "+
-        //        "Select max(mc.identifierNumber) as id "+
-        //        "From treatment t, mesotherapy m, measuresControl mc "+
-        //        "where t.patient_id = 4 "+
-        //        "and m.treatment_id = t.id "+
-        //        "and mc.mesotherapy_id = m.id)  "+
-        //        "as temp") [0]
-        //        println "identificador "+ identifier
-        //        def row =ApplicationControl.executeQuery("SELECT MAX(mc.identifierNumber)+1 "+
-        //                                                  "FROM MeasuresControl as mc ,Mesotherapy as m,Balance as b,Treatment as t "+
-        //                                                  "WHERE (mc.balance="+params.balance.id+
-        //                                                  ")")
-        //        if (row[0])
-        //            params.identifierNumber=row[0]
-        //        else
-        //            params.identifierNumber="1"
-          
+        println " medidas paciente" + pacient.getMeasuresControl(pacient.id)
+        def medidas =  pacient.getMeasuresControl(pacient.id)
+        def identifier
+        def medidas_id = new ArrayList()
+        
+        if (medidas){
+            medidas.each(){
+                m -> medidas_id.add(m.id)
+            }
+            identifier= MeasuresControl.executeQuery("select max(identifierNumber)+1 from MeasuresControl where id IN ("
+                +medidas_id.join(",")+")") [0]
+        }
+        else identifier = 1
+       
+        params.identifierNumber = identifier
         def measuresControlInstance = new MeasuresControl(params)
         if (!measuresControlInstance.save(flush: true)) {
             render(view: "create", model: [measuresControlInstance: measuresControlInstance])

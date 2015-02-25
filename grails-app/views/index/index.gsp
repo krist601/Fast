@@ -23,19 +23,19 @@
                     <ul class="headmenu">
 
                         <li class="right">
-                            <sec:ifLoggedIn>
-                        <div class="userloggedinfo">
-                            <img src="${createLink(controller:'secAppUser', action:'showImage', id: SecAppUser.findByUsername(sec.loggedInUserInfo(field:'username')).id)}" alt="" width="100" height="100"/>
-                            <div class="userinfo">
-                                <h5><sec:loggedInUserInfo field="username" /></h5>
-                                <ul>
-                                    <li><a href="${createLink(controller:'secAppUser', action:'show', id: SecAppUser.findByUsername(sec.loggedInUserInfo(field:'username')).id)}">Ver Perfil</a></li>
-                                    <li><a href="${createLink(controller:'secAppUser', action:'editPassword', id: (SecAppUser.findByUsername(sec.loggedInUserInfo(field:'username')).id*123456789-7))}">Cambiar Contraseña</a></li>
-                                    <li><a href="${createLink(controller:'logout',action:'index')}">Cerrar Sesión</a></li>
-                                </ul>
+                        <sec:ifLoggedIn>
+                            <div class="userloggedinfo">
+                                <img src="${createLink(controller:'secAppUser', action:'showImage', id: SecAppUser.findByUsername(sec.loggedInUserInfo(field:'username')).id)}" alt="" width="100" height="100"/>
+                                <div class="userinfo">
+                                    <h5><sec:loggedInUserInfo field="username" /></h5>
+                                    <ul>
+                                        <li><a href="${createLink(controller:'secAppUser', action:'show', id: SecAppUser.findByUsername(sec.loggedInUserInfo(field:'username')).id)}">Ver Perfil</a></li>
+                                        <li><a href="${createLink(controller:'secAppUser', action:'editPassword', id: (SecAppUser.findByUsername(sec.loggedInUserInfo(field:'username')).id*123456789-7))}">Cambiar Contraseña</a></li>
+                                        <li><a href="${createLink(controller:'logout',action:'index')}">Cerrar Sesión</a></li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                    </sec:ifLoggedIn>
+                        </sec:ifLoggedIn>
                         </li>
                     </ul><!--headmenu-->
                 </div>
@@ -136,12 +136,73 @@
 
             <div class="rightpanel">
 
+                <div class="pageheader">
+                    <form action="results.html" method="post" class="searchbar">
+                        <input type="text" name="keyword" placeholder="Buscar Paciente..." />
+                    </form>
+                    <div class="pageicon"><span class="iconfa-laptop"></span></div>
+                    <div class="pagetitle">
+                        <h5>All Features Summary</h5>
+                        <h3>Sistema Administrativo Fast Chacaíto</h3>
+                    </div>
+                </div><!--pageheader-->
+                <div class="maincontent">
+                    <div class="maincontentinner">
+                        <div class="row-fluid">
+                            <div id="dashboard-left" class="span8">
+                                <ul class="shortcuts">
+                                    <li class="events">
+                                        <a href="${createLink(controller:'patient', action:'list')}">
+                                            <span class="shortcuts-icon iconsi-event"></span>
+                                            <span class="shortcuts-label">Pacientes</span>
+                                        </a>
+                                    </li>   
+                                    <li class="products">
+                                        <a href="${createLink(controller:'vacutainer', action:'list')}">
+                                            <span class="shortcuts-icon iconsi-cart"></span>
+                                            <span class="shortcuts-label">Vacutainers</span>
+                                        </a>
+                                    </li>
+                                    <li class="archive">
+                                        <a href="${createLink(controller:'application', action:'list')}">
+                                            <span class="shortcuts-icon iconsi-archive"></span>
+                                            <span class="shortcuts-label">Aplicaciones</span>
+                                        </a>
+                                    </li>
+                                    <li class="help">
+                                        <a href="">
+                                            <span class="shortcuts-icon iconsi-help"></span>
+                                            <span class="shortcuts-label">Help</span>
+                                        </a>
+                                    </li>
+                                    <li class="last images">
+                                        <a href="">
+                                            <span class="shortcuts-icon iconsi-images"></span>
+                                            <span class="shortcuts-label">Images</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <br />
+                                <div id="dashboard-right" class="span4">
+                                    
+                        <div class="divider15"></div>
+                        
+                                      
+                        <h4 class="widgettitle">Event Calendar</h4>
+                        <div class="widgetcontent nopadding">
+                            <div id="datepicker"></div>
+                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="footer">
                     <div class="footer-left">
                         <span>&copy; 2014. Fast CA. Todos los derechos reservados.</span>
                     </div>
                     <div class="footer-right">
-                        <span>Diseñado por: <a href="http://themepixels.com/">Kristian Cortés</a></span>
+                        <span>Desarrollado por: <a href="http://themepixels.com/">Kristian Cortés</a></span>
                     </div>
                 </div><!--footer-->
 
