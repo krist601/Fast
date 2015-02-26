@@ -497,7 +497,7 @@
                                                                     <th class="center">Kit</th>
                                                                     <th class="center">Vacutainer</th>
                                                                     <th class="center">Vacutainer 2</th>
-
+                                                                    <th class="center">Aplicado por</th>
                                                                 </tr>
 
                                                             </thead>
@@ -509,13 +509,13 @@
                                                                     <td class="center">${item3.kit} cm</td>
                                                                     <td class="center">${item3.vacutainer} </td>
                                                                     <td class="center">${item3.vacutainer2}</td>
-                                                                <%--    <td class="center">${item3.abdomen} cm</td>
-                                                                    <td class="center">${item3.hips} cm</td>
-                                                                    <td class="center">${item3.leftThigh} cm</td>
-                                                                    <td class="center">${item3.rightThigh} cm</td>
-                                                                    <td class="center">${item3.leftCrotch} cm</td>
-                                                                    <td class="center">${item3.rightCrotch} cm</td>
-                                                                    <td class="center">${item3.achieved} cm</td> --%>
+                                                                    <td class="center">${item3.secAppUser} </td>
+                                                                    <%--  <td class="center">${item3.hips} cm</td>
+                                                                     <td class="center">${item3.leftThigh} cm</td>
+                                                                     <td class="center">${item3.rightThigh} cm</td>
+                                                                     <td class="center">${item3.leftCrotch} cm</td>
+                                                                     <td class="center">${item3.rightCrotch} cm</td>
+                                                                     <td class="center">${item3.achieved} cm</td> --%>
                                                                 </tr>
                                                             </g:each>
                                                         </table>
@@ -649,8 +649,19 @@
                                 <thead>
                                     <tr>
                                         <th class="center"></th>
-                                        <th class="center">Identificador</th>
+                                        <th class="center">Ident.</th>
                                         <th class="center">Fecha</th>
+                                        <th class="center">Tratamiento</th>
+                                        <th class="center">Brazo Izq.</th>
+                                        <th class="center">Brazo Der.</th>
+                                        <th class="center">Muslo Izq.</th>
+                                        <th class="center">Muslo Der.</th>
+                                        <th class="center">Entrepier Izq.</th>
+                                        <th class="center">Entrepier Der.</th>
+                                        <th class="center">Caderas</th>
+                                        <th class="center">Cintura</th>
+                                        <th class="center">Abdomen</th>
+
 
 
                                     </tr>
@@ -659,12 +670,18 @@
                                     <g:each in="${patientInstance.getMeasuresControl(patientInstance.id)}" var="item">
                                         <tr>
                                             <td class="center"></td>
-                                            <td class="center">
-                                                <a href="${createLink(controller:'measuresControl', action:'show', params:[id:item.id])}">
-                                                    ${item.identifierNumber}
-                                                </a> 
-                                            </td>
-                                            <td class="center"><g:formatDate date="${item.date}" format="dd MMMM yyyy"/></td>
+                                            <td class="center">${item.identifierNumber}</td>
+                                            <td class="center"><g:formatDate date="${item.date}" format="dd-MM-yyyy"/></td>
+                                            <td class="center"></td>
+                                            <td class="center">${item.leftArm}</td>
+                                            <td class="center">${item.rightArm}</td>
+                                            <td class="center">${item.leftThigh}</td>
+                                            <td class="center">${item.rightThigh}</td>
+                                            <td class="center">${item.leftCrotch}</td>
+                                            <td class="center">${item.rightCrotch}</td>
+                                            <td class="center">${item.hips}</td>
+                                            <td class="center">${item.waist}</td>
+                                            <td class="center">${item.abdomen}</td>
                                         </tr>
                                     </g:each>
                                 </tbody>

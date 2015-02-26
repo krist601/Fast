@@ -19,5 +19,6 @@ class MeasuresControl {
     static constraints = {
         machine nullable:true
         balance nullable:true
+        mesotherapy nullable:true
     }
 }

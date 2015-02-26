@@ -39,7 +39,8 @@ class Patient {
     List appointment
     List treatments
     
-    static hasMany = [medicHistory: MedicHistory, bloodSample: BloodSample, appointment: Appointment, treatments: Treatment]
+    static hasMany = [medicHistory: MedicHistory, bloodSample: BloodSample, 
+        appointment: Appointment, treatments: Treatment]
     
     static constraints = {
         otherSuffer nullable:true
