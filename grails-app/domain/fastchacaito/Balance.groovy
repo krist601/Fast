@@ -25,15 +25,10 @@ class Balance {
         def balance = Balance.get(balanceId)
         def applicationsSize= balance.applicationControl.size()
         
-        //  def measures = 
-//      
-//        def applications = balance.applicationControl
-//        def measures = 0
-//        applications.each(){ application -> measures += application.measuresControl.size()
-//            
-//        }
-//        println "medidas balance"+measures
-        if (applicationsSize.mod(9)==0)
+         def measuresSize = balance.measuresControl.size()
+ 
+        println "medidas balance"+applicationsSize.div(9)
+        if (applicationsSize.mod(9)==0 && applicationsSize.div(9)>=measuresSize)
         return true
         else 
         return false

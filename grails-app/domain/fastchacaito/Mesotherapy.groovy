@@ -15,16 +15,12 @@ class Mesotherapy {
     static applyControl(mesotherapyId)
     {
         def meso = Mesotherapy.get(mesotherapyId)
-        def sizeSessions= meso.sesionControl.size()
+        def sessionsSize= meso.sesionControl.size()
         //sumar total de medidas, medidas.div(2) = numero, comparar total de medidas con este numero
-        //  def measures = 
-//        def sessions = meso.sesionControl
-//       def measures = 0
-//        sessions.each(){ sessio -> measures = sessio.measures.size()
-//            
-//        }
-//        println "medidas meso"+measures
-        if (sizeSessions.mod(2)==0)
+        def measuresSize = meso.measuresControl.size()
+ 
+        println "medidas meso"+sessionsSize.div(2)
+        if (sessionsSize.mod(2)==0 && sessionsSize.div(2)>=measuresSize)
         return true
         else return false
     }
