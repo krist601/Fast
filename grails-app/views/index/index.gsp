@@ -21,7 +21,11 @@
                 </div>
                 <div class="headerinner">
                     <ul class="headmenu">
-
+                        <li class="right">
+                            <form action="results.html" method="post" class="searchbar">
+                                <input type="text" name="keyword" placeholder="Buscar Paciente..." />
+                            </form>
+                        </li>
                         <li class="right">
                         <sec:ifLoggedIn>
                             <div class="userloggedinfo">
@@ -137,9 +141,7 @@
             <div class="rightpanel">
 
                 <div class="pageheader">
-                    <form action="results.html" method="post" class="searchbar">
-                        <input type="text" name="keyword" placeholder="Buscar Paciente..." />
-                    </form>
+
                     <div class="pageicon"><span class="iconfa-laptop"></span></div>
                     <div class="pagetitle">
                         <h5>All Features Summary</h5>
@@ -184,14 +186,14 @@
                                 </ul>
                                 <br />
                                 <div id="dashboard-right" class="span4">
-                                    
-                        <div class="divider15"></div>
-                        
-                                      
-                        <h4 class="widgettitle">Event Calendar</h4>
-                        <div class="widgetcontent nopadding">
-                            <div id="datepicker"></div>
-                        </div>
+
+                                    <div class="divider15"></div>
+
+
+                                    <h4 class="widgettitle">Event Calendar</h4>
+                                    <div class="widgetcontent nopadding">
+                                        <div id="datepicker"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

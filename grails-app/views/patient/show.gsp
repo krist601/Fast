@@ -109,11 +109,11 @@
                                 <g:if test="${patientInstance.bloodSample}">
                                 <li><a href="#a-9">Muestras de sangre</a></li> 
                                 </g:if>
-
-                            <li><a href="#a-10">Opciones</a></li>
-                                <g:if test="${patientInstance.getMeasuresControl(patientInstance.id)}">
-                                <li><a href="#a-11">Control de Medidas</a></li>
+                                 <g:if test="${patientInstance.getMeasuresControl(patientInstance.id)}">
+                                <li><a href="#a-10">Control de Medidas</a></li>
                                 </g:if>
+                                <li><a href="#a-11">Opciones</a></li>
+                               
                         </ul>
                         <g:if test="${patientInstance.treatments}">
                             <div id="a-1">
@@ -446,7 +446,7 @@
                                                     <g:else>    
                                                         <g:if test="${item2.treatment.endDate.compareTo(new Date().toTimestamp()) >= 0}"> 
                                                         <g:if test="${fastchacaito.Balance.applyControl(item2.id) == true}">
-                                                                <a class="btn btn-info dropdown-toggle" style="color: black;" href="${createLink(controller:'measuresControl', action:'create', params:[foo:item2?.id,type:1])}">
+                                                                <a class="btn btn-info dropdown-toggle" style="color: white;" href="${createLink(controller:'measuresControl', action:'create', params:[foo:item2?.id,type:1])}">
                                                                     Control de Medidas
                                                                 </a>
                                                             </g:if>
@@ -522,7 +522,7 @@
                                                         <g:if test="${item2.sesionControl.size()<item2.treatment.packages.sesionAmount}">                                                        
 
                                                             <g:if test="${fastchacaito.Mesotherapy.applyControl(item2.id) == true}"> 
-                                                                <a class="btn btn-info dropdown-toggle" style="color: black;" href="${createLink(controller:'measuresControl', action:'create', params:[foo:item2?.id,type:2])}">
+                                                                <a class="btn btn-info dropdown-toggle" style="color: white;" href="${createLink(controller:'measuresControl', action:'create', params:[foo:item2?.id,type:2])}">
                                                                     Control de Medidas
                                                                 </a>
                                                             </g:if>
@@ -623,7 +623,7 @@
                             </div><!--#accordion-->
                         </div>
                     </g:if>
-                    <div id="a-10">
+                    <div id="a-11">
                         <div class="headtitle">
                             <div class="btn-group">
                                 <a class="btn dropdown-toggle" href="${createLink(controller:'medicHistory', action:'create', params:[foo:patientInstance?.id])}">Crear</a>
@@ -644,11 +644,11 @@
                         </div>
                     </div>
                     <g:if test="${patientInstance.getMeasuresControl(patientInstance.id)}">
-                        <div id="a-11">
+                        <div id="a-10">
                             <table class="table responsive">
                                 <thead>
-                                    <tr>
-                                        <th class="center"></th>
+                                    <tr >
+                                        <th class="center" style="font-size: 5px"></th>
                                         <th class="center">Ident.</th>
                                         <th class="center">Fecha</th>
                                         <th class="center">Tratamiento</th>
@@ -656,12 +656,12 @@
                                         <th class="center">Brazo Der.</th>
                                         <th class="center">Muslo Izq.</th>
                                         <th class="center">Muslo Der.</th>
-                                        <th class="center">Entrepier Izq.</th>
-                                        <th class="center">Entrepier Der.</th>
+                                        <th class="center">Entrepier </br>Izq.</th>
+                                        <th class="center">Entrepier </br> Der.</th>
                                         <th class="center">Caderas</th>
                                         <th class="center">Cintura</th>
                                         <th class="center">Abdomen</th>
-
+                                        <th class="center">Total</th>
 
 
                                     </tr>
@@ -672,7 +672,7 @@
                                             <td class="center"></td>
                                             <td class="center">${item.identifierNumber}</td>
                                             <td class="center"><g:formatDate date="${item.date}" format="dd-MM-yyyy"/></td>
-                                            <td class="center"></td>
+                                            <td class="center">${item.getMeasureType(item.id)}</td>
                                             <td class="center">${item.leftArm}</td>
                                             <td class="center">${item.rightArm}</td>
                                             <td class="center">${item.leftThigh}</td>
@@ -682,6 +682,7 @@
                                             <td class="center">${item.hips}</td>
                                             <td class="center">${item.waist}</td>
                                             <td class="center">${item.abdomen}</td>
+                                            <td class="center">${item.getTotal(item.id)}</td>
                                         </tr>
                                     </g:each>
                                 </tbody>

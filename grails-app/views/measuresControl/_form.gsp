@@ -1,5 +1,8 @@
 <%@ page import="fastchacaito.MeasuresControl" %>
-
+ <div class="par control-group">
+                                    <label class="control-label" for="firstname">First Name</label>
+                                <div class="controls"><input type="text" name="firstname" id="firstname" class="input-large" /></div>
+                            </div>
 <table>
     
     <tr>
@@ -9,7 +12,7 @@
                     <g:message code="measuresControl.leftArm.label" default="Brazo Izquierdo" />
                     
                 </label>
-                <g:field name="leftArm" value="${fieldValue(bean: measuresControlInstance, field: 'leftArm')}" required=""/>
+                <input type="text"  name="leftArm" value="${fieldValue(bean: measuresControlInstance, field: 'leftArm')}" required/>
             </div>
         </td>
         <td style="margin-bottom: 10px; padding-bottom: 10px;">

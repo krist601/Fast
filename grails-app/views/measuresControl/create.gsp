@@ -19,7 +19,7 @@
                 <div class="widget">
                     <h4 class="widgettitle" style="font-size: 30px;">Crear Control de Medidas</h4>
                     <div class="widgetcontent">
-                        <form class="stdform" action="save" method="post">
+                        <form class="stdform" action="save" method="post" data-toggle="validator">
                             
                                 <div id="create-measuresControl" class="content scaffold-create" role="main">
                                 <g:if test="${flash.message}">

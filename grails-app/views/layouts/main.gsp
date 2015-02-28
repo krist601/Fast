@@ -26,11 +26,15 @@
             </div>
             <div class="headerinner">
                 <ul class="headmenu">
-
+                    <li class="right">
+                        <form action="results.html" method="post" class="searchbar">
+                            <input type="text" name="keyword" placeholder="Buscar Paciente..." />
+                        </form>
+                    </li>
                     <li class="right">
                     <sec:ifLoggedIn>
                         <div class="userloggedinfo">
-                            
+
                             <img src="${createLink(controller:'secAppUser', action:'showImage', id: SecAppUser.findByUsername(sec.loggedInUserInfo(field:'username')).id)}" alt="" width="100" height="100"/>
                             <div class="userinfo">
                                 <h5><sec:loggedInUserInfo field="username" /></h5>
