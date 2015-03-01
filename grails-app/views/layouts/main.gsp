@@ -63,22 +63,10 @@
                             <li><a href="/FastChacaito/Patient/Create">Crear Nuevo Paciente</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown"><a href=""><span class="iconfa-beaker"></span> Control de Aplicaciones</a>
+                    <li class="dropdown"><a href=""><span class="iconfa-calendar"></span> Cita</a>
                         <ul>
-                            <li><a href="/FastChacaito/ApplicationControl/List">Listar Controles de Aplicaciones</a></li>
-                            <li><a href="/FastChacaito/ApplicationControl/Create">Crear Nuevo Control de Aplicacione</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown"><a href=""><span class="iconfa-leaf"></span> Control de Masaje</a>
-                        <ul>
-                            <li><a href="/FastChacaito/massageControl/List">Listar Controles de Masajes</a></li>
-                            <li><a href="/FastChacaito/massageControl/Create">Crear Nuevo Control de Masaje</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown"><a href=""><span class="iconfa-resize-small"></span> Control de Medidas</a>
-                        <ul>
-                            <li><a href="/FastChacaito/measuresControl/List">Listar Controles de Medidas</a></li>
-                            <li><a href="/FastChacaito/measuresControl/Create">Crear Nuevo Control de Medidas</a></li>
+                            <li><a href="/FastChacaito/Appointment/List">Listar Citas</a></li>
+                            <li><a href="/FastChacaito/Appointment/Create">Crear Nueva Cita</a></li>
                         </ul>
                     </li>
                     <li class="dropdown"><a href=""><span class="iconfa-calendar"></span> Cita</a>
@@ -87,10 +75,10 @@
                             <li><a href="/FastChacaito/Appointment/Create">Crear Nueva Cita</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown"><a href=""><span class="iconfa-tint"></span> Examen de Laboratorio</a>
+                    <li class="dropdown"><a href=""><span class="iconfa-tint"></span> Examenes de Laboratorio</a>
                         <ul>
-                            <li><a href="/FastChacaito/BloodSample/List">Listar Examenes de Laboratorio</a></li>
-                            <li><a href="/FastChacaito/BloodSample/Create">Crear Nuevo Examen de Laboratorio</a></li>
+                            <li><a href="/FastChacaito/BloodSample/List">Muestras de Laboratorio Tomadas</a></li>
+                            <li><a href="/FastChacaito/BloodSample/ListShippingDate">Muestras de Laboratorio Enviadas</a></li>
                         </ul>
                     </li>
                     <li class="dropdown"><a href=""><span class="iconfa-inbox"></span> Gel</a>
@@ -99,30 +87,12 @@
                             <li><a href="/FastChacaito/Gel/Create">Crear Nuevo Gel</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown"><a href=""><span class="iconfa-th-list"></span> Contrato</a>
-                        <ul>
-                            <li><a href="/FastChacaito/Treatment/List">Listar Contratos</a></li>
-                            <li><a href="/FastChacaito/Treatment/Create">Crear Nuevo Contrato</a></li>
-                        </ul>
-                    </li>
                     <li class="dropdown"><a href=""><span class="iconfa-cogs"></span> Administración</a>
                         <ul>
                             <li class="dropdown"><a href="">Paquetes</a>
                                 <ul>
                                     <li><a href="/FastChacaito/Package/List">Listar Paquetes</a></li>
                                     <li><a href="/FastChacaito/Package/Create">Crear Nuevo Paquete</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown"><a href="">Cierre</a>
-                                <ul>
-                                    <li><a href="/FastChacaito/Closure/List">Listar Cierres</a></li>
-                                    <li><a href="/FastChacaito/Closure/Create">Crear Nuevo Cierre</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown"><a href="">Inventario</a>
-                                <ul>
-                                    <li><a href="/FastChacaito/Inventory/List">Listar Inventarios</a></li>
-                                    <li><a href="/FastChacaito/Inventory/Create">Crear Nuevo Inventario</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown"><a href="">Vacutainer</a>

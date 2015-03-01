@@ -39,7 +39,7 @@
                                     <li class="fieldcontain">
                                         <span id="receiptData-label" class="property-label"><g:message code="bloodSample.receiptData.label" default="Receipt Data" /></span>
 
-                                        <span class="property-value" aria-labelledby="receiptData-label"><g:link controller="date" action="show" id="${bloodSampleInstance?.receiptData?.id}">${bloodSampleInstance?.receiptData?.encodeAsHTML()}</g:link></span>
+                                        <span class="property-value" aria-labelledby="receiptData-label"><g:link controller="date" action="show" id="${bloodSampleInstance?.receiptData}">${bloodSampleInstance?.receiptData?.encodeAsHTML()}</g:link></span>
 
                                     </li>
                                 </g:if>
@@ -48,7 +48,7 @@
                                     <li class="fieldcontain">
                                         <span id="receivedDate-label" class="property-label"><g:message code="bloodSample.receivedDate.label" default="Received Date" /></span>
 
-                                        <span class="property-value" aria-labelledby="receivedDate-label"><g:link controller="date" action="show" id="${bloodSampleInstance?.receivedDate?.id}">${bloodSampleInstance?.receivedDate?.encodeAsHTML()}</g:link></span>
+                                        <span class="property-value" aria-labelledby="receivedDate-label"><g:link controller="date" action="show" id="${bloodSampleInstance?.receivedDate}">${bloodSampleInstance?.receivedDate?.encodeAsHTML()}</g:link></span>
 
                                     </li>
                                 </g:if>
@@ -57,7 +57,7 @@
                                     <li class="fieldcontain">
                                         <span id="shippingDate-label" class="property-label"><g:message code="bloodSample.shippingDate.label" default="Shipping Date" /></span>
 
-                                        <span class="property-value" aria-labelledby="shippingDate-label"><g:link controller="date" action="show" id="${bloodSampleInstance?.shippingDate?.id}">${bloodSampleInstance?.shippingDate?.encodeAsHTML()}</g:link></span>
+                                        <span class="property-value" aria-labelledby="shippingDate-label"><g:link controller="date" action="show" id="${bloodSampleInstance?.shippingDate}">${bloodSampleInstance?.shippingDate?.encodeAsHTML()}</g:link></span>
 
                                     </li>
                                 </g:if>

@@ -12,10 +12,16 @@ class BloodSampleController {
 
     def list(Integer max) {
         params.max = Math.min(max ?: 10000, 100000)
-        [bloodSampleInstanceList: BloodSample.list(params), bloodSampleInstanceTotal: BloodSample.count()]
+        [bloodSampleInstanceList: BloodSample.findAll("from BloodSample as b where b.shippingDate=null and b.receivedDate = null"), bloodSampleInstanceTotal: BloodSample.count()]
+    }
+
+    def listShippingDate(Integer max) {
+        params.max = Math.min(max ?: 10000, 100000)
+        [bloodSampleInstanceList: BloodSample.findAll("from BloodSample as b where b.shippingDate!=null and b.receivedDate = null"), bloodSampleInstanceTotal: BloodSample.count()]
     }
 
     def create() {
+        params.patient=Patient.get(params.foo)
         [bloodSampleInstance: new BloodSample(params)]
     }
 
@@ -25,9 +31,9 @@ class BloodSampleController {
             render(view: "create", model: [bloodSampleInstance: bloodSampleInstance])
             return
         }
-
+        println("hola: "+params.patient.id);
         flash.message = message(code: 'default.created.message', args: [message(code: 'bloodSample.label', default: 'BloodSample'), bloodSampleInstance.id])
-        redirect(action: "show", id: bloodSampleInstance.id)
+        redirect(controller:"patient" ,action: "show", id: params.patient.id)
     }
 
     def show(Long id) {
@@ -98,5 +104,15 @@ class BloodSampleController {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'bloodSample.label', default: 'BloodSample'), id])
             redirect(action: "show", id: id)
         }
+    }
+
+    def changeStatusShipped(Long id) {
+        def bloodSampleInstance = BloodSample.get(id)
+        if (!bloodSampleInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'bloodSample.label', default: 'BloodSample'), id])
+            redirect(action: "list")
+            return
+        }
+        def bloodSample = BloodSample.get(id);
     }
 }

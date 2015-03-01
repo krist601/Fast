@@ -10,7 +10,7 @@
     <body>
         <ul class="breadcrumbs">
             <li><a class="home" href="${createLink(uri: '/')}"><i class="iconfa-home"></i></a> <span class="separator"></span></li>
-            <li>Muestras de Sangre</li>
+            <li>Muestras de Sangre Enviadas</li>
         </ul>
         <div id="list-bloodSample" class="content scaffold-list" role="main">
             <div class="maincontent">
@@ -31,11 +31,9 @@
 
                                 <th><g:message code="bloodSample.receiptData.label" default="Fecha de toma de Muestra" /></th>
 
-                                <th><g:message code="bloodSample.receivedDate.label" default="Fecha de Recivo" /></th>
-
-                                <th><g:message code="bloodSample.shippingDate.label" default="Fecha de Envío" /></th>
-
                                 <th><g:message code="bloodSample.testType.label" default="Tipo de Prueba" /></th>
+                                
+                                <th><g:message code="bloodSample.testType.label" default="Acciones" /></th>
 
                             </tr>
                         </thead>
@@ -45,13 +43,11 @@
 
                                     <td><g:link action="show" id="${bloodSampleInstance.id}">${fieldValue(bean: bloodSampleInstance, field: "patient")}</g:link></td>
 
-                                    <td>${fieldValue(bean: bloodSampleInstance, field: "receiptData")}</td>
-
-                                    <td>${fieldValue(bean: bloodSampleInstance, field: "receivedDate")}</td>
-
-                                    <td>${fieldValue(bean: bloodSampleInstance, field: "shippingDate")}</td>
+                                    <td><g:formatDate date="${bloodSampleInstance.receiptData}" format="dd MMMM yyyy"/> </td>
 
                                     <td>${fieldValue(bean: bloodSampleInstance, field: "testType")}</td>
+
+                                    <td><g:link action="changeStatusShipped" id="${bloodSampleInstance.id}">Registrar como Enviada</g:link></td>
 
                                 </tr>
                             </g:each>

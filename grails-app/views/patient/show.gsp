@@ -597,12 +597,12 @@
                             <div class="accordion accordion-info" style="width: 100%;">
                                 <g:each in="${patientInstance.bloodSample.reverse()}" var="item">
 
-                                    <h3><a href="#">Muestra de Sangre del <g:formatDate date="${item.receivedDate}" format="dd MMMM yyyy"/> </a></h3>
+                                    <h3><a href="#">${item.testType} con muestra de sangre del <g:formatDate date="${item.receiptData}" format="dd MMMM yyyy"/> </a></h3>
                                     <div>
                                         <table class="table table-bordered table-invoice">
                                             <tr>
                                                 <td style="width: 30%">Muestra obtenida el día:</td>
-                                                <td><g:formatDate date="${item.receivedDate}" format="dd MMMM yyyy"/> </td>
+                                                <td><g:formatDate date="${item.receiptData}" format="dd MMMM yyyy"/> </td>
                                             </tr>
                                             <tr>
                                                 <td>Tipo de Prueba de Sangre:</td>
@@ -614,7 +614,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>Fecha de Recibida:</td>
-                                                        <td><g:if test="${item.receiptData}"><g:formatDate date="${item.receiptData}" format="dd MMMM yyyy"/></g:if><g:else>La Muestra no ha sido recibída</g:else> </td>
+                                                        <td><g:if test="${item.receivedDate}"><g:formatDate date="${item.receivedDate}" format="dd MMMM yyyy"/></g:if><g:else>La Muestra no ha sido recibída</g:else> </td>
                                                 </tr>
                                             </table>
                                         </div>
@@ -629,6 +629,12 @@
                                 <a class="btn dropdown-toggle" href="${createLink(controller:'medicHistory', action:'create', params:[foo:patientInstance?.id])}">Crear</a>
                             </div>
                             <h4 class="widgettitle title-info">Nueva Historia Médica</h4>
+                        </div>
+                        <div class="headtitle">
+                            <div class="btn-group">
+                                <a class="btn dropdown-toggle" href="${createLink(controller:'BloodSample', action:'create', params:[foo:patientInstance?.id])}">Crear</a>
+                            </div>
+                            <h4 class="widgettitle title-info">Nueva Muestra de Sangre</h4>
                         </div>
                         <div class="headtitle">
                             <div class="btn-group">

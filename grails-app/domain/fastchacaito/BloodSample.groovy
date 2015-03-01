@@ -8,5 +8,7 @@ class BloodSample {
     
     static belongsTo = [patient: Patient]
     static constraints = {
+        receivedDate nullable:true
+        shippingDate nullable:true
     }
 }
