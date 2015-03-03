@@ -2,11 +2,14 @@ package fastchacaito
 
 import org.springframework.dao.DataIntegrityViolationException
 import java.text.SimpleDateFormat
+import org.compass.core.engine.SearchEngineQueryParseException
 
 class PatientController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
     static SimpleDateFormat theDate = new SimpleDateFormat( 'MM/dd/yyyy' ) //H:m:s
+    def searchableService
+    static String WILDCARD = "*"
     
     def index() {
         redirect(action: "list", params: params)
@@ -114,5 +117,25 @@ class PatientController {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'patient.label', default: 'Patient'), id])
             redirect(action: "show", id: id)
         }
+    }
+    
+      def search = {
+        if (!params.q?.trim()) {
+            return [:]
+        }
+        try {
+            String searchTerm = WILDCARD+ params.q + WILDCARD
+            //   println (Producto.search("*Apple*"))
+            return [searchResult: searchableService.search(searchTerm, params)] //searchTerm, params
+        } catch (SearchEngineQueryParseException ex) {
+            return [parseException: true]
+        }
+    }
+    
+      def indexAll = {
+        Thread.start {
+            searchableService.index()
+        }
+        render("bulk index started in a background thread")
     }
 }

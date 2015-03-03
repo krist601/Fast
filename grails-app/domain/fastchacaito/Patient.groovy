@@ -39,6 +39,7 @@ class Patient {
     List appointment
     List treatments
     
+    static searchable = true
     static hasMany = [medicHistory: MedicHistory, bloodSample: BloodSample, 
         appointment: Appointment, treatments: Treatment]
     
