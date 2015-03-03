@@ -14,9 +14,7 @@
         </script>
     </head>
     <body onload="focusQueryInput();">
-        <div class="row">
-            <div class="col-sm-12">
-                <section class="panel">
+   
 
                     <g:hasErrors bean="${patientInstance}">
                         <g:eachError bean="${patientInstance}" var="error">
@@ -30,11 +28,11 @@
                     </g:hasErrors>
                     <g:set var="haveQuery" value="${params.q?.trim()}" />
                     <g:set var="haveResults" value="${searchResult?.results}" />
-                    <header class="panel-heading">
+                     <div class="maincontent">
+            <div class="maincontentinner">
                         <h3>Resultados</h3>
-                    </header>
-                    <div class="panel-body">
-                        <div class="adv-table">
+                   
+                       
                             <g:if test="${haveQuery && !haveResults && !parseException}">
                                 <div class="alert alert-block alert-danger fade in">
                                     <button data-dismiss="alert" class="close close-sm" type="button">
@@ -47,14 +45,24 @@
                             <g:if test="${searchResult?.suggestedQuery}">
                                 <p>Quisiste decir <g:link controller="patient" action="search" params="[q: searchResult.suggestedQuery]">${StringQueryUtils.highlightTermDiffs(params.q.trim(), searchResult.suggestedQuery)}</g:link>?</p>
                             </g:if>
-                            <table  class="display table table-bordered table-striped" id="dynamic-table">
-                                <thead>
-                                    <tr>
-                                        <g:sortableColumn property="cedula" title="${message(code: 'patient.cedula.label', default: 'Cédula')}" />
-                                        <g:sortableColumn property="lastName" title="${message(code: 'patient.address.label', default: 'Nombres y Apellidos')}" />
-                                    </tr>
+                            <table  class="table table-bordered table-infinite" id="dyntable2">
+                                    <colgroup>
+                            <col class="con0" />
+                            <col class="con1" />
+                            <col class="con0" />
+                            <col class="con1" />
+                            <col class="con0" />
+                            <col class="con1" />
+                        </colgroup>
+                        <thead>
+                            <tr>
+
+                                <th><g:message code="patient.address.label" default="Cédula" /></th>
+
+                                <th><g:message code="patient.admisionDate.label" default="Nombre" /></th>
+                               </tr>
                                 </thead>
-                                <div class="list">
+                                
                                     <g:if test="${haveResults}">
                                         <g:each var="result" in="${searchResult.results}" status="index">
                                             <tr class="${(index % 2) == 0 ? 'even' : 'odd'}">
@@ -72,15 +80,11 @@
                                             </tr>
                                         </g:each>
                                     </g:if>
-                                </div>
+                             
                             </table>
-                        </div>    
-                    </div>
-                </section>
-
-            </div>
-
-
-        </div>
+                        
+                   </div>
+</div>
+             
     </body>
 </html>
