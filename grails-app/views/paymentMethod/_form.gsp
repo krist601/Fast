@@ -8,7 +8,7 @@
 		<g:message code="paymentMethod.amount.label" default="Monto" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field name="amount" type="number" value="${paymentMethodInstance.amount}" required=""/>
+	<input name="amount" type="number"  required/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: paymentMethodInstance, field: 'paymentMethodType', 'error')} ">

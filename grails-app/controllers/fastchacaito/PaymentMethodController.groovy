@@ -12,11 +12,18 @@ class PaymentMethodController {
 
     def list(Integer max) {
         params.max = Math.min(max ?: 10000, 100000)
-        [paymentMethodInstanceList: PaymentMethod.list(params), paymentMethodInstanceTotal: PaymentMethod.count()]
+        if (params.foo == null)
+            [paymentMethodInstanceList: PaymentMethod.list(params), paymentMethodInstanceTotal: PaymentMethod.count()]
+        else
+        {
+            def treatment = Treatment.get(params.foo)
+            def payments = PaymentMethod.findAllByTreatment(treatment)
+            [paymentMethodInstanceList: payments, paymentMethodInstanceTotal: payments.size()]
+        }
     }
 
     def create() {
-         params.treatment=Treatment.get(params.foo)
+        params.treatment=Treatment.get(params.foo)
         [paymentMethodInstance: new PaymentMethod(params)]
     }
 
@@ -64,7 +71,7 @@ class PaymentMethodController {
         if (version != null) {
             if (paymentMethodInstance.version > version) {
                 paymentMethodInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'paymentMethod.label', default: 'PaymentMethod')] as Object[],
+                    [message(code: 'paymentMethod.label', default: 'PaymentMethod')] as Object[],
                           "Another user has updated this PaymentMethod while you were editing")
                 render(view: "edit", model: [paymentMethodInstance: paymentMethodInstance])
                 return

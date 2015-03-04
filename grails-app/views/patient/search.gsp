@@ -29,8 +29,8 @@
                     <g:set var="haveQuery" value="${params.q?.trim()}" />
                     <g:set var="haveResults" value="${searchResult?.results}" />
                      <div class="maincontent">
-            <div class="maincontentinner">
-                        <h3>Resultados</h3>
+                <div class="maincontentinner">
+                    <h4 class="widgettitle" style="font-size: 30px;">Resultados</h4>
                    
                        
                             <g:if test="${haveQuery && !haveResults && !parseException}">

@@ -12,10 +12,10 @@
             <li><a class="home" href="${createLink(uri: '/')}"><i class="iconfa-home"></i></a> <span class="separator"></span></li>
             <li>Aplicaciones</li>
         </ul>
-        <div id="list-application" class="content scaffold-list" role="main">
+      
             <div class="maincontent">
                 <div class="maincontentinner">
-                    <h4 class="widgettitle" style="font-size: 30px;">Aplicaciones</h4>
+                    <h6 class="widgettitle" style="font-size: 30px;">Aplicaciones</h6>
                     <table class="table table-bordered table-infinite" id="dyntable2">
                         <colgroup>
                             <col class="con0" />
@@ -59,5 +59,6 @@
                     </div>
                 </div><!--footer-->
                 </div>
+            </div>
                 </body>
                 </html>

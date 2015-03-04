@@ -21,11 +21,13 @@
                 </div>
                 <div class="headerinner">
                     <ul class="headmenu">
-                        <li class="right">
-                            <form action="results.html" method="post" class="searchbar">
-                                <input type="text" name="keyword" placeholder="Buscar Paciente..." />
-                            </form>
-                        </li>
+                            <li class="right">
+                        
+                        <g:form controller="patient" action="search" >
+
+                                <input type="text" name="q" class="searchbar" placeholder=" Buscar Paciente...">
+                            </g:form>
+                    </li>
                         <li class="right">
                         <sec:ifLoggedIn>
                             <div class="userloggedinfo">

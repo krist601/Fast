@@ -139,7 +139,12 @@
                                                 <td class="center"><g:formatDate date="${item.date}" format="dd MMMM yyyy"/></td>
                                                 <td class="center"><g:formatDate date="${item.beginDate}" format="dd MMMM yyyy"/></td>
                                                 <td class="center"><g:formatDate date="${item.endDate}" format="dd MMMM yyyy"/></td>
-                                                <td class="center">${patientInstance?.getMontoAbonado(patientInstance?.id,item.id)} BsF</td>
+                                                <td class="center">
+                                                <a href="${createLink(controller:'paymentMethod', action:'list', params:[foo:item.id])}">
+                                                            <span class="iconfa-money">
+                                                            </span> ${patientInstance?.getMontoAbonado(patientInstance?.id,item.id)} BsF</td>
+                                                        </a> 
+                                                            
                                                 <td class="center">
                                                     <g:if test="${patientInstance?.getMontoAbonado(patientInstance?.id,item.id) < item.totalPrice}">
                                                         <a href="${createLink(controller:'paymentMethod', action:'create', params:[foo:item.id])}">
