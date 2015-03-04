@@ -1,18 +1,20 @@
 <%@ page import="fastchacaito.MeasuresControl" %>
- <div class="par control-group">
-                                    <label class="control-label" for="firstname">First Name</label>
-                                <div class="controls"><input type="text" name="firstname" id="firstname" class="input-large" /></div>
-                            </div>
+<form data-toggle="validator" role="form">
+  <div class="form-group">
+    <label for="inputName" class="control-label">Name</label>
+    <input type="text" class="form-control" id="inputNam" placeholder="Cina Saffary" required>
+  
 <table>
     
     <tr>
         <td style="margin-bottom: 10px; padding-bottom: 10px;">
-            <div class="fieldcontain ${hasErrors(bean: measuresControlInstance, field: 'leftArm', 'error')} required">
+            <div class="form-control" required>
                 <label for="leftArm">
                     <g:message code="measuresControl.leftArm.label" default="Brazo Izquierdo" />
                     
                 </label>
-                <input type="text"  name="leftArm" value="${fieldValue(bean: measuresControlInstance, field: 'leftArm')}" required/>
+                <input type="number"  class="form-control"  name="leftArm"  required>
+             
             </div>
         </td>
         <td style="margin-bottom: 10px; padding-bottom: 10px;">
@@ -21,7 +23,7 @@
                     <g:message code="measuresControl.rightArm.label" default="Brazo Derecho" />
                     
                 </label>
-                <g:field name="rightArm" value="${fieldValue(bean: measuresControlInstance, field: 'rightArm')}" required=""/>
+                <input type="text" name="rightArm" value="${fieldValue(bean: measuresControlInstance, field: 'rightArm')}" required/>
             </div>
         </td>
     </tr>
@@ -104,3 +106,6 @@
 
 <g:hiddenField name="balance.id" value="${measuresControlInstance?.balance?.id}"/>
 <g:hiddenField name="mesotherapy.id" value="${measuresControlInstance?.mesotherapy?.id}"/>
+
+</div>
+  </form>
