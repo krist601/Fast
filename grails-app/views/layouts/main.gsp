@@ -99,8 +99,11 @@
                             </li>
                             <li class="dropdown"><a href="">Vacutainer</a>
                                 <ul>
-                                    <li><a href="/FastChacaito/Vacutainer/List">Listar Vacutainers</a></li>
                                     <li><a href="/FastChacaito/Vacutainer/Create">Crear Nuevo Vacutainer</a></li>
+                                    <li><a href="/FastChacaito/Vacutainer/List">Listar Vacutainers</a></li>
+                                    <li><a href="/FastChacaito/Vacutainer/List?foo=1">Vacutainers de Mesoterapia Disponibles</a></li>
+                                        <li><a href="/FastChacaito/Vacutainer/List?foo=2">Vacutainers de Balance Disponibles</a></li>
+                                    
                                 </ul>
                             </li>
                             <li class="dropdown"><a href="">Aplicaciones</a>

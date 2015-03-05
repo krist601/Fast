@@ -539,7 +539,7 @@
                                                 <g:else>
                                                     <g:if test="${item2.treatment.endDate.compareTo(new Date().toTimestamp()) >= 0}">
                                                     <g:if test="${fastchacaito.Mesotherapy.applyControl(item2.id) == true}"> 
-                                                            <a class="btn btn-info dropdown-toggle" style="color: black;" href="${createLink(controller:'measuresControl', action:'create', params:[foo:item2?.id,type:2])}">
+                                                            <a class="btn btn-info dropdown-toggle" style="color: white;" href="${createLink(controller:'measuresControl', action:'create', params:[foo:item2?.id,type:2])}">
                                                                 Control de Medidas
                                                             </a>
                                                         </g:if>

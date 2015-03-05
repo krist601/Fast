@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <%@ page import="user.SecAppUser" %>
+<%@ page import="fastchacaito.Patient" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -123,8 +124,11 @@
                                 </li>
                                 <li class="dropdown"><a href="">Vacutainer</a>
                                     <ul>
-                                        <li><a href="/FastChacaito/Vacutainer/List">Listar Vacutainers</a></li>
                                         <li><a href="/FastChacaito/Vacutainer/Create">Crear Nuevo Vacutainer</a></li>
+                                        <li><a href="/FastChacaito/Vacutainer/List">Listar Vacutainers</a></li>
+                                        <li><a href="/FastChacaito/Vacutainer/List?foo=1">Vacutainers de Mesoterapia Disponibles</a></li>
+                                        <li><a href="/FastChacaito/Vacutainer/List?foo=2">Vacutainers de Balance Disponibles</a></li>
+                                        
                                     </ul>
                                 </li>
                                 <li class="dropdown"><a href="">Aplicaciones</a>
@@ -158,7 +162,7 @@
                                     <li class="events">
                                         <a href="${createLink(controller:'patient', action:'list')}">
                                             <span class="shortcuts-icon iconsi-event"></span>
-                                            <span class="shortcuts-label">Pacientes</span>
+                                            <span class="shortcuts-label">Pacientes:  <strong>${Patient.count()}</strong></span>
                                         </a>
                                     </li>   
                                     <li class="products">
@@ -192,10 +196,6 @@
                                     <div class="divider15"></div>
 
 
-                                    <h4 class="widgettitle">Event Calendar</h4>
-                                    <div class="widgetcontent nopadding">
-                                        <div id="datepicker"></div>
-                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -13,8 +13,23 @@ class VacutainerController {
     }
 
     def list(Integer max) {
+        println params.foo
+        if (params.foo==null){
         params.max = Math.min(max ?: 10000, 100000)
         [vacutainerInstanceList: Vacutainer.list(params), vacutainerInstanceTotal: Vacutainer.count()]
+        }
+        else if (params.foo == '1')
+        {
+           def vacutainers = Vacutainer.avaliableVacutainers()
+           
+           [vacutainerInstanceList: vacutainers, vacutainerInstanceTotal: vacutainers.size()]
+        }
+        else if (params.foo == '2')
+        {
+             def vacutainers = Vacutainer.availableVacutainersBalance() 
+              println vacutainers
+           [vacutainerInstanceList: vacutainers, vacutainerInstanceTotal: vacutainers.size()]
+        }
     }
 
     def create() {
