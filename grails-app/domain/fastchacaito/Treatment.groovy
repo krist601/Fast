@@ -17,5 +17,14 @@ class Treatment {
     static constraints = {
     }
     
-  
+   static getType(treatmentId)
+    {
+        def treatment = Treatment.get(treatmentId)
+        if (treatment.balance!=null)
+            return "Balance"
+        else if (treatment.mesotherapy!=null)
+            return "Mesoterapia"
+        else 
+            return ""
+    }
 }

@@ -1,11 +1,12 @@
 package fastchacaito
 
 import org.springframework.dao.DataIntegrityViolationException
+import java.text.SimpleDateFormat
 
 class PaymentMethodController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
-
+    static SimpleDateFormat theDate = new SimpleDateFormat( 'MM/dd/yyyy' )
     def index() {
         redirect(action: "list", params: params)
     }
@@ -20,7 +21,7 @@ class PaymentMethodController {
             def payments = PaymentMethod.findAllByTreatment(treatment)
             [paymentMethodInstanceList: payments, paymentMethodInstanceTotal: payments.size()]
         }
-    }
+    }  
 
     def create() {
         params.treatment=Treatment.get(params.foo)
@@ -28,6 +29,7 @@ class PaymentMethodController {
     }
 
     def save() {
+         params.date = theDate.parse(params.date)
         def paymentMethodInstance = new PaymentMethod(params)
         if (!paymentMethodInstance.save(flush: true)) {
             render(view: "create", model: [paymentMethodInstance: paymentMethodInstance])

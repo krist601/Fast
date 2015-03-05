@@ -224,8 +224,8 @@ h1,h2,h3,h4,h5 { font-weight: normal; line-height: normal; }
 .shortcuts li a:hover { background: #282828; text-decoration: none; }
 .shortcuts li .shortcuts-label { display: block; padding: 0 12px; }
 .shortcuts li .shortcuts-icon { display: block; width: 48px; height: 48px; padding: 30px 0 20px 0; margin: 0 auto; }
-.shortcuts li .iconsi-event { background: url(../images/icons/icon-event.png) no-repeat center center; }
-.shortcuts li .iconsi-cart { background: url(../images/icons/icon-cart.png) no-repeat center center; }
+.shortcuts li .iconsi-event { background: url(../images/icons/users.png) no-repeat center center; }
+.shortcuts li .iconsi-cart { background: url(../images/icons/vacutainer2.png) no-repeat center center; }
 .shortcuts li .iconsi-archive { background: url(../images/icons/icon-archive.png) no-repeat center center; }
 .shortcuts li .iconsi-help { background: url(../images/icons/icon-help.png) no-repeat center center; }
 .shortcuts li .iconsi-images { background: url(../images/icons/icon-images.png) no-repeat center center; }

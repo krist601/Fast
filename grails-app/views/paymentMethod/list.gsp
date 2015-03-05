@@ -10,12 +10,12 @@
     <body>
         <ul class="breadcrumbs">
             <li><a class="home" href="${createLink(uri: '/')}"><i class="iconfa-home"></i></a> <span class="separator"></span></li>
-            <li>Metodo de Pago</li>
+            <li>Pagos Recibidos</li>
         </ul>
         <div id="list-paymentMethod" class="content scaffold-list" role="main">
             <div class="maincontent">
                 <div class="maincontentinner">
-                    <h4 class="widgettitle" style="font-size: 30px;">Metodo de Pago</h4>
+                    <h4 class="widgettitle" style="font-size: 30px;">Pagos Recibidos</h4>
                     <table class="table table-bordered table-infinite" id="dyntable2">
                         <colgroup>
                             <col class="con0" />
@@ -25,11 +25,14 @@
                         <thead>
                             <tr>
 
+                                <th><g:message code="patient.amount.label" default="Fecha de Pago" /></th>
+                                <th><g:message code="patient.amount.label" default="Tratamiento" /></th>
+                                <th><g:message code="patient.amount.label" default="Paciente" /></th>
+                      
                                 <th><g:message code="patient.amount.label" default="Monto" /></th>
 
-                                <th><g:message code="patient.bank.label" default="Banco" /></th>
 
-                                <th><g:message code="patient.paymentMethodType.label" default="Metodo de Pago" /></th>
+                                <th><g:message code="patient.paymentMethodType.label" default="Método de Pago" /></th>
 
                             </tr>
                         </thead>
@@ -37,11 +40,14 @@
                             <g:each in="${paymentMethodInstanceList}" status="i" var="paymentMethodInstance">
                                 <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
-                                    <td><g:link action="show" id="${paymentMethodInstance.id}">${fieldValue(bean: paymentMethodInstance, field: "amount")}</g:link></td>
+                                    <td><g:link action="show" id="${paymentMethodInstance.id}"><g:formatDate date="${paymentMethodInstance.date}" format="dd MMMM yyyy"/></g:link></td>
 
-                                    <td>${fieldValue(bean: paymentMethodInstance, field: "bank")}</td>
+                                    <td>${paymentMethodInstance.treatment.getType(paymentMethodInstance.treatment.id)}</td>
+                                    
+                                     <td>${paymentMethodInstance.treatment.patient}</td>
+                                     <td>${paymentMethodInstance.amount}</td>
 
-                                    <td>${fieldValue(bean: paymentMethodInstance, field: "paymentMethodType")}</td>
+                                    <td>${paymentMethodInstance.paymentMethodType}</td>
 
                                 </tr>
                             </g:each>

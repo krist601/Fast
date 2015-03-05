@@ -1,7 +1,12 @@
 
 <%@ page import="fastchacaito.PaymentMethod" %>
 
-
+   <div class="fieldcontain ${hasErrors(bean: paymentMethodInstance, field: 'date', 'error')} ">
+                                            <label>Fecha del pago</label>
+                                            <span class="field">
+                                                <input id="datepicker" type="text" name="date" class="input-small" required/>
+                                            </span>
+                                        </div>
 
 <div class="fieldcontain ${hasErrors(bean: paymentMethodInstance, field: 'amount', 'error')} required">
 	<label for="amount">

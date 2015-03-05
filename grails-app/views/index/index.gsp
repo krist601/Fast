@@ -146,7 +146,7 @@
 
                     <div class="pageicon"><span class="iconfa-laptop"></span></div>
                     <div class="pagetitle">
-                        <h5>All Features Summary</h5>
+                       
                         <h3>Sistema Administrativo Fast Chacaíto</h3>
                     </div>
                 </div><!--pageheader-->
