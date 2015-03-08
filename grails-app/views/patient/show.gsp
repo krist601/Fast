@@ -109,11 +109,11 @@
                                 <g:if test="${patientInstance.bloodSample}">
                                 <li><a href="#a-9">Muestras de sangre</a></li> 
                                 </g:if>
-                                 <g:if test="${patientInstance.getMeasuresControl(patientInstance.id)}">
+                                <g:if test="${patientInstance.getMeasuresControl(patientInstance.id)}">
                                 <li><a href="#a-10">Control de Medidas</a></li>
                                 </g:if>
-                                <li><a href="#a-11">Opciones</a></li>
-                               
+                            <li><a href="#a-11">Opciones</a></li>
+
                         </ul>
                         <g:if test="${patientInstance.treatments}">
                             <div id="a-1">
@@ -140,11 +140,11 @@
                                                 <td class="center"><g:formatDate date="${item.beginDate}" format="dd MMMM yyyy"/></td>
                                                 <td class="center"><g:formatDate date="${item.endDate}" format="dd MMMM yyyy"/></td>
                                                 <td class="center">
-                                                <a href="${createLink(controller:'paymentMethod', action:'list', params:[foo:item.id])}">
-                                                            <span class="iconfa-money">
-                                                            </span> ${patientInstance?.getMontoAbonado(patientInstance?.id,item.id)} BsF</td>
-                                                        </a> 
-                                                            
+                                                    <a href="${createLink(controller:'paymentMethod', action:'list', params:[foo:item.id])}">
+                                                        <span class="iconfa-money">
+                                                        </span> ${patientInstance?.getMontoAbonado(patientInstance?.id,item.id)} BsF</td>
+                                                </a> 
+
                                                 <td class="center">
                                                     <g:if test="${patientInstance?.getMontoAbonado(patientInstance?.id,item.id) < item.totalPrice}">
                                                         <a href="${createLink(controller:'paymentMethod', action:'create', params:[foo:item.id])}">
@@ -379,6 +379,9 @@
                                             <g:each in="${patientInstance.getBalance(item.id)}" var="item2">
                                                 <h1><a href="#">Balance ${item2.type}: <g:formatDate date="${item.beginDate}" format="dd MMMM yyyy"/> - <g:formatDate date="${item.endDate}" format="dd MMMM yyyy"/></a></h1>
                                                 <div>
+                                                    <g:if test="${fastchacaito.Balance.isHalfOfApplication(item2.id) == true}"> 
+                                                        <div class="alert alert-error" role="status">Paciente Moroso</div>
+                                                    </g:if>
                                                     <table class="table table-bordered table-invoice">
                                                         <tr>
                                                             <td style="width: 30%">Tipo de Balance: </td>
@@ -440,10 +443,19 @@
                                                                         Control de Medidas
                                                                     </a>
                                                                 </g:if>
-                                                                <a class="btn btn-info dropdown-toggle" style="color: white;" href="${createLink(controller:'applicationControl', action:'create', params:[foo:item2?.id])}">
-                                                                    Agregar Control de Aplicación
-                                                                </a>
-
+                                                                <g:if test="${fastchacaito.Balance.isHalfOfApplication(item2.id) == false}"> 
+                                                                    <a class="btn btn-info dropdown-toggle" style="color: white;" href="${createLink(controller:'applicationControl', action:'create', params:[foo:item2?.id])}">
+                                                                        Agregar Control de Aplicación
+                                                                    </a>
+                                                                </g:if>
+                                                                <g:else>
+                                                                    <a class="btn btn-danger dropdown-toggle" disabled> 
+                                                                        Agregar Control de Aplicación
+                                                                    </a>
+                                                                    <font style="color: red;margin-left: 5px; padding-left: 5px;">
+                                                                        La persona debe cancelar el monto restante del tratamiento
+                                                                    </font>
+                                                                </g:else>
                                                             </g:if>
 
                                                         </g:if>
@@ -455,7 +467,13 @@
                                                                     Control de Medidas
                                                                 </a>
                                                             </g:if>
-                                                            <a class="btn btn-info dropdown-toggle" style="color: white;" href="${createLink(controller:'applicationControl', action:'create', params:[foo:item2?.id])}">Agregar Control de Aplicación </a>
+                                                            <g:if test="${fastchacaito.Balance.isHalfOfApplication(item2.id) == false}"> 
+
+                                                                <a class="btn btn-info dropdown-toggle" style="color: white;" href="${createLink(controller:'applicationControl', action:'create', params:[foo:item2?.id])}">
+                                                                    Agregar Control de Aplicación 
+                                                                </a>
+
+                                                            </g:if>
                                                         </g:if>
                                                     </g:else>
                                                 </div>
@@ -473,6 +491,9 @@
                                             <g:each in="${patientInstance.getMesotherapy(item.id)}" var="item2">
                                                 <h3><a href="#">Mesoterapia: <g:formatDate date="${item.beginDate}" format="dd MMMM yyyy"/> - <g:formatDate date="${item.endDate}" format="dd MMMM yyyy"/></a></h3>
                                                 <div>
+                                                    <g:if test="${fastchacaito.Mesotherapy.isHalfOfApplication(item2.id) == true}"> 
+                                                        <div class="alert alert-error" role="status">Paciente Moroso</div>
+                                                    </g:if>
                                                     <table class="table table-bordered table-invoice">
                                                         <tr>
                                                             <td style="width: 30%">Areas a Tratar:</td>
@@ -489,6 +510,10 @@
                                                         <tr>
                                                             <td>Metodos:</td>
                                                             <td>${item2.method}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Cantidad de Sesiones:</td>
+                                                            <td>${item2.applicationAmount}</td>
                                                         </tr>
                                                     </table>
                                                     <g:if test="${item2.sesionControl}">
@@ -532,199 +557,209 @@
                                                                 </a>
                                                             </g:if>
                                                             <g:if test="${item2.treatment.endDate.compareTo(new Date().toTimestamp()) >= 0}">
-                                                            <a class="btn btn-info dropdown-toggle" style="color: white;" href="${createLink(controller:'sesionControl', action:'create', params:[foo:item2?.id])}">Agregar Control de Sesión</a>
+                                                            <g:if test="${fastchacaito.Mesotherapy.isHalfOfApplication(item2.id)==false}">
+                                                                    <a class="btn btn-info dropdown-toggle" style="color: white;" href="${createLink(controller:'sesionControl', action:'create', params:[foo:item2?.id])}">Agregar Control de Sesión</a>
+                                                                </g:if>
+                                                            <g:else>
+                                                                <a class="btn btn-danger dropdown-toggle" disabled>Agregar Control de Sesión </a>
+                                                                    <font style="color: red;margin-left: 5px; padding-left: 5px;">
+                                                                        La persona debe cancelar el monto restante del tratamiento
+                                                                    </font>
+                                                            </g:else>
+                                                            </g:if>
                                                         </g:if>
                                                     </g:if>
-                                                </g:if>
-                                                <g:else>
-                                                    <g:if test="${item2.treatment.endDate.compareTo(new Date().toTimestamp()) >= 0}">
-                                                    <g:if test="${fastchacaito.Mesotherapy.applyControl(item2.id) == true}"> 
-                                                            <a class="btn btn-info dropdown-toggle" style="color: white;" href="${createLink(controller:'measuresControl', action:'create', params:[foo:item2?.id,type:2])}">
-                                                                Control de Medidas
-                                                            </a>
-                                                        </g:if>
-                                                        <a class="btn btn-info dropdown-toggle" style="color: white;" href="${createLink(controller:'sesionControl', action:'create', params:[foo:item2?.id])}">Agregar Control de Sesión </a>
-                                                    </g:if>        
-                                                </g:else>
-                                            </div>
-                                        </g:each>
-                                    </g:if>
-                                </g:each>
-                            </div>
-                        </g:if>
-                    </div>
-                    <g:if test="${patientInstance.treatments}">
-                        <g:each in="${patientInstance.treatments.reverse()}" var="item">
-                            <g:if test="${patientInstance.getBodyTherapy(item.id)}">
-                                <div id="a-7">
-                                    <g:each in="${patientInstance.getBodyTherapy(item.id)}" var="item2">
-                                        <div class="accordion accordion-info" style="width: 100%;">
-                                            <h3><a href="#">${item2.massageType} </a></h3>
-                                            <div>
-                                                <table class="table table-bordered table-invoice">
-                                                    <tr>
-                                                        <td>Tipo de Masaje</td>
-                                                        <td>${item2.massageType}</td>
-                                                    </tr>
-                                                    <g:if test="${item2.massageControl}">
-                                                        <tr>
-                                                            <td>Fecha</td>
-                                                            <td>${item2.massageType}</td>
-                                                        </tr>
+                                                    <g:else>
+                                                        <g:if test="${item2.treatment.endDate.compareTo(new Date().toTimestamp()) >= 0}">
+                                                        <g:if test="${fastchacaito.Mesotherapy.applyControl(item2.id) == true}"> 
+                                                                <a class="btn btn-info dropdown-toggle" style="color: white;" href="${createLink(controller:'measuresControl', action:'create', params:[foo:item2?.id,type:2])}">
+                                                                    Control de Medidas
+                                                                </a>
+                                                            </g:if>
+                                                            <g:if test="${fastchacaito.Mesotherapy.isHalfOfApplication(item2.id)==false}">
+                                                                <a class="btn btn-info dropdown-toggle" style="color: white;" href="${createLink(controller:'sesionControl', action:'create', params:[foo:item2?.id])}">Agregar Control de Sesión </a>
+                                                            </g:if>
+                                                        </g:if>        
+                                                    </g:else>
+                                                </div>
+                                            </g:each>
+                                        </g:if>
+                                    </g:each>
+                                </div>
+                            </g:if>
+                        </div>
+                        <g:if test="${patientInstance.treatments}">
+                            <g:each in="${patientInstance.treatments.reverse()}" var="item">
+                                <g:if test="${patientInstance.getBodyTherapy(item.id)}">
+                                    <div id="a-7">
+                                        <g:each in="${patientInstance.getBodyTherapy(item.id)}" var="item2">
+                                            <div class="accordion accordion-info" style="width: 100%;">
+                                                <h3><a href="#">${item2.massageType} </a></h3>
+                                                <div>
+                                                    <table class="table table-bordered table-invoice">
                                                         <tr>
                                                             <td>Tipo de Masaje</td>
                                                             <td>${item2.massageType}</td>
                                                         </tr>
-                                                    </g:if>
-                                                </table>
+                                                        <g:if test="${item2.massageControl}">
+                                                            <tr>
+                                                                <td>Fecha</td>
+                                                                <td>${item2.massageType}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Tipo de Masaje</td>
+                                                                <td>${item2.massageType}</td>
+                                                            </tr>
+                                                        </g:if>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </g:each>
+                                    </div>
+                                </g:if>
+                            </g:each>
+                        </g:if>
+                        <g:if test="${patientInstance.treatments}">
+                            <g:each in="${patientInstance.treatments.reverse()}" var="item">
+                                <g:if test="${patientInstance.getMachine(item.id)}">
+                                    <div id="a-8">
+                                        <div class="accordion accordion-info" style="width: 100%;">
+                                            <h3><a href="#">tab 1 </a></h3>
+                                            <div>
                                             </div>
                                         </div>
-                                    </g:each>
-                                </div>
-                            </g:if>
-                        </g:each>
-                    </g:if>
-                    <g:if test="${patientInstance.treatments}">
-                        <g:each in="${patientInstance.treatments.reverse()}" var="item">
-                            <g:if test="${patientInstance.getMachine(item.id)}">
-                                <div id="a-8">
-                                    <div class="accordion accordion-info" style="width: 100%;">
-                                        <h3><a href="#">tab 1 </a></h3>
-                                        <div>
-                                        </div>
                                     </div>
-                                </div>
-                            </g:if>
-                        </g:each>
-                    </g:if>
-                    <g:if test="${patientInstance.bloodSample}">
-                        <div id="a-9">
-                            <div class="accordion accordion-info" style="width: 100%;">
-                                <g:each in="${patientInstance.bloodSample.reverse()}" var="item">
+                                </g:if>
+                            </g:each>
+                        </g:if>
+                        <g:if test="${patientInstance.bloodSample}">
+                            <div id="a-9">
+                                <div class="accordion accordion-info" style="width: 100%;">
+                                    <g:each in="${patientInstance.bloodSample.reverse()}" var="item">
 
-                                    <h3><a href="#">${item.testType} con muestra de sangre del <g:formatDate date="${item.receiptData}" format="dd MMMM yyyy"/> </a></h3>
-                                    <div>
-                                        <table class="table table-bordered table-invoice">
-                                            <tr>
-                                                <td style="width: 30%">Muestra obtenida el día:</td>
-                                                <td><g:formatDate date="${item.receiptData}" format="dd MMMM yyyy"/> </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tipo de Prueba de Sangre:</td>
-                                                <td>${item.testType}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Fecha de Envío:</td>
-                                                <td><g:if test="${item.shippingDate}"><g:formatDate date="${item.shippingDate}" format="dd MMMM yyyy"/></g:if><g:else>La Muestra no ha sido envíada</g:else> </td>
+                                        <h3><a href="#">${item.testType} con muestra de sangre del <g:formatDate date="${item.receiptData}" format="dd MMMM yyyy"/> </a></h3>
+                                        <div>
+                                            <table class="table table-bordered table-invoice">
+                                                <tr>
+                                                    <td style="width: 30%">Muestra obtenida el día:</td>
+                                                    <td><g:formatDate date="${item.receiptData}" format="dd MMMM yyyy"/> </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Fecha de Recibida:</td>
-                                                        <td><g:if test="${item.receivedDate}"><g:formatDate date="${item.receivedDate}" format="dd MMMM yyyy"/></g:if><g:else>La Muestra no ha sido recibída</g:else> </td>
+                                                    <td>Tipo de Prueba de Sangre:</td>
+                                                    <td>${item.testType}</td>
                                                 </tr>
-                                            </table>
-                                        </div>
+                                                <tr>
+                                                    <td>Fecha de Envío:</td>
+                                                    <td><g:if test="${item.shippingDate}"><g:formatDate date="${item.shippingDate}" format="dd MMMM yyyy"/></g:if><g:else>La Muestra no ha sido envíada</g:else> </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Fecha de Recibida:</td>
+                                                            <td><g:if test="${item.receivedDate}"><g:formatDate date="${item.receivedDate}" format="dd MMMM yyyy"/></g:if><g:else>La Muestra no ha sido recibída</g:else> </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
 
-                                </g:each>
-                            </div><!--#accordion-->
-                        </div>
-                    </g:if>
-                    <div id="a-11">
-                        <div class="headtitle">
-                            <div class="btn-group">
-                                <a class="btn dropdown-toggle" href="${createLink(controller:'medicHistory', action:'create', params:[foo:patientInstance?.id])}">Crear</a>
-                            </div>
-                            <h4 class="widgettitle title-info">Nueva Historia Médica</h4>
-                        </div>
-                        <div class="headtitle">
-                            <div class="btn-group">
-                                <a class="btn dropdown-toggle" href="${createLink(controller:'BloodSample', action:'create', params:[foo:patientInstance?.id])}">Crear</a>
-                            </div>
-                            <h4 class="widgettitle title-info">Nueva Muestra de Sangre</h4>
-                        </div>
-                        <div class="headtitle">
-                            <div class="btn-group">
-                                <a class="btn dropdown-toggle" href="${createLink(controller:'Treatment', action:'createBalance', params:[foo:patientInstance?.id])}">Crear</a>
-                            </div>
-                            <h4 class="widgettitle title-info">Contratar Nuevo Paquete Balance</h4>
-                        </div>
-                        <div class="headtitle">
-                            <div class="btn-group">
-                                <a class="btn dropdown-toggle" href="${createLink(controller:'Treatment', action:'createMesotherapy', params:[foo:patientInstance?.id])}">Crear</a>
-                            </div>
-                            <h4 class="widgettitle title-info">Contratar Nuevo Paquete de Mesoterapia</h4>
-                        </div>
-                    </div>
-                    <g:if test="${patientInstance.getMeasuresControl(patientInstance.id)}">
-                        <div id="a-10">
-                            <table class="table responsive">
-                                <thead>
-                                    <tr >
-                                        <th class="center" style="font-size: 5px"></th>
-                                        <th class="center">Ident.</th>
-                                        <th class="center">Fecha</th>
-                                        <th class="center">Tratamiento</th>
-                                        <th class="center">Brazo Izq.</th>
-                                        <th class="center">Brazo Der.</th>
-                                        <th class="center">Muslo Izq.</th>
-                                        <th class="center">Muslo Der.</th>
-                                        <th class="center">Entrepier </br>Izq.</th>
-                                        <th class="center">Entrepier </br> Der.</th>
-                                        <th class="center">Caderas</th>
-                                        <th class="center">Cintura</th>
-                                        <th class="center">Abdomen</th>
-                                        <th class="center">Total</th>
-
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <g:each in="${patientInstance.getMeasuresControl(patientInstance.id)}" var="item">
-                                        <tr>
-                                            <td class="center"></td>
-                                            <td class="center">${item.identifierNumber}</td>
-                                            <td class="center"><g:formatDate date="${item.date}" format="dd-MM-yyyy"/></td>
-                                            <td class="center">${item.getMeasureType(item.id)}</td>
-                                            <td class="center">${item.leftArm}</td>
-                                            <td class="center">${item.rightArm}</td>
-                                            <td class="center">${item.leftThigh}</td>
-                                            <td class="center">${item.rightThigh}</td>
-                                            <td class="center">${item.leftCrotch}</td>
-                                            <td class="center">${item.rightCrotch}</td>
-                                            <td class="center">${item.hips}</td>
-                                            <td class="center">${item.waist}</td>
-                                            <td class="center">${item.abdomen}</td>
-                                            <td class="center">${item.getTotal(item.id)}</td>
-                                        </tr>
                                     </g:each>
-                                </tbody>
-                            </table>
-
-
-
-
+                                </div><!--#accordion-->
+                            </div>
+                        </g:if>
+                        <div id="a-11">
+                            <div class="headtitle">
+                                <div class="btn-group">
+                                    <a class="btn dropdown-toggle" href="${createLink(controller:'medicHistory', action:'create', params:[foo:patientInstance?.id])}">Crear</a>
+                                </div>
+                                <h4 class="widgettitle title-info">Nueva Historia Médica</h4>
+                            </div>
+                            <div class="headtitle">
+                                <div class="btn-group">
+                                    <a class="btn dropdown-toggle" href="${createLink(controller:'BloodSample', action:'create', params:[foo:patientInstance?.id])}">Crear</a>
+                                </div>
+                                <h4 class="widgettitle title-info">Nueva Muestra de Sangre</h4>
+                            </div>
+                            <div class="headtitle">
+                                <div class="btn-group">
+                                    <a class="btn dropdown-toggle" href="${createLink(controller:'Treatment', action:'createBalance', params:[foo:patientInstance?.id])}">Crear</a>
+                                </div>
+                                <h4 class="widgettitle title-info">Contratar Nuevo Paquete Balance</h4>
+                            </div>
+                            <div class="headtitle">
+                                <div class="btn-group">
+                                    <a class="btn dropdown-toggle" href="${createLink(controller:'Treatment', action:'createMesotherapy', params:[foo:patientInstance?.id])}">Crear</a>
+                                </div>
+                                <h4 class="widgettitle title-info">Contratar Nuevo Paquete de Mesoterapia</h4>
+                            </div>
                         </div>
-                    </g:if>
-                </div><!--tabbedwidget-->
-                <br>
-                <g:form>
-                    <fieldset class="buttons">
-                        <g:hiddenField name="id" value="${patientInstance?.id}" />
-                        <g:link class="btn btn-primary" action="edit" id="${patientInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-                        <g:actionSubmit class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-                    </fieldset>
-                </g:form>
-            </div>
+                        <g:if test="${patientInstance.getMeasuresControl(patientInstance.id)}">
+                            <div id="a-10">
+                                <table class="table responsive">
+                                    <thead>
+                                        <tr >
+                                            <th class="center" style="font-size: 5px"></th>
+                                            <th class="center">Ident.</th>
+                                            <th class="center">Fecha</th>
+                                            <th class="center">Tratamiento</th>
+                                            <th class="center">Brazo Izq.</th>
+                                            <th class="center">Brazo Der.</th>
+                                            <th class="center">Muslo Izq.</th>
+                                            <th class="center">Muslo Der.</th>
+                                            <th class="center">Entrepier </br>Izq.</th>
+                                            <th class="center">Entrepier </br> Der.</th>
+                                            <th class="center">Caderas</th>
+                                            <th class="center">Cintura</th>
+                                            <th class="center">Abdomen</th>
+                                            <th class="center">Total</th>
 
-            <div class="footer">
-                <div class="footer-left">
-                    <span>&copy; 2014. Fast CA. Todos los derechos reservados.</span>
-                </div>
-                <div class="footer-right">
-                    <span>Diseñado por: <a href="http://themepixels.com/">Kristian Cortés</a></span>
-                </div>
-            </div><!--footer-->
 
-        </div><!--maincontentinner-->
-    </div><!--maincontent-->
-</body>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <g:each in="${patientInstance.getMeasuresControl(patientInstance.id)}" var="item">
+                                            <tr>
+                                                <td class="center"></td>
+                                                <td class="center">${item.identifierNumber}</td>
+                                                <td class="center"><g:formatDate date="${item.date}" format="dd-MM-yyyy"/></td>
+                                                <td class="center">${item.getMeasureType(item.id)}</td>
+                                                <td class="center">${item.leftArm}</td>
+                                                <td class="center">${item.rightArm}</td>
+                                                <td class="center">${item.leftThigh}</td>
+                                                <td class="center">${item.rightThigh}</td>
+                                                <td class="center">${item.leftCrotch}</td>
+                                                <td class="center">${item.rightCrotch}</td>
+                                                <td class="center">${item.hips}</td>
+                                                <td class="center">${item.waist}</td>
+                                                <td class="center">${item.abdomen}</td>
+                                                <td class="center">${item.getTotal(item.id)}</td>
+                                            </tr>
+                                        </g:each>
+                                    </tbody>
+                                </table>
+
+
+
+
+                            </div>
+                        </g:if>
+                    </div><!--tabbedwidget-->
+                    <br>
+                    <g:form>
+                        <fieldset class="buttons">
+                            <g:hiddenField name="id" value="${patientInstance?.id}" />
+                            <g:link class="btn btn-primary" action="edit" id="${patientInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+                            <g:actionSubmit class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                        </fieldset>
+                    </g:form>
+                </div>
+
+                <div class="footer">
+                    <div class="footer-left">
+                        <span>&copy; 2014. Fast CA. Todos los derechos reservados.</span>
+                    </div>
+                    <div class="footer-right">
+                        <span>Diseñado por: <a href="http://themepixels.com/">Kristian Cortés</a></span>
+                    </div>
+                </div><!--footer-->
+
+            </div><!--maincontentinner-->
+        </div><!--maincontent-->
+    </body>
 </html>

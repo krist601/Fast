@@ -1,12 +1,9 @@
 <%@ page import="fastchacaito.SesionControl" %>
 
-<div class="fieldcontain ${hasErrors(bean: sesionControlInstance, field: 'date', 'error')} required">
-	<label for="date">
-		<g:message code="sesionControl.date.label" default="Fecha" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:datePicker name="date" precision="day"  value="${sesionControlInstance?.date}"  />
-</div>
+<div class="fieldcontain ${hasErrors(bean: sesionControlInstance, field: 'date', 'error')} ">
+    <label>Fecha</label>
+    <span class="field"><input id="datepicker" type="text" name="date" class="input-small" /></span>
+</div> 
 
 <div class="fieldcontain ${hasErrors(bean: sesionControlInstance, field: 'kit', 'error')} ">
 	<label for="kit">
@@ -18,15 +15,6 @@
 
 <g:hiddenField name="mesotherapy.id" value="${sesionControlInstance?.mesotherapy?.id}"/>
 <g:hiddenField name="secAppUser.id" value="${sesionControlInstance?.secAppUser?.id}"/>
-
-
-<div class="fieldcontain ${hasErrors(bean: sesionControlInstance, field: 'sesionNumber', 'error')} required">
-	<label for="sesionNumber">
-		<g:message code="sesionControl.sesionNumber.label" default="Número de Sesión" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:field name="sesionNumber" type="number" value="${sesionControlInstance.sesionNumber}" required=""/>
-</div>
 
 <div class="fieldcontain ${hasErrors(bean: sesionControlInstance, field: 'vacutainer', 'error')} required">
 	<label for="vacutainer">

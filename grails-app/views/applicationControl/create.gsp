@@ -41,7 +41,7 @@
                                                 <g:message code="applicationControl.currentWeight.label" default="Peso Actual" />
                                                 <span class="required-indicator">*</span>
                                             </label>
-                                                <input type="number" name="currentWeight" required/>
+                                                <input type="number" name="currentWeight" step="any" required/>
                                         </div><br>
 
                                         <g:if test="${ApplicationControl.getLastWeight(params.foo)}">

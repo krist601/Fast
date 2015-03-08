@@ -125,7 +125,7 @@ class PatientController {
         }
         try {
             String searchTerm = WILDCARD+ params.q + WILDCARD
-            //   println (Producto.search("*Apple*"))
+          
             return [searchResult: searchableService.search(searchTerm, params)] //searchTerm, params
         } catch (SearchEngineQueryParseException ex) {
             return [parseException: true]

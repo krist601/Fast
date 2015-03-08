@@ -26,7 +26,7 @@ class VacutainerController {
         }
         else if (params.foo == '2')
         {
-             def vacutainers = Vacutainer.availableVacutainersBalance() 
+             def vacutainers = Vacutainer.vacutainersBalance() 
               println vacutainers
            [vacutainerInstanceList: vacutainers, vacutainerInstanceTotal: vacutainers.size()]
         }

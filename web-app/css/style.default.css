@@ -1434,6 +1434,16 @@ blockquote.pull-right { background-position: right 5px; padding: 0 40px 0 0; bor
     margin-bottom: 15px;
     padding: 3px;
 }
+.errors {
+    border:1px solid #e18d9a;
+    border-color: #e18d9a;
+    color: #da5251;
+    background: rgb(246,216,216);
+    font-weight: bold;
+    font-size: 1em;
+    margin-bottom: 15px;
+    padding: 3px;
+}
 pre.prettyprint, .accordion { margin-bottom: 0; }
 dl { margin-bottom: 15px; }
 .input-block-level { min-height: 37px; }

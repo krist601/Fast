@@ -33,4 +33,23 @@ class Balance {
         else 
         return false
     }
+    
+    static isHalfOfApplication(balanceId){
+       def balanceInstance = Balance.get(balanceId)
+       def applications = ApplicationControl.findAllByBalance(balanceInstance).size()
+       def treatment =  balanceInstance.treatment
+  
+       def payments = PaymentMethod.findAllByTreatment(treatment)
+       def total_payments = 0
+       
+        payments.each(){
+            p-> total_payments+= p.amount
+        }
+        println "total payments: "+total_payments
+           println "total applications: "+applications
+       if ((total_payments<treatment.totalPrice)&&((applications)>=(balanceInstance.applicationAmount * 0.6))){
+           return true
+       }
+       return false
+    }
 }

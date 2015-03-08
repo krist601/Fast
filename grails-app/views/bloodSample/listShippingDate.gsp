@@ -51,7 +51,7 @@
 
                                     <td>${fieldValue(bean: bloodSampleInstance, field: "testType")}</td>
 
-                                    <td><g:link action="changeStatusRecibed" id="${bloodSampleInstance.id}">Registrar como Recibida</g:link></td>
+                                    <td><g:link action="changeStatusReceived" id="${bloodSampleInstance.id}">Registrar como Recibida</g:link></td>
 
                                 </tr>
                             </g:each>

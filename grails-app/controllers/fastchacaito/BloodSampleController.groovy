@@ -1,9 +1,11 @@
 package fastchacaito
 
 import org.springframework.dao.DataIntegrityViolationException
+import java.text.SimpleDateFormat
 
 class BloodSampleController {
 
+    static SimpleDateFormat theDate = new SimpleDateFormat( 'MM/dd/yyyy' ) //H:m:s
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
@@ -16,6 +18,7 @@ class BloodSampleController {
     }
 
     def listShippingDate(Integer max) {
+                println "hola xxx"
         params.max = Math.min(max ?: 10000, 100000)
         [bloodSampleInstanceList: BloodSample.findAll("from BloodSample as b where b.shippingDate!=null and b.receivedDate = null"), bloodSampleInstanceTotal: BloodSample.count()]
     }
@@ -26,12 +29,13 @@ class BloodSampleController {
     }
 
     def save() {
+        params.receiptData = theDate.parse(params.receiptData)
         def bloodSampleInstance = new BloodSample(params)
         if (!bloodSampleInstance.save(flush: true)) {
             render(view: "create", model: [bloodSampleInstance: bloodSampleInstance])
             return
         }
-        println("hola: "+params.patient.id);
+      
         flash.message = message(code: 'default.created.message', args: [message(code: 'bloodSample.label', default: 'BloodSample'), bloodSampleInstance.id])
         redirect(controller:"patient" ,action: "show", id: params.patient.id)
     }
@@ -87,6 +91,7 @@ class BloodSampleController {
         redirect(action: "show", id: bloodSampleInstance.id)
     }
 
+
     def delete(Long id) {
         def bloodSampleInstance = BloodSample.get(id)
         if (!bloodSampleInstance) {
@@ -113,6 +118,22 @@ class BloodSampleController {
             redirect(action: "list")
             return
         }
-        def bloodSample = BloodSample.get(id);
+        bloodSampleInstance.shippingDate = new Date()
+        bloodSampleInstance.save(flush:true)
+        redirect(action: "listShippingDate")
+            return
+    }
+    
+    def changeStatusReceived(Long id) {
+        def bloodSampleInstance = BloodSample.get(id)
+        if (!bloodSampleInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'bloodSample.label', default: 'BloodSample'), id])
+            redirect(action: "list")
+            return
+        }
+        bloodSampleInstance.receivedDate = new Date()
+        bloodSampleInstance.save(flush:true)
+        redirect(controller:"patient", action: "show", id:bloodSampleInstance.patient.id)
+            
     }
 }

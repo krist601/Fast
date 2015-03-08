@@ -94,7 +94,7 @@ class TreatmentController {
             render(view: "createMesotherapy", model: [treatmentInstance: treatmentInstance])
             return
         }
-        treatmentInstance.addToMesotherapy([ploblemCauses:params2.ploblemCauses,method:params2.method,previousAttempts:params2.previousAttempts,treatAreas:params2.treatAreas]);
+        treatmentInstance.addToMesotherapy([ploblemCauses:params2.ploblemCauses,method:params2.method,previousAttempts:params2.previousAttempts,treatAreas:params2.treatAreas,applicationAmount:pack.sesionAmount]);
         flash.message = message(code: 'default.created.message', args: [message(code: 'treatment.label', default: 'Treatment'), treatmentInstance.id])
         redirect(controller: "patient", action: "show", id: treatmentInstance.patient.id)
     }

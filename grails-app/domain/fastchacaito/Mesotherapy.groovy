@@ -5,6 +5,7 @@ class Mesotherapy {
     String previousAttempts
     String ploblemCauses
     String method
+    int applicationAmount
     List sesionControl
 
     static hasMany = [sesionControl: SesionControl,measuresControl: MeasuresControl] //,measuresControl: MeasuresControl
@@ -23,6 +24,16 @@ class Mesotherapy {
         if (sessionsSize.mod(2)==0 && sessionsSize.div(2)>=measuresSize)
         return true
         else return false
+    }
+    
+    
+    static isHalfOfApplication(mesotherapyId){
+       def mesotherapyInstance = Mesotherapy.get(mesotherapyId)
+       def applications = SesionControl.findAllByMesotherapy(mesotherapyInstance).size()
+       if ((applications)>=(mesotherapyInstance.applicationAmount * 0.6)){
+           return true
+       }
+       return false
     }
 
 }

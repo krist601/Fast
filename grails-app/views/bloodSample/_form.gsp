@@ -2,13 +2,10 @@
 
 <g:hiddenField name="patient.id" value="${bloodSampleInstance?.patient?.id}"/>
 
-<div class="fieldcontain ${hasErrors(bean: bloodSampleInstance, field: 'receiptData', 'error')} required">
-	<label for="receiptData">
-		<g:message code="bloodSample.receiptData.label" default="Fecha de toma de Muestra" />
-		<span class="required-indicator">*</span>
-	</label>
-        <g:datePicker name="receiptData" precision="day"  value="${bloodSampleInstance?.receiptData}"  />
-</div>
+<div class="fieldcontain ${hasErrors(bean: bloodSampleInstance, field: 'receiptData', 'error')} ">
+    <label>Fecha de toma de Muestra</label>
+    <span class="field"><input id="datepicker" type="text" name="receiptData" class="input-small" /></span>
+</div> 
 
 <div class="fieldcontain ${hasErrors(bean: bloodSampleInstance, field: 'testType', 'error')} ">
 	<label for="testType">

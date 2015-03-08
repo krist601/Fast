@@ -40,12 +40,12 @@
                             <g:each in="${paymentMethodInstanceList}" status="i" var="paymentMethodInstance">
                                 <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
-                                    <td><g:link action="show" id="${paymentMethodInstance.id}"><g:formatDate date="${paymentMethodInstance.date}" format="dd MMMM yyyy"/></g:link></td>
+                                    <td><g:formatDate date="${paymentMethodInstance.date}" format="dd MMMM yyyy"/></td>
 
                                     <td>${paymentMethodInstance.treatment.getType(paymentMethodInstance.treatment.id)}</td>
                                     
                                      <td>${paymentMethodInstance.treatment.patient}</td>
-                                     <td>${paymentMethodInstance.amount}</td>
+                                     <td>${paymentMethodInstance.amount} Bs.</td>
 
                                     <td>${paymentMethodInstance.paymentMethodType}</td>
 

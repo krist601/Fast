@@ -1,10 +1,12 @@
 package fastchacaito
 import fastchacaito.Mesotherapy
 import org.springframework.dao.DataIntegrityViolationException
+import java.text.SimpleDateFormat
 
 class SesionControlController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    static SimpleDateFormat theDate = new SimpleDateFormat( 'MM/dd/yyyy' ) //H:m:s
     def springSecurityService
     
     def index() {
@@ -22,7 +24,7 @@ class SesionControlController {
     }
 
     def save() {
-        params.date=new Date()
+        params.date=theDate.parse(params.date)
        // params.achieved=Integer.parseInt(params.leftArm)+Integer.parseInt(params.rightArm)+Integer.parseInt(params.waist)+Integer.parseInt(params.abdomen)+Integer.parseInt(params.hips)+Integer.parseInt(params.leftThigh)+Integer.parseInt(params.rightThigh)+Integer.parseInt(params.leftCrotch)+Integer.parseInt(params.rightCrotch)
         def row =SesionControl.executeQuery("SELECT MAX(ap.sesionNumber)+1 FROM SesionControl as ap WHERE ap.mesotherapy="+params.mesotherapy.id)
         if (row[0])

@@ -15,7 +15,8 @@ class ApplicationController {
 
     def list(Integer max) {
         params.max = Math.min(max ?: 10000, 100000)
-        [applicationInstanceList: Application.list(params), applicationInstanceTotal: Application.count()]
+        def applications = Application.avaliableApplications()
+        [applicationInstanceList: applications, applicationInstanceTotal: applications.size()]
     }
 
     def create() {
