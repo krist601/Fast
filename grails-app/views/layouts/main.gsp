@@ -71,12 +71,6 @@
                             <li><a href="/FastChacaito/Appointment/Create">Crear Nueva Cita</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown"><a href=""><span class="iconfa-calendar"></span> Cita</a>
-                        <ul>
-                            <li><a href="/FastChacaito/Appointment/List">Listar Citas</a></li>
-                            <li><a href="/FastChacaito/Appointment/Create">Crear Nueva Cita</a></li>
-                        </ul>
-                    </li>
                     <li class="dropdown"><a href=""><span class="iconfa-tint"></span> Examenes de Laboratorio</a>
                         <ul>
                             <li><a href="/FastChacaito/BloodSample/List">Muestras de Laboratorio Tomadas</a></li>
@@ -160,7 +154,7 @@
     <script type="text/javascript" src="${resource(dir: 'js', file: 'jquery.tagsinput.min.js')}"></script>
     <script type="text/javascript" src="${resource(dir: 'js', file: 'jquery.autogrow-textarea.js')}"></script>
         <%-- 14100  1402 1403 constancia de trabajo  --%>
-    <script type="text/javascript">
+<script type="text/javascript">
         jQuery(document).ready(function(){
         // dynamic table
         jQuery('#dyntable').dataTable({
