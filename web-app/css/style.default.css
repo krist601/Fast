@@ -220,16 +220,18 @@ h1,h2,h3,h4,h5 { font-weight: normal; line-height: normal; }
 
 .shortcuts { list-style: none; margin-top: 24px; overflow: hidden; clear: both; }
 .shortcuts li { display: inline-block; float: left; margin: 0 5px 5px 0; position: relative; }
-.shortcuts li a { display: block; width: 130px; height: 130px; background: #0866c6; color: #fff; font-size: 16px; }
+.shortcuts li a { display: block; /*width: 130px;*/ height: 130px; background: #0866c6; color: #fff; font-size: 16px; }
+ .nuevo{ display: block; width: 130px; height: 130px; background: #0866c6; color: #fff; font-size: 16px; }
 .shortcuts li a:hover { background: #282828; text-decoration: none; }
-.shortcuts li .shortcuts-label { display: block; padding: 0 12px; }
+.shortcuts li .shortcuts-label { display: block; padding: 0 12px; font-size: 14px;}
 .shortcuts li .shortcuts-icon { display: block; width: 48px; height: 48px; padding: 30px 0 20px 0; margin: 0 auto; }
-.shortcuts li .iconsi-event { background: url(../images/icons/users.png) no-repeat center center; }
-.shortcuts li .iconsi-cart { background: url(../images/icons/medical54.png) no-repeat center center; }
-.shortcuts li .iconsi-archive { background: url(../images/icons/positive3.png) no-repeat center center; }
-.shortcuts li .iconsi-help { background: url(../images/icons/icon-help.png) no-repeat center center; }
-.shortcuts li .iconsi-images { background: url(../images/icons/icon-images.png) no-repeat center center; }
-
+.shortcuts li .iconsi-event { background: url(../images/icons/family21.png) no-repeat center center; background-size: 55px 55px;}
+.shortcuts li .iconsi-cart { background: url(../images/icons/medical54.png) no-repeat center center; background-size: 49px 49px;}
+.shortcuts li .iconsi-archive { background: url(../images/icons/syringe19.png) no-repeat center center; background-size: 50px 50px;}
+.shortcuts li .iconsi-help { background: url(../images/icons/medical55.png) no-repeat center center; background-size: 55px 55px;}
+.shortcuts li .iconsi-images { background: url(../images/icons/blood11.png) no-repeat center center; background-size: 49px 49px;}
+.shortcuts li .iconsi-citas { background: url(../images/icons/medical50.png) no-repeat center center; background-size: 55px 55px;}
+.shortcuts li .iconsi-add { background: url(../images/icons/add.png) no-repeat center center; background-size: 25px 25px;}
 .widget {
     -moz-box-shadow: 1px 1px 8px rgba(0,0,0,0.3);
     -webkit-box-shadow: 1px 1px 8px rgba(0,0,0,0.3);

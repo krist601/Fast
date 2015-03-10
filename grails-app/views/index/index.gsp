@@ -164,29 +164,49 @@
                                             <span class="shortcuts-icon iconsi-event"></span>
                                             <span class="shortcuts-label">Pacientes:  <strong>${Patient.count()}</strong></span>
                                         </a>
+                                      <!--  <ul class="shortcuts">
+                                            <li class="events">
+                                                <a style="width: 70px; height: 70px; " href="${createLink(controller:'patient', action:'list')}">
+                                            <span class="shortcuts-icon iconsi-add" style="background-size:20px 20px;"></span>
+                                            <span class="shortcuts-label">Registrar  </span>
+                                        </a>
+                                            </li>
+                                            <li class="events">
+                                                <a style="width: 70px; height: 70px; " href="${createLink(controller:'patient', action:'list')}">
+                                                    <span class="shortcuts-icon iconsi-event" style="background-size:20px 20px;"></span>
+                                            <span class="shortcuts-label">Buscar  </span>
+                                        </a>
+                                            </li>
+                                        </ul> -->
                                     </li>   
                                     <li class="products">
                                         <a href="${createLink(controller:'vacutainer', action:'list')}">
                                             <span class="shortcuts-icon iconsi-cart"></span>
-                                            <span class="shortcuts-label">Vacutainers</span>
+                                            <span class="shortcuts-label">Vacutainers: <strong>${fastchacaito.Vacutainer.count()}</strong></span>
                                         </a>
                                     </li>
                                     <li class="archive">
                                         <a href="${createLink(controller:'application', action:'list')}">
                                             <span class="shortcuts-icon iconsi-archive"></span>
-                                            <span class="shortcuts-label">Aplicaciones</span>
+                                            <span class="shortcuts-label"> Aplicaciones: <strong> ${fastchacaito.Application.count()}</strong></span>
                                         </a>
                                     </li>
                                     <li class="help">
-                                        <a href="">
+                                        <a href="${createLink(controller:'package', action:'list')}">
                                             <span class="shortcuts-icon iconsi-help"></span>
-                                            <span class="shortcuts-label">Help</span>
+                                            <span class="shortcuts-label">Paquetes</span>
                                         </a>
                                     </li>
                                     <li class="last images">
-                                        <a href="">
+                                        <a href="${createLink(controller:'bloodSample', action:'list')}">
                                             <span class="shortcuts-icon iconsi-images"></span>
-                                            <span class="shortcuts-label">Images</span>
+                                            <span class="shortcuts-label">Exámenes de Laboratorio</span>
+                                        </a>
+                                    </li>
+                                     <li class="last images">
+                                        <a href="${createLink(controller:'appointment', action:'list')}">
+                                            <span class="shortcuts-icon iconsi-citas"></span>
+                                            <span class="shortcuts-label">Citas</span>
                                         </a>
                                     </li>
                                 </ul>

@@ -20,7 +20,7 @@
                     <h4 class="widgettitle" style="font-size: 30px;">Crear Aplicación</h4>
                     <div class="widgetcontent">
                         <form class="stdform" action="save" method="post" data-toggle="validator">
-                                <div id="create-application" class="content scaffold-create" role="main">
+                            <div id="create-application" class="content scaffold-create" role="main">
                                 <g:if test="${flash.message}">
                                     <div class="message" role="status">${flash.message}</div>
                                 </g:if>
@@ -33,7 +33,28 @@
                                 </g:hasErrors>
                                 <g:form action="save" >
                                     <fieldset class="form">
-                                        <g:render template="form"/>
+                                        <div class="fieldcontain ${hasErrors(bean: applicationInstance, field: 'arrivalDate', 'error')} ">
+                                            <label>Fecha de Llegada</label>
+                                            <span class="field"><input id="datepicker" type="text" name="arrivalDate" class="input-small" required/></span>
+                                        </div>
+
+                                        <div class="fieldcontain ${hasErrors(bean: applicationInstance, field: 'identifier', 'error')} ">
+                                            <label for="identifier">
+                                                <g:message code="application.identifier.label" default="Identificador" />
+
+                                            </label>
+                                            <input name="identifier" value="${applicationInstance?.identifier}" required/>
+                                        </div> </br>
+                                        <div class="fieldcontain ${hasErrors(bean: applicationInstance, field: 'applicationType', 'error')} ">
+                                            <label for="applicationType">
+                                                <g:message code="application.identifier.label" default="Tipo de Aplicación" />
+
+                                            </label>
+                                            <g:select name="applicationType" from="${['Balance Clásico', 'Balance Plus']}"/>
+                                        </div>
+
+                                        <g:hiddenField name="vacutainer.id" value="${applicationInstance?.vacutainer?.id}"/>
+
                                     </fieldset>
                                     <fieldset class="buttons">
                                         <g:submitButton name="create" class="btn btn-primary" value="${message(code: 'default.button.create.label', default: 'Create')}" />

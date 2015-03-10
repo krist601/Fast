@@ -1,5 +1,6 @@
 package fastchacaito
 
+import grails.converters.JSON
 import org.springframework.dao.DataIntegrityViolationException
 
 class AppointmentController {
@@ -63,7 +64,7 @@ class AppointmentController {
         if (version != null) {
             if (appointmentInstance.version > version) {
                 appointmentInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'appointment.label', default: 'Appointment')] as Object[],
+                    [message(code: 'appointment.label', default: 'Appointment')] as Object[],
                           "Another user has updated this Appointment while you were editing")
                 render(view: "edit", model: [appointmentInstance: appointmentInstance])
                 return
@@ -98,5 +99,29 @@ class AppointmentController {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'appointment.label', default: 'Appointment'), id])
             redirect(action: "show", id: id)
         }
+    }
+    
+    def events()
+    {
+        // response.setContentType("application/json")
+//        HashMap jsonMap = new HashMap()
+//        List<Appointment> citas = Appointment.list()
+//
+// 
+//        jsonMap.citas = citas.collect {cita ->
+//            return [id: cita.id, endDate: cita.endDate, beginDate: cita.beginDate]
+//        }
+
+        
+        println "vino json"
+        render Appointment.list().collect {
+            [
+                title: it.patient.firstName + " "+it.patient.lastName,
+                start: it.beginDate,
+                end: it.endDate,
+                allDay:false
+            ]
+        } as JSON
+       // render '[{"title":"Board Meeting","start":"Fri, 20 Aug 2015 14:00:00 CDT","end":"Fri, 20 Aug 2015 14:00:00 CDT","allDay":false}]'
     }
 }

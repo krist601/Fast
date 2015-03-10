@@ -50,6 +50,11 @@
                             </g:each>
                         </tbody>
                     </table>
+                     <fieldset class="buttons">
+                        <a class="btn btn-primary" href="${createLink(controller:'application', action:'create')}">
+                            Crear
+                        </a>
+                    </fieldset>
                     <div class="footer">
                     <div class="footer-left">
                         <span>&copy; 2014. Fast CA. Todos los derechos reservados.</span>
