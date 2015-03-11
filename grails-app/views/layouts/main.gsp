@@ -79,8 +79,9 @@
                     </li>
                     <li class="dropdown"><a href=""><span class="iconfa-inbox"></span> Gel</a>
                         <ul>
-                            <li><a href="/FastChacaito/Gel/List">Listar Gels</a></li>
-                            <li><a href="/FastChacaito/Gel/Create">Crear Nuevo Gel</a></li>
+                           <li><a href="/FastChacaito/Gel/Create">Crear Nuevo Gel</a></li>
+                                <li><a href="/FastChacaito/Gel/List">Geles en Stock</a></li>
+                                <li><a href="/FastChacaito/Gel/ListShipped">Geles Vendidos</a></li>
                         </ul>
                     </li>
                     <li class="dropdown"><a href=""><span class="iconfa-cogs"></span> Administración</a>

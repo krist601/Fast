@@ -7,5 +7,7 @@ class Gel {
     //deberia tener relacionado el usuario
     static belongsTo = [closure: Closure,secAppUser: user.SecAppUser]
     static constraints = {
+        shippedDate nullable:true
+        closure nullable:true
     }
 }

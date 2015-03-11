@@ -15,21 +15,21 @@
         <div id="list-gel" class="content scaffold-list" role="main">
             <div class="maincontent">
                 <div class="maincontentinner">
+                    <g:if test="${flash.message}">
+                        <div class="message" role="status">${flash.message}</div>
+                    </g:if>
                     <h4 class="widgettitle" style="font-size: 30px;">Gel</h4>
                     <table class="table table-bordered table-infinite" id="dyntable2">
-                        <colgroup>
-                            <col class="con0" />
-                            <col class="con1" />
-                            <col class="con0" />
-                        </colgroup>
                         <thead>
                             <tr>
 
-                                <th><g:message code="gel.closure.label" default="Cierre" /></th>
+                                <th><g:message code="gel.outType.label" default="Identificador" /></th>
 
-                                <th><g:message code="gel.outType.label" default="Tipo de Salida" /></th>
+                                <th><g:message code="gel.receivedDate.label" default="Fecha de Llegada" /></th>
 
-                                <th><g:message code="gel.receivedDate.label" default="Fecha de Recivo" /></th>
+                                <th><g:message code="gel.receivedDate.label" default="Estado" /></th>
+
+                                <th><g:message code="gel.receivedDate.label" default="AcciÃ³n" /></th>
 
                             </tr>
                         </thead>
@@ -37,11 +37,13 @@
                             <g:each in="${gelInstanceList}" status="i" var="gelInstance">
                                 <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
-                                    <td><g:link action="show" id="${gelInstance.id}">${fieldValue(bean: gelInstance, field: "closure")}</g:link></td>
+                                    <td>${fieldValue(bean: gelInstance, field: "identifier")}</td>
 
-                                    <td>${fieldValue(bean: gelInstance, field: "outType")}</td>
+                                    <td><g:formatDate format="dd MMMM yyyy" date="${gelInstance.receivedDate}"/></td>
 
-                                    <td>${fieldValue(bean: gelInstance, field: "receivedDate")}</td>
+                                    <td><g:link action="changeStatus" id="${gelInstance.id}">Marcar como Vendido</g:link></td>
+
+                                    <td><g:link action="deleteGel" id="${gelInstance.id}">Eliminar</g:link></td>
 
                                 </tr>
                             </g:each>
@@ -52,7 +54,7 @@
                             <span>&copy; 2014. Fast CA. Todos los derechos reservados.</span>
                         </div>
                         <div class="footer-right">
-                            <span>Diseñado por: <a href="http://themepixels.com/">Kristian Cortés</a></span>
+                            <span>DiseÃ±ado por: <a href="http://themepixels.com/">Kristian CortÃ©s</a></span>
                         </div>
                     </div>
                 </div>

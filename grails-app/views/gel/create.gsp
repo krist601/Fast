@@ -33,9 +33,16 @@
                                     </ul>
                                 </g:hasErrors>
                                 <g:form action="save" >
-                                    <fieldset class="form">
-                                        <g:render template="form"/>
-                                    </fieldset>
+
+                                    <div class="fieldcontain ${hasErrors(bean: gelInstance, field: 'amount', 'error')} ">
+                                            <label for="outType">
+                                                    <g:message code="gel.amount.label" default="Cantidad" />
+
+                                            </label>
+                                            <g:textField name="amount" value=""/>
+                                    </div>
+
+
                                     <fieldset class="buttons">
                                         <g:submitButton name="create" class="btn btn-primary" value="${message(code: 'default.button.create.label', default: 'Create')}" />
                                     </fieldset>
@@ -50,7 +57,7 @@
                         <span>&copy; 2014. Fast CA. Todos los derechos reservados.</span>
                     </div>
                     <div class="footer-right">
-                        <span>Diseñado por: <a href="http://themepixels.com/">Kristian Cortés</a></span>
+                        <span>DiseÃ±ado por: <a href="http://themepixels.com/">Kristian CortÃ©s</a></span>
                     </div>
                 </div><!--footer-->
 

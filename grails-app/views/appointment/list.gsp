@@ -1,4 +1,5 @@
 <%@ page import="fastchacaito.Appointment" %>
+<%@ page import="user.SecAppUser" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -42,21 +43,7 @@
             },
             selectable: true,
             selectHelper: true,
-            select: function(start, end, allDay) {
-            var title = prompt('Event Title: 1');
-            if (title) {
-            calendar.fullCalendar('renderEvent',
-            {
-            title: title,
-            start: start,
-            end: end,
-            allDay: allDay
-            },
-            true // make the event "stick"
-            );
-            }
-            calendar.fullCalendar('unselect');
-            },
+            select: "${createLink(controller: 'appointment', action: 'create')}",
             editable: true,
             events: '${createLink(controller: "appointment", action: "events")}'
             });
