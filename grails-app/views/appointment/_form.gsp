@@ -1,36 +1,24 @@
 <%@ page import="fastchacaito.Appointment" %>
 
-
-
-<div class="fieldcontain ${hasErrors(bean: appointmentInstance, field: 'beginDate', 'error')} required">
-	<label for="beginDate">
-		<g:message code="appointment.beginDate.label" default="Begin Date" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:datePicker name="beginDate" precision="day"  value="${appointmentInstance?.beginDate}"  />
+<div class="par">
+    <label>Hora de la Cita</label>
+    <div class="input-append bootstrap-timepicker">
+        <input id="timepicker1" name="time" type="text" class="input-small" required/>
+        <span class="add-on"><i class="iconfa-time"></i></span>
+    </div>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: appointmentInstance, field: 'dateType', 'error')} ">
-	<label for="dateType">
-		<g:message code="appointment.dateType.label" default="Date Type" />
-		
-	</label>
-	<g:textField name="dateType" value="${appointmentInstance?.dateType}"/>
+<div class="fieldcontain ${hasErrors(bean: appointmentInstance, field: 'date', 'error')} ">
+    <label>Fecha de la Cita</label>
+    <span class="field"><input id="datepicker" type="text" name="date" class="input-small" required/></span>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: appointmentInstance, field: 'endDate', 'error')} required">
-	<label for="endDate">
-		<g:message code="appointment.endDate.label" default="End Date" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:datePicker name="endDate" precision="day"  value="${appointmentInstance?.endDate}"  />
-</div>
+</br>
 
-<div class="fieldcontain ${hasErrors(bean: appointmentInstance, field: 'patient', 'error')} required">
-	<label for="patient">
-		<g:message code="appointment.patient.label" default="Patient" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:select id="patient" name="patient.id" from="${fastchacaito.Patient.list()}" optionKey="id" required="" value="${appointmentInstance?.patient?.id}" class="many-to-one"/>
+<div class="fieldcontain ${hasErrors(bean: appointmentInstance, field: 'treatment', 'error')} required">
+    <label for="treatment">
+        <g:message code="appointment.treatment.label" default="Tratamiento" />
+    </label>
+    <g:select id="treatment" name="treatment.id" from="${fastchacaito.Treatment.findAllByPatient(patientInstance)}" optionKey="id" required="" value="${appointmentInstance?.treatment?.id}" class="many-to-one" noSelection="['':'-Selecciona-']"/>
 </div>
 

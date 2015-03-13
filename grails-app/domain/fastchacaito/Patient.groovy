@@ -40,8 +40,7 @@ class Patient {
     List treatments
     
     static searchable = true
-    static hasMany = [medicHistory: MedicHistory, bloodSample: BloodSample, 
-        appointment: Appointment, treatments: Treatment]
+    static hasMany = [medicHistory: MedicHistory, bloodSample: BloodSample, treatments: Treatment]
     
     static constraints = {
         otherSuffer nullable:true
@@ -164,35 +163,64 @@ class Patient {
                 def meso = treatments[i].mesotherapy
                 if (bal)
                 {
-                     bal.eachWithIndex{
-                            b,ind -> 
-                            if (b.measuresControl)
-                            {
-                                b.measuresControl.each(){
-                                   mc-> measures.add(mc)
-                                }
-                                
+                    bal.eachWithIndex{
+                        b,ind -> 
+                        if (b.measuresControl)
+                        {
+                            b.measuresControl.each(){
+                                mc-> measures.add(mc)
                             }
+                                
                         }
+                    }
                 }
                 if (meso)
                 {
-                     meso.eachWithIndex{
-                            m,ind -> 
-                            if (m.measuresControl)
-                            {
-                                m.measuresControl.each(){
-                                   mc-> measures.add(mc)
-                                }
-                                
+                    meso.eachWithIndex{
+                        m,ind -> 
+                        if (m.measuresControl)
+                        {
+                            m.measuresControl.each(){
+                                mc-> measures.add(mc)
                             }
+                                
                         }
+                    }
                 }
             }
         }
-     //   println measures.sort { it.identifierNumber }
+        //   println measures.sort { it.identifierNumber }
         return measures.sort { it.identifierNumber }
     }
     
-  
+    static hasAppointment(patient)
+    {
+        def treatments = Treatment.findAllByPatient(patient)
+        for (def t : treatments){
+            if (t.appointment.size()>0) {
+          
+                return true
+            }
+         }
+         return false
+    }
+    
+    static getAppointments(patient)
+    {
+        def treatments = Treatment.findAllByPatient(patient)
+        def appointments = new ArrayList()
+        
+        treatments.each(){
+            t->  if (t.appointment.size()>0) 
+            {
+                def app = t.appointment
+                app.each(){
+                    a -> appointments.add(a)
+                }
+            }
+            
+        }
+      
+        return appointments
+    }
 }

@@ -2,11 +2,17 @@ package fastchacaito
 
 import grails.converters.JSON
 import org.springframework.dao.DataIntegrityViolationException
+import java.text.SimpleDateFormat
 
 class AppointmentController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
-
+    static SimpleDateFormat theDate = new SimpleDateFormat( 'MM/dd/yyyy' ) //H:m:s
+    static SimpleDateFormat theTime = new SimpleDateFormat( 'hh:mm aa' ) //H:m:s
+    static SimpleDateFormat theDate1 = new SimpleDateFormat( 'MM/dd/yyyy H:m:s' )
+    static SimpleDateFormat x = new SimpleDateFormat( 'dd/MM/yyyy' )
+    def springSecurityService
+    
     def index() {
         redirect(action: "list", params: params)
     }
@@ -17,10 +23,22 @@ class AppointmentController {
     }
 
     def create() {
-        [appointmentInstance: new Appointment(params)]
+        def patientInstance = Patient.get(params.foo)
+        [appointmentInstance: new Appointment(params),patientInstance:patientInstance]
     }
 
     def save() {
+        
+        
+        def user = springSecurityService.currentUser
+      
+        params.date=theDate.parse(params.date) 
+       
+        params.time=theTime.parse(params.time)
+  
+        params.date.set(hourOfDay: params.time.getHours(), minute: params.time.getMinutes(), second: 0)
+              
+        params.user=user
         def appointmentInstance = new Appointment(params)
         if (!appointmentInstance.save(flush: true)) {
             render(view: "create", model: [appointmentInstance: appointmentInstance])
@@ -28,7 +46,7 @@ class AppointmentController {
         }
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'appointment.label', default: 'Appointment'), appointmentInstance.id])
-        redirect(action: "show", id: appointmentInstance.id)
+        redirect(controller:"patient",action: "show", id: appointmentInstance.treatment.patient.id)
     }
 
     def show(Long id) {
@@ -101,27 +119,47 @@ class AppointmentController {
         }
     }
     
+    def changeAttendedStatus(Long id)
+    {
+        println id
+        def appointmentInstance = Appointment.get(id)
+        println appointmentInstance 
+        if (!appointmentInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'appointment.label', default: 'Appointment'), id])
+            redirect(action: "list")
+            return
+        }
+        
+        def status = params.foo
+        if (status == '1')
+        status = true
+        else if (status == '2')
+        status = false
+        
+        appointmentInstance.attended = status
+        appointmentInstance.save(flush:true)
+         
+         redirect(controller:"patient", action: "show", id:appointmentInstance.treatment.patient.id)
+    }
+    
     def events()
     {
-        // response.setContentType("application/json")
-//        HashMap jsonMap = new HashMap()
-//        List<Appointment> citas = Appointment.list()
-//
-// 
-//        jsonMap.citas = citas.collect {cita ->
-//            return [id: cita.id, endDate: cita.endDate, beginDate: cita.beginDate]
-//        }
-
-        
-        println "vino json"
+        println Appointment.list().collect {
+            [
+                title: it.treatment.patient.firstName + " "+it.treatment.patient.lastName,
+                start: it.date,
+                end: it.date,
+                allDay:false
+            ]
+        } 
         render Appointment.list().collect {
             [
-                title: it.patient.firstName + " "+it.patient.lastName,
-                start: it.beginDate,
-                end: it.endDate,
+                title: it.treatment.patient.firstName + " "+it.treatment.patient.lastName+ " "+it.treatment,
+                start: it.date,
+                end: it.date,
                 allDay:false
             ]
         } as JSON
-       // render '[{"title":"Board Meeting","start":"Fri, 20 Aug 2015 14:00:00 CDT","end":"Fri, 20 Aug 2015 14:00:00 CDT","allDay":false}]'
+     
     }
 }

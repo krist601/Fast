@@ -195,7 +195,7 @@
                                     <li class="help">
                                         <a href="${createLink(controller:'package', action:'list')}">
                                             <span class="shortcuts-icon iconsi-help"></span>
-                                            <span class="shortcuts-label">Paquetes</span>
+                                            <span class="shortcuts-label">Paquetes <strong> ${fastchacaito.Package.count()}</strong></span>
                                         </a>
                                     </li>
                                     <li class="last images">

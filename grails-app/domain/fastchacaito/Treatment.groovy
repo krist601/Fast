@@ -11,12 +11,21 @@ class Treatment {
 //    List machine
 //    List paymentMethod
     
-    static hasMany = [balance: Balance, mesotherapy: Mesotherapy, bodyTherapy: BodyTherapy, machine: Machine, paymentMethod: PaymentMethod]
+    static hasMany = [balance: Balance, mesotherapy: Mesotherapy, 
+        bodyTherapy: BodyTherapy, machine: Machine, paymentMethod: PaymentMethod, 
+        appointment: Appointment]
 
     static belongsTo = [packages: Package, patient: Patient]
     static constraints = {
     }
-    
+     String toString(){
+        if (balance!=null)
+            return "Balance"+' '+"${totalPrice}"+" Bs."
+        else if (mesotherapy!=null)
+            return "Mesoterapia"
+        else 
+            return ""
+    }
    static getType(treatmentId)
     {
         def treatment = Treatment.get(treatmentId)
@@ -27,4 +36,6 @@ class Treatment {
         else 
             return ""
     }
+    
+    
 }

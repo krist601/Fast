@@ -8,6 +8,7 @@
         <meta name="layout" content="main">
         <g:set var="entityName" value="${message(code: 'patient.label', default: 'Patient')}" />
         <title><g:message code="default.show.label" args="[entityName]" /></title>
+
     </head>
     <body>
         <ul class="breadcrumbs">
@@ -112,7 +113,10 @@
                                 <g:if test="${patientInstance.getMeasuresControl(patientInstance.id)}">
                                 <li><a href="#a-10">Control de Medidas</a></li>
                                 </g:if>
-                            <li><a href="#a-11">Opciones</a></li>
+                                <g:if test="${patientInstance.hasAppointment(patientInstance)}">
+                                <li><a href="#a-11">Control de Citas </a></li>
+                                </g:if>
+                            <li><a href="#a-12">Opciones </a></li>
 
                         </ul>
                         <g:if test="${patientInstance.treatments}">
@@ -453,7 +457,7 @@
                                                                         Agregar Control de Aplicación
                                                                     </a>
                                                                     <font style="color: red;margin-left: 5px; padding-left: 5px;">
-                                                                        La persona debe cancelar el monto restante del tratamiento
+                                                                    La persona debe cancelar el monto restante del tratamiento
                                                                     </font>
                                                                 </g:else>
                                                             </g:if>
@@ -560,12 +564,12 @@
                                                             <g:if test="${fastchacaito.Mesotherapy.isHalfOfApplication(item2.id)==false}">
                                                                     <a class="btn btn-info dropdown-toggle" style="color: white;" href="${createLink(controller:'sesionControl', action:'create', params:[foo:item2?.id])}">Agregar Control de Sesión</a>
                                                                 </g:if>
-                                                            <g:else>
-                                                                <a class="btn btn-danger dropdown-toggle" disabled>Agregar Control de Sesión </a>
+                                                                <g:else>
+                                                                    <a class="btn btn-danger dropdown-toggle" disabled>Agregar Control de Sesión </a>
                                                                     <font style="color: red;margin-left: 5px; padding-left: 5px;">
-                                                                        La persona debe cancelar el monto restante del tratamiento
+                                                                    La persona debe cancelar el monto restante del tratamiento
                                                                     </font>
-                                                            </g:else>
+                                                                </g:else>
                                                             </g:if>
                                                         </g:if>
                                                     </g:if>
@@ -663,7 +667,7 @@
                                 </div><!--#accordion-->
                             </div>
                         </g:if>
-                        <div id="a-11">
+                        <div id="a-12">
                             <div class="headtitle">
                                 <div class="btn-group">
                                     <a class="btn dropdown-toggle" href="${createLink(controller:'medicHistory', action:'create', params:[foo:patientInstance?.id])}">Crear</a>
@@ -687,6 +691,12 @@
                                     <a class="btn dropdown-toggle" href="${createLink(controller:'Treatment', action:'createMesotherapy', params:[foo:patientInstance?.id])}">Crear</a>
                                 </div>
                                 <h4 class="widgettitle title-info">Contratar Nuevo Paquete de Mesoterapia</h4>
+                            </div>
+                            <div class="headtitle">
+                                <div class="btn-group">
+                                    <a class="btn dropdown-toggle" href="${createLink(controller:'appointment', action:'create', params:[foo:patientInstance?.id])}">Crear</a>
+                                </div>
+                                <h4 class="widgettitle title-info">Nueva Cita</h4>
                             </div>
                         </div>
                         <g:if test="${patientInstance.getMeasuresControl(patientInstance.id)}">
@@ -739,6 +749,49 @@
 
                             </div>
                         </g:if>
+                        <g:if test="${patientInstance.hasAppointment(patientInstance)}">
+                            <div id="a-11">
+                                <table class="table responsive">
+                                    <thead>
+                                        <tr >
+                                            <th class="center" style="font-size: 5px"></th>
+
+                                            <th class="center">Fecha</th>
+                                            <th class="center">Hora</th>
+                                            <th class="center">Tratamiento</th>
+                                            <th class="center">Asistió</th>
+                                            <th class="center">Acción</th>
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <g:each in="${patientInstance.getAppointments(patientInstance)}" var="item">
+                                            <tr>
+                                                <td class="center"></td>
+                                                <td class="center"><g:formatDate date="${item.date}" format="dd-MM-yyyy"/></td>
+                                                <td class="center"><g:formatDate date="${item.date}" format="HH:mm a"/></td>
+                                                <td class="center">${item.treatment.getType(item.treatment.id)}</td>
+                                                <td class="center"><g:formatBoolean boolean="${item.attended}" true="Si" false="No" /></td>
+                                                <td class="center"> 
+                                                  <!--  <a data-target="#myModal" href="#" role="button" class="btn" data-toggle="modal" data-id="6">
+                                                        Indicar si el paciente asistió
+                                                    </a> -->
+                                                    <ul class="list-nostyle list-inline">
+                                                        <li><a href="${createLink(controller:'appointment', action:'changeAttendedStatus', id:item.id,params:[foo:1])}" class="btn btn-primary"><i class="iconfa-ok icon-white"></i>  Si</a>  </li>
+                                                        <li><a href="${createLink(controller:'appointment', action:'changeAttendedStatus', id:item.id,params:[foo:2])}" class="btn btn-danger"><i class="iconfa-remove icon-white"></i>  No</a>  </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        </g:each>
+                                    </tbody>
+                                </table>
+
+
+
+
+                            </div>
+                        </g:if>
                     </div><!--tabbedwidget-->
                     <br>
                     <g:form>
@@ -761,5 +814,52 @@
 
             </div><!--maincontentinner-->
         </div><!--maincontent-->
+        <div id="myModal" class="modal hide fade" >
+
+            <div id="modal-body">
+
+
+                <div class="widget">
+                    <h4 class="widgettitle" style="font-size: 30px;">Indicar Asistencia</h4>
+                    <div class="widgetcontent">
+                        <g:form controller="appointment" action="save"  >
+                            <fieldset class="form">
+
+
+                                <select name="attended">
+                                    <label for="attended">
+                                        <g:message code="vacutainer.vacutainerType.label" default="Indique" />
+                                    </label>
+                                    <option value="0" ${!active ? 'selected' : ''}>No asistió</option>
+                                    <option value="1" ${active ? 'selected' : ''}>Si asistió</option>
+                                </select>
+
+                                <div class="fieldcontain ${hasErrors(bean: appointmentInstance, field: 'treatment', 'error')} required">
+                                    <label for="treatment">
+                                        <g:message code="appointment.treatment.label" default="Treatment" />
+                                        <span class="required-indicator">*</span>
+                                    </label>
+                                    <g:select id="treatment" name="treatment.id" from="${fastchacaito.Treatment.list()}" optionKey="id" required="" value="${appointmentInstance?.treatment?.id}" class="many-to-one"/>
+                                    <input type="text" name="treatment" id="treatment" value="" />
+                                </div>
+
+                            </fieldset>
+                            <fieldset class="buttons">
+                                <g:submitButton name="create" class="btn btn-primary" value="Aceptar" />
+                            </fieldset>
+                        </g:form>
+                    </div><!--widgetcontent-->
+                </div><!--widget-->
+            </div>
+            <script>
+                $(document).ready(function (e) {
+                alert('abc');
+                $('#myModal').on('show.bs.modal', function(e) {    
+                var id = $(e.relatedTarget).data().id;
+                $(e.currentTarget).find('#treatment').val(id);
+                alert('abc');
+                });
+                });
+            </script> 
     </body>
 </html>
