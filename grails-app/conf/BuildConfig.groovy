@@ -40,7 +40,7 @@ grails.project.dependency.resolution = {
     }
 
     dependencies {
-        runtime "postgresql:postgresql:9.2-1003.jdbc4"
+       runtime 'postgresql:postgresql:8.4-702.jdbc3'
     }
 
     plugins {
@@ -58,6 +58,8 @@ grails.project.dependency.resolution = {
         runtime ":database-migration:1.3.2"
         compile ":spring-security-core:1.2.7.3"
         compile ':cache:1.0.1'
+         compile ':heroku:1.0.1'
+        compile ':cloud-support:1.0.8'
       //  compile ":modaldynamix:0.12"
     }
 }
