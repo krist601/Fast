@@ -759,8 +759,8 @@
                                             <th class="center">Fecha</th>
                                             <th class="center">Hora</th>
                                             <th class="center">Tratamiento</th>
+                                            <th class="center">Usuario</th>
                                             <th class="center">Asistió</th>
-                                            <th class="center">Acción</th>
 
 
                                         </tr>
@@ -772,16 +772,27 @@
                                                 <td class="center"><g:formatDate date="${item.date}" format="dd-MM-yyyy"/></td>
                                                 <td class="center"><g:formatDate date="${item.date}" format="HH:mm a"/></td>
                                                 <td class="center">${item.treatment.getType(item.treatment.id)}</td>
-                                                <td class="center"><g:formatBoolean boolean="${item.attended}" true="Si" false="No" /></td>
-                                                <td class="center"> 
-                                                  <!--  <a data-target="#myModal" href="#" role="button" class="btn" data-toggle="modal" data-id="6">
-                                                        Indicar si el paciente asistió
-                                                    </a> -->
-                                                    <ul class="list-nostyle list-inline">
-                                                        <li><a href="${createLink(controller:'appointment', action:'changeAttendedStatus', id:item.id,params:[foo:1])}" class="btn btn-primary"><i class="iconfa-ok icon-white"></i>  Si</a>  </li>
-                                                        <li><a href="${createLink(controller:'appointment', action:'changeAttendedStatus', id:item.id,params:[foo:2])}" class="btn btn-danger"><i class="iconfa-remove icon-white"></i>  No</a>  </li>
-                                                    </ul>
+                                                
+
+                                                <td class="center"> ${item.user} </td>
+                                                <td class="center">
+                                                    <g:if test="${item.attended == null}">
+                                                        <g:if test="${item.date.before(new Date())}">
+                                                        <ul class="list-nostyle list-inline">
+                                                            <li><a href="${createLink(controller:'appointment', action:'changeAttendedStatus', id:item.id,params:[foo:1])}" class="btn btn-primary"><i class="iconfa-ok icon-white"></i>  Si</a>  </li>
+                                                            <li><a href="${createLink(controller:'appointment', action:'changeAttendedStatus', id:item.id,params:[foo:2])}" class="btn btn-danger"><i class="iconfa-remove icon-white"></i>  No</a>  </li>
+                                                        </ul>
+                                                          </g:if>
+                                                        <g:else> <ul class="list-nostyle list-inline">
+                                                            <li><a href="" class="btn btn-primary" disabled><i class="iconfa-ok icon-white"></i>  Si</a>  </li>
+                                                            <li><a href="" class="btn btn-danger" disabled><i class="iconfa-remove icon-white"></i>  No</a>  </li>
+                                                        </ul></g:else>
+                                                    </g:if>
+                                                    <g:else>
+                                                        <g:formatBoolean boolean="${item.attended}" true="Si" false="No" />
+                                                    </g:else>
                                                 </td>
+
                                             </tr>
                                         </g:each>
                                     </tbody>

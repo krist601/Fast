@@ -221,6 +221,6 @@ class Patient {
             
         }
       
-        return appointments
+        return appointments.sort(){ it.date }
     }
 }

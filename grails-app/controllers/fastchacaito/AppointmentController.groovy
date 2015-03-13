@@ -37,7 +37,7 @@ class AppointmentController {
         params.time=theTime.parse(params.time)
   
         params.date.set(hourOfDay: params.time.getHours(), minute: params.time.getMinutes(), second: 0)
-              
+        params.attended = null
         params.user=user
         def appointmentInstance = new Appointment(params)
         if (!appointmentInstance.save(flush: true)) {
@@ -144,15 +144,7 @@ class AppointmentController {
     
     def events()
     {
-        println Appointment.list().collect {
-            [
-                title: it.treatment.patient.firstName + " "+it.treatment.patient.lastName,
-                start: it.date,
-                end: it.date,
-                allDay:false
-            ]
-        } 
-        render Appointment.list().collect {
+       render Appointment.list().collect {
             [
                 title: it.treatment.patient.firstName + " "+it.treatment.patient.lastName+ " "+it.treatment,
                 start: it.date,
