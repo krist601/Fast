@@ -45,6 +45,10 @@
             selectHelper: true,
             select: "${createLink(controller: 'appointment', action: 'create')}",
             editable: false,
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio','Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            monthNameShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun','Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+            dayNames: ['Domingo', 'Lunes', 'Martes', 'Miercoles','Jueves', 'Viernes', 'Sabado'],
+            dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
             events: '${createLink(controller: "appointment", action: "events")}'
             });
 
@@ -160,10 +164,10 @@
                 <div class="maincontent">
                     <div class="maincontentinner">
                         <fieldset class="buttons">
-                        <a class="btn btn-primary" href="${createLink(controller:'appointment', action:'create')}">
-                            Crear Cita
-                        </a>
-                    </fieldset>
+                            <a class="btn btn-primary" href="${createLink(controller:'appointment', action:'create')}">
+                                Crear Cita
+                            </a>
+                        </fieldset>
                         <div id='calendar'></div>
 
                         <div class="footer">
