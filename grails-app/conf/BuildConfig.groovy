@@ -4,6 +4,7 @@ grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
 grails.project.target.level = 1.6
 grails.project.source.level = 1.6
+grails.project.dependency.resolver = "maven"
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
 
 // uncomment (and adjust settings) to fork the JVM to isolate classpaths
@@ -57,6 +58,7 @@ grails.project.dependency.resolution = {
 
         runtime ":database-migration:1.3.2"
         compile ":spring-security-core:1.2.7.3"
+        compile ':webxml:1.4.1'
         compile ':cache:1.0.1'
         compile ':heroku:1.0.1'
        compile ':cloud-support:1.0.8'
