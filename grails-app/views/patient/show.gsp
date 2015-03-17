@@ -757,7 +757,8 @@
                                             <th class="center" style="font-size: 5px"></th>
 
                                             <th class="center">Fecha</th>
-                                            <th class="center">Hora</th>
+                                            <th class="center">Hora Inicio</th>
+                                             <th class="center">Hora Fin</th>
                                             <th class="center">Tratamiento</th>
                                             <th class="center">Usuario</th>
                                             <th class="center">Asistió</th>
@@ -771,6 +772,7 @@
                                                 <td class="center"></td>
                                                 <td class="center"><g:formatDate date="${item.date}" format="dd-MM-yyyy"/></td>
                                                 <td class="center"><g:formatDate date="${item.date}" format="HH:mm a"/></td>
+                                                 <td class="center"><g:formatDate date="${item.endTime}" format="HH:mm a"/></td>
                                                 <td class="center">${item.treatment.getType(item.treatment.id)}</td>
                                                 
 

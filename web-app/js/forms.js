@@ -93,7 +93,7 @@ jQuery(document).ready(function(){
 	});
 	
 	jQuery('#timepicker1').timepicker();
-	
+	jQuery('#timepicker2').timepicker();
 	
 	// color picker
 	if(jQuery('#colorpicker').length > 0) {

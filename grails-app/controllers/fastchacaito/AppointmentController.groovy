@@ -8,7 +8,7 @@ class AppointmentController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
     static SimpleDateFormat theDate = new SimpleDateFormat( 'MM/dd/yyyy' ) //H:m:s
-    static SimpleDateFormat theTime = new SimpleDateFormat( 'hh:mm aa' ) //H:m:s
+    static SimpleDateFormat theTime = new SimpleDateFormat( 'HH:mm aa' ) //H:m:s
     static SimpleDateFormat theDate1 = new SimpleDateFormat( 'MM/dd/yyyy H:m:s' )
     static SimpleDateFormat x = new SimpleDateFormat( 'dd/MM/yyyy' )
     def springSecurityService
@@ -34,11 +34,18 @@ class AppointmentController {
       
         params.date=theDate.parse(params.date) 
        
-        params.time=theTime.parse(params.time)
-  
-        params.date.set(hourOfDay: params.time.getHours(), minute: params.time.getMinutes(), second: 0)
+        params.startTime=theTime.parse(params.startTime)
+        params.endTime=theTime.parse(params.endTime)
+
+        println params.endTime
+        println params.startTime
+      //  params.startTime = params.date.set(hourOfDay: params.startTime.getHours(), minute: params.startTime.getMinutes(), second: 0)
+      //  params.endTime = params.date.set(hourOfDay: params.endTime.getHours(), minute: params.endTime.getMinutes(), second: 0)
+        params.date.set(hourOfDay: params.startTime.getHours(), minute: params.startTime.getMinutes(), second: 0)
         params.attended = null
         params.user=user
+        println params.endTime
+        println params.startTime
         def appointmentInstance = new Appointment(params)
         if (!appointmentInstance.save(flush: true)) {
             render(view: "create", model: [appointmentInstance: appointmentInstance])
@@ -148,7 +155,7 @@ class AppointmentController {
             [
                 title: it.treatment.patient.firstName + " "+it.treatment.patient.lastName+ " "+it.treatment,
                 start: it.date,
-                end: it.date,
+                end: it.date.set(hourOfDay: it.endTime.getHours(), minute: it.endTime.getMinutes(), second: 0),
                 allDay:false
             ]
         } as JSON
