@@ -18,7 +18,7 @@
 
             <div class="header">
                 <div class="logo">
-                    <a href="/FastChacaito/"><img src="${resource(dir: 'images', file: 'logoFast.png')}" ></a>
+                    <a href="${createLink(uri: '/')}"><img src="${resource(dir: 'images', file: 'logoFast.png')}" ></a>
                 </div>
                 <div class="headerinner">
                     <ul class="headmenu">
@@ -56,86 +56,86 @@
                         <li><a href="/FastChacaito/"><span class="iconfa-laptop"></span> Dashboard</a></li>
                         <li class="dropdown"><a href=""><span class="iconfa-user"></span> Paciente</a>
                             <ul>
-                                <li><a href="/FastChacaito/Patient/List">Listar Pacientes</a></li>
-                                <li><a href="/FastChacaito/Patient/Create">Crear Nuevo Paciente</a></li>
+                                <li><a href="${createLink(controller:'patient', action:'list')}">Listar Pacientes</a></li>
+                                <li><a href="${createLink(controller:'patient', action:'create')}">Crear Nuevo Paciente</a></li>
                             </ul>
                         </li>
                         <li class="dropdown"><a href=""><span class="iconfa-beaker"></span> Control de Aplicaciones</a>
                             <ul>
-                                <li><a href="/FastChacaito/ApplicationControl/List">Listar Controles de Aplicaciones</a></li>
-                                <li><a href="/FastChacaito/ApplicationControl/Create">Crear Nuevo Control de Aplicacione</a></li>
+                                <li><a href="${createLink(controller:'ApplicationControl', action:'list')}">Listar Controles de Aplicaciones</a></li>
+                                <li><a href="${createLink(controller:'ApplicationControl', action:'create')}">Crear Control de Aplicaciones</a></li>
                             </ul>
                         </li>
                         <li class="dropdown"><a href=""><span class="iconfa-leaf"></span> Control de Masaje</a>
                             <ul>
-                                <li><a href="/FastChacaito/massageControl/List">Listar Controles de Masajes</a></li>
-                                <li><a href="/FastChacaito/massageControl/Create">Crear Nuevo Control de Masaje</a></li>
+                                <li><a href="${createLink(controller:'massageControl', action:'list')}">Listar Controles de Masajes</a></li>
+                                <li><a href="${createLink(controller:'massageControl', action:'create')}">Crear Nuevo Control de Masaje</a></li>
                             </ul>
                         </li>
                         <li class="dropdown"><a href=""><span class="iconfa-resize-small"></span> Control de Medidas</a>
                             <ul>
-                                <li><a href="/FastChacaito/measuresControl/List">Listar Controles de Medidas</a></li>
-                                <li><a href="/FastChacaito/measuresControl/Create">Crear Nuevo Control de Medidas</a></li>
+                                <li><a href="${createLink(controller:'measuresControl', action:'list')}">Listar Controles de Medidas</a></li>
+                                <li><a href="${createLink(controller:'measuresControl', action:'create')}">Crear Nuevo Control de Medidas</a></li>
                             </ul>
                         </li>
                         <li class="dropdown"><a href=""><span class="iconfa-calendar"></span> Cita</a>
                             <ul>
-                                <li><a href="/FastChacaito/Appointment/List">Listar Citas</a></li>
-                                <li><a href="/FastChacaito/Appointment/Create">Crear Nueva Cita</a></li>
+                                <li><a href="${createLink(controller:'Appointment', action:'list')}">Listar Citas</a></li>
+                                <li><a href="${createLink(controller:'Appointment', action:'create')}">Crear Nueva Cita</a></li>
                             </ul>
                         </li>
                         <li class="dropdown"><a href=""><span class="iconfa-tint"></span> Examen de Laboratorio</a>
                             <ul>
-                                <li><a href="/FastChacaito/BloodSample/List">Listar Examenes de Laboratorio</a></li>
-                                <li><a href="/FastChacaito/BloodSample/Create">Crear Nuevo Examen de Laboratorio</a></li>
+                                <li><a href="${createLink(controller:'BloodSample', action:'list')}">Listar Examenes de Laboratorio</a></li>
+                                <li><a href="${createLink(controller:'BloodSample', action:'create')}">Crear Nuevo Examen de Laboratorio</a></li>
                             </ul>
                         </li>
                         <li class="dropdown"><a href=""><span class="iconfa-inbox"></span> Gel</a>
                             <ul>
-                                <li><a href="/FastChacaito/Gel/Create">Crear Nuevo Gel</a></li>
-                                <li><a href="/FastChacaito/Gel/List">Geles en Stock</a></li>
-                                <li><a href="/FastChacaito/Gel/ListShipped">Geles Vendidos</a></li>
+                                <li><a href="${createLink(controller:'Gel', action:'create')}">Crear Nuevo Gel</a></li>
+                                <li><a href="${createLink(controller:'Gel', action:'list')}">Geles en Stock</a></li>
+                                <li><a href="${createLink(controller:'Gel', action:'ListShipped')}">Geles Vendidos</a></li>
                             </ul>
                         </li>
                         <li class="dropdown"><a href=""><span class="iconfa-th-list"></span> Contrato</a>
                             <ul>
-                                <li><a href="/FastChacaito/Treatment/List">Listar Contratos</a></li>
-                                <li><a href="/FastChacaito/Treatment/Create">Crear Nuevo Contrato</a></li>
+                                <li><a href="${createLink(controller:'Treatment', action:'list')}">Listar Contratos</a></li>
+                                <li><a href="${createLink(controller:'Treatment', action:'create')}">Crear Nuevo Contrato</a></li>
                             </ul>
                         </li>
                         <li class="dropdown"><a href=""><span class="iconfa-cogs"></span> Administración</a>
                             <ul>
                                 <li class="dropdown"><a href="">Paquetes</a>
                                     <ul>
-                                        <li><a href="/FastChacaito/Package/List">Listar Paquetes</a></li>
-                                        <li><a href="/FastChacaito/Package/Create">Crear Nuevo Paquete</a></li>
+                                        <li><a href="${createLink(controller:'Package', action:'list')}">Listar Paquetes</a></li>
+                                        <li><a href="${createLink(controller:'Package', action:'create')}">Crear Nuevo Paquete</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown"><a href="">Cierre</a>
                                     <ul>
-                                        <li><a href="/FastChacaito/Closure/List">Listar Cierres</a></li>
-                                        <li><a href="/FastChacaito/Closure/Create">Crear Nuevo Cierre</a></li>
+                                        <li><a href="${createLink(controller:'Closure', action:'list')}">Listar Cierres</a></li>
+                                        <li><a href="${createLink(controller:'Closure', action:'create')}">Crear Nuevo Cierre</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown"><a href="">Inventario</a>
                                     <ul>
-                                        <li><a href="/FastChacaito/Inventory/List">Listar Inventarios</a></li>
-                                        <li><a href="/FastChacaito/Inventory/Create">Crear Nuevo Inventario</a></li>
+                                        <li><a href="${createLink(controller:'Inventory', action:'list')}">Listar Inventarios</a></li>
+                                        <li><a href="${createLink(controller:'Inventory', action:'create')}">Crear Nuevo Inventario</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown"><a href="">Vacutainer</a>
                                     <ul>
-                                        <li><a href="/FastChacaito/Vacutainer/Create">Crear Nuevo Vacutainer</a></li>
-                                        <li><a href="/FastChacaito/Vacutainer/List">Listar Vacutainers</a></li>
-                                        <li><a href="/FastChacaito/Vacutainer/List?foo=1">Vacutainers de Mesoterapia Disponibles</a></li>
-                                        <li><a href="/FastChacaito/Vacutainer/List?foo=2">Vacutainers de Balance Disponibles</a></li>
+                                        <li><a href="${createLink(controller:'Vacutainer', action:'Create')}">Crear Nuevo Vacutainer</a></li>
+                                        <li><a href="${createLink(controller:'Vacutainer', action:'list')}">Listar Vacutainers</a></li>
+                                        <li><a href="${createLink(controller:'Vacutainer', action:'List?foo=1')}">Vacutainers de Mesoterapia Disponibles</a></li>
+                                        <li><a href="${createLink(controller:'Vacutainer', action:'List?foo=2')}">Vacutainers de Balance Disponibles</a></li>
                                         
                                     </ul>
                                 </li>
                                 <li class="dropdown"><a href="">Aplicaciones</a>
                                     <ul>
-                                        <li><a href="/FastChacaito/Application/List">Listar Aplicaciones</a></li>
-                                        <li><a href="/FastChacaito/Application/Create">Crear Nuevo Aplicación</a></li>
+                                        <li><a href="${createLink(controller:'Application', action:'list')}">Listar Aplicaciones</a></li>
+                                        <li><a href="${createLink(controller:'Application', action:'create')}">Crear Nuevo Aplicación</a></li>
                                     </ul>
                                 </li>
                             </ul>

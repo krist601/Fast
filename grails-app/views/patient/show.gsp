@@ -771,9 +771,16 @@
                                             <tr>
                                                 <td class="center"></td>
                                                 <td class="center"> 
-                                                    <g:link  controller="appointment" action="edit" id="${item.id}" params="${[foo:item.treatment.patient.id]}">
+                                                    <g:if test="${!item.date.before(new Date())}">
+                                                        <g:link  controller="appointment" action="edit" id="${item.id}" params="${[foo:item.treatment.patient.id]}">
+                                                            <g:formatDate date="${item.date}" format="dd-MM-yyyy"/>
+                                                        </g:link>
+                                                    </g:if>
+                                                    <g:else> 
                                                        <g:formatDate date="${item.date}" format="dd-MM-yyyy"/>
-                                                    </g:link></td>
+                                                    </g:else> 
+
+                                                </td>
                                                 <td class="center"><g:formatDate date="${item.date}" format="HH:mm a"/></td>
                                                 <td class="center"><g:formatDate date="${item.endTime}" format="HH:mm a"/></td>
                                                 <td class="center">${item.treatment.getType(item.treatment.id)}</td>
@@ -788,10 +795,12 @@
                                                                 <li><a href="${createLink(controller:'appointment', action:'changeAttendedStatus', id:item.id,params:[foo:2])}" class="btn btn-danger"><i class="iconfa-remove icon-white"></i>  No</a>  </li>
                                                             </ul>
                                                         </g:if>
-                                                        <g:else> <ul class="list-nostyle list-inline">
+                                                        <g:else> 
+                                                            <ul class="list-nostyle list-inline">
                                                                 <li><a href="" class="btn btn-primary" disabled><i class="iconfa-ok icon-white"></i>  Si</a>  </li>
                                                                 <li><a href="" class="btn btn-danger" disabled><i class="iconfa-remove icon-white"></i>  No</a>  </li>
-                                                            </ul></g:else>
+                                                            </ul>
+                                                        </g:else>
                                                     </g:if>
                                                     <g:else>
                                                         <g:formatBoolean boolean="${item.attended}" true="Si" false="No" />
