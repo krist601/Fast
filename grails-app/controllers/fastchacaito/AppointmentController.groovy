@@ -9,7 +9,7 @@ class AppointmentController {
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
     static SimpleDateFormat theDate = new SimpleDateFormat( 'MM/dd/yyyy' ) //H:m:s
     static SimpleDateFormat theTime = new SimpleDateFormat( 'HH:mm aa' ) //H:m:s
-    static SimpleDateFormat theDate1 = new SimpleDateFormat( 'MM/dd/yyyy H:m:s' )
+    static SimpleDateFormat theDate1 = new SimpleDateFormat( 'MM/dd/yyyy H:m:s aa' )
     static SimpleDateFormat x = new SimpleDateFormat( 'dd/MM/yyyy' )
     def springSecurityService
     
@@ -68,6 +68,7 @@ class AppointmentController {
     }
 
     def edit(Long id) {
+        def patientInstance = Patient.get(params.foo)
         def appointmentInstance = Appointment.get(id)
         if (!appointmentInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'appointment.label', default: 'Appointment'), id])
@@ -75,10 +76,26 @@ class AppointmentController {
             return
         }
 
-        [appointmentInstance: appointmentInstance]
+        [appointmentInstance: appointmentInstance,patientInstance: patientInstance]
     }
 
     def update(Long id, Long version) {
+          def user = springSecurityService.currentUser
+      
+        params.date=theDate.parse(params.date) 
+       
+        params.startTime=theTime.parse(params.startTime)
+        params.endTime=theTime.parse(params.endTime)
+
+        println params.endTime
+        println params.startTime
+      //  params.startTime = params.date.set(hourOfDay: params.startTime.getHours(), minute: params.startTime.getMinutes(), second: 0)
+      //  params.endTime = params.date.set(hourOfDay: params.endTime.getHours(), minute: params.endTime.getMinutes(), second: 0)
+        params.date.set(hourOfDay: params.startTime.getHours(), minute: params.startTime.getMinutes(), second: 0)
+        params.attended = null
+        params.user=user
+        println params.endTime
+        println params.startTime
         def appointmentInstance = Appointment.get(id)
         if (!appointmentInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'appointment.label', default: 'Appointment'), id])
@@ -104,7 +121,7 @@ class AppointmentController {
         }
 
         flash.message = message(code: 'default.updated.message', args: [message(code: 'appointment.label', default: 'Appointment'), appointmentInstance.id])
-        redirect(action: "show", id: appointmentInstance.id)
+        redirect(controller:"patient", action: "show", id: appointmentInstance.treatment.patient.id)
     }
 
     def delete(Long id) {
@@ -118,7 +135,7 @@ class AppointmentController {
         try {
             appointmentInstance.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'appointment.label', default: 'Appointment'), id])
-            redirect(action: "list")
+            redirect(controller:"patient", action: "show", id: appointmentInstance.treatment.patient.id)
         }
         catch (DataIntegrityViolationException e) {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'appointment.label', default: 'Appointment'), id])
