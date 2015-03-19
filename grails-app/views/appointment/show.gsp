@@ -41,11 +41,20 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${appointmentInstance?.time}">
+				<g:if test="${appointmentInstance?.endTime}">
 				<li class="fieldcontain">
-					<span id="time-label" class="property-label"><g:message code="appointment.time.label" default="Time" /></span>
+					<span id="endTime-label" class="property-label"><g:message code="appointment.endTime.label" default="End Time" /></span>
 					
-						<span class="property-value" aria-labelledby="time-label"><g:formatDate date="${appointmentInstance?.time}" /></span>
+						<span class="property-value" aria-labelledby="endTime-label"><g:formatDate date="${appointmentInstance?.endTime}" /></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${appointmentInstance?.startTime}">
+				<li class="fieldcontain">
+					<span id="startTime-label" class="property-label"><g:message code="appointment.startTime.label" default="Start Time" /></span>
+					
+						<span class="property-value" aria-labelledby="startTime-label"><g:formatDate date="${appointmentInstance?.startTime}" /></span>
 					
 				</li>
 				</g:if>
