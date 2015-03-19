@@ -207,7 +207,7 @@
                                      <li class="last images">
                                         <a href="${createLink(controller:'appointment', action:'list')}">
                                             <span class="shortcuts-icon iconsi-citas"></span>
-                                            <span class="shortcuts-label">Citas</span>
+                                            <span class="shortcuts-label">Citas: <strong>${fastchacaito.Appointment.pendingAppointments()}</strong></span>
                                         </a>
                                     </li>
                                 </ul>

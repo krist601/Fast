@@ -40,7 +40,7 @@
             month: 'Mes',
             week: 'Semana',
             day: 'Día'
-            },
+            }, ignoreTimezone:false,
             selectable: true,
             selectHelper: true,
             select: "${createLink(controller: 'appointment', action: 'create')}",

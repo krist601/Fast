@@ -172,7 +172,7 @@ class AppointmentController {
             [
                 title: it.treatment.patient.firstName + " "+it.treatment.patient.lastName+ " "+it.treatment,
                 start: it.date,
-                end: it.date.set(hourOfDay: it.endTime.getHours(), minute: it.endTime.getMinutes(), second: 0),
+                end: it.date.set(hourOfDay: it.startTime.getHours(), minute: it.startTime.getMinutes(), second: 0),
                 allDay:false
             ]
         } as JSON
