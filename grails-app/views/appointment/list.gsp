@@ -105,11 +105,10 @@
                                 <li><a href="/FastChacaito/Patient/Create">Crear Nuevo Paciente</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown"><a href=""><span class="iconfa-calendar"></span> Cita</a>
-                            <ul>
-                                <li><a href="/FastChacaito/Appointment/List">Listar Citas</a></li>
-                                <li><a href="/FastChacaito/Appointment/Create">Crear Nueva Cita</a></li>
-                            </ul>
+                        <li class="dropdown"><a href="${createLink(controller:'Appointment', action:'list')}"><span class="iconfa-calendar"></span> Cita</a>
+                           <ul>
+                                <li><a href="${createLink(controller:'Appointment', action:'list')}">Calendario</a></li>
+                           </ul>
                         </li>
                         <li class="dropdown"><a href=""><span class="iconfa-tint"></span> Examenes de Laboratorio</a>
                             <ul>
@@ -163,19 +162,15 @@
 
                 <div class="maincontent">
                     <div class="maincontentinner">
-                        <fieldset class="buttons">
-                            <a class="btn btn-primary" href="${createLink(controller:'appointment', action:'create')}">
-                                Crear Cita
-                            </a>
-                        </fieldset>
+                       
                         <div id='calendar'></div>
 
                         <div class="footer">
                             <div class="footer-left">
-                                <span>&copy; 2013. Shamcey Admin Template. All Rights Reserved.</span>
+                                <span></span>
                             </div>
                             <div class="footer-right">
-                                <span>Designed by: <a href="http://themepixels.com/">ThemePixels</a></span>
+                                <span></span>
                             </div>
                         </div><!--footer-->
                     </div><!--maincontentinner-->

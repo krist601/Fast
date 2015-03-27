@@ -8,7 +8,7 @@ class AppointmentController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
     static SimpleDateFormat theDate = new SimpleDateFormat( 'MM/dd/yyyy' ) //H:m:s
-    static SimpleDateFormat theTime = new SimpleDateFormat( 'HH:mm aa' ) //H:m:s
+    static SimpleDateFormat theTime = new SimpleDateFormat( 'hh:mm aa' ) //H:m:s
     static SimpleDateFormat theDate1 = new SimpleDateFormat( 'MM/dd/yyyy H:m:s aa' )
     static SimpleDateFormat x = new SimpleDateFormat( 'dd/MM/yyyy' )
     def springSecurityService
@@ -31,7 +31,7 @@ class AppointmentController {
         
         
         def user = springSecurityService.currentUser
-      
+      println "llega " + params.endTime
         params.date=theDate.parse(params.date) 
        
         params.startTime=theTime.parse(params.startTime)
@@ -174,7 +174,7 @@ class AppointmentController {
                 start: it.date,
                 end: it.date.set(hourOfDay: it.startTime.getHours(), minute: it.startTime.getMinutes(), second: 0),
                 allDay:false,
-                url:createLink(controller: 'appointment', action: 'show',id:it.id)
+                url: createLink(controller: 'appointment', action: 'edit',params:[id:it.id,foo:it.treatment.patient.id])
             ]
         } as JSON
      

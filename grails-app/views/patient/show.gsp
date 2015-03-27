@@ -782,8 +782,8 @@
 
                                                 </td>
                                                 
-                                                <td class="center"><g:formatDate date="${item.startTime}" format="HH:mm a"/></td>
-                                                <td class="center"><g:formatDate date="${item.date}" format="HH:mm a"/></td>
+                                                <td class="center"><g:formatDate date="${item.startTime}" format="hh:mm a"/></td>
+                                                <td class="center"><g:formatDate date="${item.endTime}" format="hh:mm a"/></td>
                                                 <td class="center">${item.treatment.getType(item.treatment.id)}</td>
 
 

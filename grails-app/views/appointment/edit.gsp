@@ -35,7 +35,37 @@
                                 <g:hiddenField name="id" value="${appointmentInstance?.id}" />
                                 <g:hiddenField name="version" value="${appointmentInstance?.version}" />
                                 <fieldset class="form">
-                                    <g:render template="form"/>
+                                    <%@ page import="fastchacaito.Appointment" %>
+
+
+
+<div class="fieldcontain ${hasErrors(bean: appointmentInstance, field: 'date', 'error')} ">
+    <label>Fecha de la Cita</label>
+    <span class="field"><input id="datepicker" type="text" name="date" class="input-small" value="${appointmentInstance?.date.format("MM/dd/yyyy")}" required/></span>
+</div>
+
+<div class="par">
+    <label>Hora Inicio de la Cita</label>
+    <div class="input-append bootstrap-timepicker">
+        <input id="timepicker1" name="startTime" type="text" class="input-small" value="${appointmentInstance?.startTime.format("HH:mm a")}" required/>
+        <span class="add-on"><i class="iconfa-time"></i></span>
+    </div>
+</div>
+<div class="par">
+    <label>Hora Fin de la Cita</label>
+    <div class="input-append bootstrap-timepicker">
+        <input id="timepicker2" name="endTime" type="text" class="input-small" value="${appointmentInstance?.endTime.format("HH:mm a")}" required/>
+        <span class="add-on"><i class="iconfa-time"></i></span>
+    </div>
+</div>
+<div class="fieldcontain ${hasErrors(bean: appointmentInstance, field: 'treatment', 'error')} required">
+    <label for="treatment">
+        <g:message code="appointment.treatment.label" default="Tratamiento" />
+    </label>
+    <g:select id="treatment" name="treatment.id" from="${fastchacaito.Treatment.findAllByPatient(patientInstance)}" optionKey="id" required="" value="${appointmentInstance?.treatment?.id}" class="many-to-one" />
+</div>
+
+
                                 </fieldset>
                                 <fieldset class="buttons">
                                     <g:actionSubmit class="btn btn-primary" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />

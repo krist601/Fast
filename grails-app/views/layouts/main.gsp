@@ -65,11 +65,10 @@
                             <li><a href="${createLink(controller:'patient', action:'create')}">Crear Nuevo Paciente</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown"><a href=""><span class="iconfa-calendar"></span> Cita</a>
-                        <ul>
-                            <li><a href="${createLink(controller:'Appointment', action:'list')}">Listar Citas</a></li>
-                            <li><a href="${createLink(controller:'Appointment', action:'create')}">Crear Nueva Cita</a></li>
-                        </ul>
+                    <li class="dropdown"><a href="${createLink(controller:'Appointment', action:'list')}"><span class="iconfa-calendar"></span> Citas</a>
+                         <ul>
+                                <li><a href="${createLink(controller:'Appointment', action:'list')}">Calendario</a></li>
+                           </ul>
                     </li>
                     <li class="dropdown"><a href=""><span class="iconfa-tint"></span> Examenes de Laboratorio</a>
                         <ul>

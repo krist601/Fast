@@ -53,7 +53,7 @@
                 <div class="leftmenu">        
                     <ul class="nav nav-tabs nav-stacked">
                         <li class="nav-header">Menú</li>
-                        <li><a href="/FastChacaito/"><span class="iconfa-laptop"></span> Dashboard</a></li>
+                        <li><a href="${createLink(uri: '/')}"><span class="iconfa-laptop"></span> Dashboard</a></li>
                         <li class="dropdown"><a href=""><span class="iconfa-user"></span> Paciente</a>
                             <ul>
                                 <li><a href="${createLink(controller:'patient', action:'list')}">Listar Pacientes</a></li>
@@ -78,11 +78,10 @@
                                 <li><a href="${createLink(controller:'measuresControl', action:'create')}">Crear Nuevo Control de Medidas</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown"><a href=""><span class="iconfa-calendar"></span> Cita</a>
-                            <ul>
-                                <li><a href="${createLink(controller:'Appointment', action:'list')}">Listar Citas</a></li>
-                                <li><a href="${createLink(controller:'Appointment', action:'create')}">Crear Nueva Cita</a></li>
-                            </ul>
+                        <li class="dropdown"><a href="${createLink(controller:'Appointment', action:'list')}"><span class="iconfa-calendar"></span> Citas</a>
+                           <ul>
+                                <li><a href="${createLink(controller:'Appointment', action:'list')}">Calendario</a></li>
+                           </ul>
                         </li>
                         <li class="dropdown"><a href=""><span class="iconfa-tint"></span> Examen de Laboratorio</a>
                             <ul>
@@ -183,14 +182,27 @@
                                     <li class="products">
                                         <a href="${createLink(controller:'vacutainer', action:'list')}">
                                             <span class="shortcuts-icon iconsi-cart"></span>
-                                            <span class="shortcuts-label">Vacutainers: <strong>${fastchacaito.Vacutainer.count()}</strong></span>
+                                            
+                                           <g:if test="${fastchacaito.Vacutainer.avaliableVacutainers().size() < 6}">
+                                            <span class="shortcuts-label">Vacutainers: 
+                                               <strong style="color: red;">${fastchacaito.Vacutainer.avaliableVacutainers().size()}</strong>
+                                           </span>
+                                            </g:if>
+                                           <g:else><span class="shortcuts-label">Vacutainers: <strong>${fastchacaito.Vacutainer.count()}</strong></span></g:else>
                                         </a>
                                     </li>
                                     <li class="archive">
                                         <a href="${createLink(controller:'application', action:'list')}">
                                             <span class="shortcuts-icon iconsi-archive"></span>
-                                            <span class="shortcuts-label"> Aplicaciones: <strong> ${fastchacaito.Application.count()}</strong></span>
-                                        </a>
+                                            
+                                      <g:if test="${fastchacaito.Application.avaliableApplications().size() < 6}">
+                                            <span class="shortcuts-label">Aplicaciones: 
+                                               <strong style="color: red;">${fastchacaito.Application.avaliableApplications().size()}</strong>
+                                           </span>
+                                            </g:if>
+                                           <g:else><span class="shortcuts-label">Aplicaciones: <strong>${fastchacaito.Application.count()}</strong></span></g:else>
+                                           
+                                    </a>
                                     </li>
                                     <li class="help">
                                         <a href="${createLink(controller:'package', action:'list')}">
