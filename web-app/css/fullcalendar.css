@@ -281,7 +281,9 @@ html .fc,
 
 /* Global Event Styles
 ------------------------------------------------------------------------*/
-	 
+a.fc-event:link {
+    color: white;
+}	 
 .fc-event {
 	border: 1px solid #333; /* default BORDER color */
 	background-color: rgba(0,0,0,0.7); /* default BACKGROUND color */

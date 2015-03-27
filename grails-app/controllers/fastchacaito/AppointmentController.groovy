@@ -174,6 +174,7 @@ class AppointmentController {
                 start: it.date,
                 end: it.date.set(hourOfDay: it.startTime.getHours(), minute: it.startTime.getMinutes(), second: 0),
                 allDay:false,
+                
                 url: createLink(controller: 'appointment', action: 'edit',params:[id:it.id,foo:it.treatment.patient.id])
             ]
         } as JSON
